@@ -1,0 +1,16 @@
+{
+  "name": "Karthikeyan | AI Developer & Full Stack Web Developer",
+  "short_name": "Karthikeyan",
+  "description": "Portfolio of Karthikeyan (Karthi) - AI Developer, Full Stack Web Developer, and Prompt Engineer.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050816",
+  "theme_color": "#050816",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}
