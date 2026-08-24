@@ -26,8 +26,10 @@
    ────────────────────────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   initLoadingScreen();
-  initScrollProgress();
   initNavbar();
+  initHeroParallax();
+  initSectionAmbientGlow();
+  initScrollProgress();
   initNavPillIndicator();
   initTextMaskReveal();
   initScrollReveal();
@@ -38,45 +40,34 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ──────────────────────────────────────────────────────────────────────────
-   1. LOADING SCREEN
-   CSS drives staggered entrance (logo 200ms, name 450ms, motto 650ms).
-   JS drives the progress bar and dismisses at 900ms per spec.
+   1. LOADING SCREEN (Req #1: Max 1.3s Cinematic Opening Sequence)
+   CSS keyframes handle K -> Name Mask -> Motto entrance.
+   JS dismisses at 1.05s with a 0.25s fade-out (total 1.3s max).
+   Trigger navbar entrance (.navbar-loaded) on dismiss.
    ────────────────────────────────────────────────────────────────────────── */
 function initLoadingScreen() {
   const screen = document.getElementById('loading-screen');
-  const fill   = document.getElementById('loader-progress-bar');
-  const pct    = document.getElementById('loader-percentage');
+  const navbar = document.getElementById('navbar');
 
-  if (!screen) return;
+  if (!screen) {
+    if (navbar) navbar.classList.add('navbar-loaded');
+    return;
+  }
 
-  // Animate progress 0→100% over ~820ms
-  let progress     = 0;
-  const DURATION   = 820;
-  const INTERVAL   = 16;
-  const INCREMENT  = 100 / (DURATION / INTERVAL);
+  // Dismiss intro smoothly at 1050ms (completes by 1.3s max)
+  const dismissTimer = setTimeout(dismiss, 1050);
 
-  const tick = setInterval(() => {
-    progress = Math.min(progress + INCREMENT, 100);
-    if (fill) fill.style.width = `${progress}%`;
-    if (pct)  pct.textContent  = `${Math.floor(progress)}%`;
-    if (progress >= 100) clearInterval(tick);
-  }, INTERVAL);
-
-  // Dismiss per spec: overlay fades at 900ms
-  const dismissTimer = setTimeout(dismiss, 900);
-
-  // Safety: max 2s — never block visitors
+  // Safety fallback (max 1.5s)
   setTimeout(() => {
-    clearInterval(tick);
     clearTimeout(dismissTimer);
-    if (screen && screen.style.display !== 'none' &&
-        !screen.classList.contains('fade-out')) {
+    if (screen && screen.style.display !== 'none' && !screen.classList.contains('fade-out')) {
       dismiss();
     }
-  }, 2000);
+  }, 1500);
 
   function dismiss() {
     screen.classList.add('fade-out');
+    if (navbar) navbar.classList.add('navbar-loaded');
     screen.addEventListener('transitionend', () => {
       screen.style.display = 'none';
     }, { once: true });
@@ -84,7 +75,76 @@ function initLoadingScreen() {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-   2. SCROLL PROGRESS BAR — scaleX only, GPU composited
+   2. HERO PARALLAX-LIKE DEPTH (Req #3 & Req #33: Hero Exit)
+   Scroll position ONLY (NO mouse parallax).
+   Very subtle translateY offsets on bg, content, and profile image.
+   Fades hero content slightly as user scrolls down.
+   Pauses calculations when hero leaves viewport.
+   ────────────────────────────────────────────────────────────────────────── */
+function initHeroParallax() {
+  const hero       = document.getElementById('home');
+  const scrollHint = document.querySelector('.scroll-hint');
+  const ambientBg  = document.getElementById('bg-ambient');
+  if (!hero) return;
+
+  let isTicking = false;
+
+  window.addEventListener('scroll', () => {
+    if (!isTicking) {
+      window.requestAnimationFrame(onScroll);
+      isTicking = true;
+    }
+  }, { passive: true });
+
+  function onScroll() {
+    isTicking = false;
+    const scrollY    = window.scrollY;
+    const heroHeight = hero.offsetHeight || 700;
+
+    // Scroll hint fade out (Req #10)
+    if (scrollHint) {
+      scrollHint.classList.toggle('hidden', scrollY > 50);
+    }
+
+    // Stop execution once hero leaves viewport
+    if (scrollY > heroHeight + 100) return;
+
+    // Parallax translateY offsets
+    const contentY = scrollY * -0.18;
+    const imgY     = scrollY * -0.28;
+    const exitOpacity = Math.max(1 - (scrollY / (heroHeight * 0.75)), 0.35);
+
+    hero.style.setProperty('--hero-parallax-content', `${contentY}px`);
+    hero.style.setProperty('--hero-parallax-img', `${imgY}px`);
+    hero.style.setProperty('--hero-exit-opacity', exitOpacity);
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   3. SECTION AMBIENT GLOW SWITCHER (Req #30: Section Color Transitions)
+   Shifts ambient background radial glow positions/colors as user scrolls.
+   ────────────────────────────────────────────────────────────────────────── */
+function initSectionAmbientGlow() {
+  const ambientBg = document.getElementById('bg-ambient');
+  const sections  = document.querySelectorAll('section[id]');
+  if (!ambientBg || !sections.length || !('IntersectionObserver' in window)) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          ambientBg.setAttribute('data-active-section', entry.target.id);
+        }
+      });
+    },
+    { root: null, threshold: 0.25 }
+  );
+
+  sections.forEach(s => observer.observe(s));
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   4. SCROLL PROGRESS BAR — scaleX only, GPU composited
    ────────────────────────────────────────────────────────────────────────── */
 function initScrollProgress() {
   const bar = document.getElementById('scroll-progress-bar');
@@ -98,7 +158,7 @@ function initScrollProgress() {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-   3. NAVBAR — glassmorphism on scroll, active section, mobile menu
+   5. NAVBAR — glassmorphism on scroll, active section, mobile menu
    ────────────────────────────────────────────────────────────────────────── */
 function initNavbar() {
   const navbar   = document.getElementById('navbar');

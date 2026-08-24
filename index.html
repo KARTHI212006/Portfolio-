@@ -33,24 +33,23 @@
   <div id="scroll-progress-bar" aria-hidden="true"></div>
 
   <!-- Background Atmosphere -->
-  <div class="bg-ambient" aria-hidden="true">
+  <div class="bg-ambient" aria-hidden="true" id="bg-ambient" data-active-section="home">
     <div class="bg-purple-glow"></div>
     <div class="bg-cyan-glow"></div>
+    <div class="bg-blue-glow"></div>
     <div class="bg-grid"></div>
   </div>
 
   <!-- ═══════════════════════════════════════════════════════════════
-       LOADING SCREEN
+       LOADING SCREEN (1.3s Max Cinematic Intro)
   ═══════════════════════════════════════════════════════════════ -->
   <div id="loading-screen" role="status" aria-label="Loading Portfolio">
     <div class="loader-inner">
       <div class="loader-logo">K</div>
-      <h1 class="loader-name">KARTHIKEYAN S</h1>
-      <p class="loader-motto">CODE. CREATE. INNOVATE.</p>
-      <div class="loader-track">
-        <div id="loader-progress-bar" class="loader-fill"></div>
+      <div class="loader-name-mask">
+        <h1 class="loader-name">KARTHIKEYAN S</h1>
       </div>
-      <span id="loader-percentage" class="loader-pct">0%</span>
+      <p class="loader-motto">CODE. CREATE. INNOVATE.</p>
     </div>
   </div>
 
@@ -118,8 +117,10 @@
             Hi, I'm <span class="wave-emoji">👋</span>
           </p>
 
-          <!-- Main Name — gradient, large, cinematic reveal -->
-          <h1 class="hero-name hero-reveal hero-el-3">KARTHIKEYAN S</h1>
+          <!-- Main Name — gradient, large, cinematic mask reveal -->
+          <div class="hero-name-mask hero-reveal hero-el-3">
+            <h1 class="hero-name">KARTHIKEYAN S</h1>
+          </div>
 
           <!-- Professional Title -->
           <div class="hero-title-line hero-reveal hero-el-4">
@@ -447,7 +448,7 @@
 
         <div class="projects-grid">
 
-          <!-- GameVault -->
+          <!-- GameVault Showcase -->
           <div class="glass-card project-card staggered-item" style="--delay: 0.08s">
             <div class="project-img-wrapper">
               <span class="project-badge">PROJECT 01</span>
@@ -459,7 +460,13 @@
             </div>
             <div class="project-content">
               <h3 class="project-title">GAMEVAULT</h3>
-              <p class="project-desc">A modern gaming website designed for gaming enthusiasts with an attractive interface, responsive design, and engaging user experience built from scratch.</p>
+              
+              <div class="project-story">
+                <p class="story-item"><strong>PROBLEM:</strong> Gaming enthusiasts need an engaging, responsive portal to explore games without heavy framework bloat.</p>
+                <p class="story-item"><strong>SOLUTION:</strong> Designed and built a lightweight, zero-dependency web interface with smooth transitions and high performance.</p>
+                <p class="story-item"><strong>RESULT:</strong> Ultra-fast page load times, 100% responsive layout across mobile and desktop devices.</p>
+              </div>
+
               <div class="project-tags">
                 <span class="tag">HTML5</span>
                 <span class="tag">CSS3</span>
@@ -477,7 +484,7 @@
             </div>
           </div>
 
-          <!-- Smart Irrigation System -->
+          <!-- Smart Irrigation System Showcase -->
           <div class="glass-card project-card staggered-item" style="--delay: 0.18s">
             <div class="project-img-wrapper">
               <span class="project-badge">PROJECT 02</span>
@@ -489,7 +496,13 @@
             </div>
             <div class="project-content">
               <h3 class="project-title">SMART IRRIGATION SYSTEM</h3>
-              <p class="project-desc">An IoT-based mini project that monitors soil moisture and automates irrigation to improve water efficiency in agricultural applications.</p>
+              
+              <div class="project-story">
+                <p class="story-item"><strong>PROBLEM:</strong> Traditional farming suffers from inefficient water usage and manual moisture inspection.</p>
+                <p class="story-item"><strong>SOLUTION:</strong> Engineered an automated IoT system with soil sensors and microcontroller logic to trigger irrigation automatically.</p>
+                <p class="story-item"><strong>RESULT:</strong> Optimized water conservation and automated real-time soil moisture monitoring.</p>
+              </div>
+
               <div class="project-tags">
                 <span class="tag">Arduino</span>
                 <span class="tag">IoT</span>
@@ -543,14 +556,6 @@
           </div>
         </div>
 
-        <!-- Career Goal -->
-        <div class="goal-card glass-card animated-border-card staggered-item" style="--delay: 0.22s">
-          <span class="goal-eyebrow">🎯 VISION &amp; ASPIRATION</span>
-          <h2 class="goal-heading">MY CAREER GOAL</h2>
-          <p class="goal-main gradient-span">AI ENGINEER AT GOOGLE</p>
-          <p class="goal-desc">I am continuously developing my skills in artificial intelligence, software engineering, web development, and prompt engineering — building intelligent solutions that solve real-world problems at scale.</p>
-        </div>
-
       </div>
     </section>
 
@@ -588,6 +593,28 @@
           </div>
         </div>
 
+        <!-- Verified Achievements Grid -->
+        <div class="achievements-wrap">
+          <h3 class="achievements-heading">Key <span class="gradient-span">Achievements</span></h3>
+          <div class="achievements-grid">
+            <div class="glass-card achievement-card staggered-item" style="--delay: 0.05s">
+              <span class="achieve-icon">🏆</span>
+              <h4>34-Day IoT Internship</h4>
+              <p>Completed intensive industrial training in Coimbatore at ZEN 1 Tech Park.</p>
+            </div>
+            <div class="glass-card achievement-card staggered-item" style="--delay: 0.12s">
+              <span class="achieve-icon">🚀</span>
+              <h4>IoT &amp; Web Systems</h4>
+              <p>Engineered GameVault web platform and Smart Irrigation System prototype.</p>
+            </div>
+            <div class="glass-card achievement-card staggered-item" style="--delay: 0.19s">
+              <span class="achieve-icon">🎓</span>
+              <h4>Academic Standard</h4>
+              <p>7.94 CGPA in B.E. Computer Science and Engineering.</p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -607,7 +634,7 @@
         <div class="interests-grid">
           <div class="glass-card interest-pill staggered-item" style="--delay: 0.05s">
             <span class="interest-icon">🎮</span>
-            <span class="interest-name">Story-driven Games</span>
+            <span class="interest-name">Story Games</span>
           </div>
           <div class="glass-card interest-pill staggered-item" style="--delay: 0.10s">
             <span class="interest-icon">🤖</span>
@@ -623,7 +650,7 @@
           </div>
           <div class="glass-card interest-pill staggered-item" style="--delay: 0.25s">
             <span class="interest-icon">🚀</span>
-            <span class="interest-name">Learning New Technologies</span>
+            <span class="interest-name">Technology</span>
           </div>
           <div class="glass-card interest-pill staggered-item" style="--delay: 0.30s">
             <span class="interest-icon">✨</span>
@@ -635,6 +662,20 @@
     </section>
 
     <!-- ═══════════════════════════════════════════════════════════════
+         CAREER VISION SPOTLIGHT
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="section vision-section reveal-on-scroll">
+      <div class="container">
+        <div class="goal-card glass-card animated-border-card staggered-item" style="--delay: 0.08s">
+          <span class="goal-eyebrow">MY VISION</span>
+          <h2 class="goal-main gradient-span">AI ENGINEER AT GOOGLE</h2>
+          <p class="goal-quote">"Building intelligent software that solves real-world problems."</p>
+          <p class="goal-desc">Continuously mastering Artificial Intelligence, Full Stack Software Engineering, and Prompt Architecture to deliver scalable, human-centered technology.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
          CONTACT SECTION — 07
     ═══════════════════════════════════════════════════════════════ -->
     <section id="contact" class="section reveal-on-scroll">
@@ -642,7 +683,7 @@
 
         <div class="section-header">
           <span class="section-eyebrow">07 / CONTACT</span>
-          <h2 class="section-title">Get in <span class="gradient-span">Touch</span></h2>
+          <h2 class="section-title">LET'S BUILD <span class="gradient-span">SOMETHING.</span></h2>
           <div class="heading-line"></div>
           <p class="section-subtitle">Reach out for opportunities, collaborations, or inquiries.</p>
         </div>
