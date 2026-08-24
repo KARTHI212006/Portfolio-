@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <!-- SEO & Open Graph Meta Tags -->
+  <title>KARTHIKEYAN S | Prompt Engineer & Software Developer</title>
+  <meta name="description" content="Official portfolio of KARTHIKEYAN S — Prompt Engineer, Software Developer, AI & Web Developer from Salem, Tamil Nadu, India. Target: AI Engineer at Google.">
+  <meta name="keywords" content="KARTHIKEYAN S, Karthikeyan, Prompt Engineer, Software Developer, AI Engineer, Web Developer, Java Developer, IoT, Salem, Portfolio">
+  <meta name="author" content="KARTHIKEYAN S">
+  
+  <meta property="og:title" content="KARTHIKEYAN S | Portfolio">
+  <meta property="og:description" content="Prompt Engineer | Software Developer | AI & Web Developer | Code. Create. Innovate.">
+  <meta property="og:image" content="assets/images/profile.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="public/favicon.svg">
+
+  <!-- Google Fonts: Inter & Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Scroll Progress Bar (2px, scaleX-animated, GPU-composited) -->
+  <div id="scroll-progress-bar" aria-hidden="true"></div>
+
+  <!-- Static Ambient Light Overlay (Pure CSS, GPU Composited) -->
+  <div class="bg-ambient" aria-hidden="true">
+    <div class="glow-blob blob-1"></div>
+    <div class="glow-blob blob-2"></div>
+    <div class="glow-blob blob-3"></div>
+    <div class="bg-grid-overlay"></div>
+  </div>
+
+  <!-- 1. LOADING SCREEN -->
+  <div id="loading-screen" aria-label="Loading Screen">
+    <div class="loader-content">
+      <div class="loader-logo">K</div>
+      <h1 class="loader-name">KARTHIKEYAN S</h1>
+      <div class="loader-motto">CODE. CREATE. INNOVATE.</div>
+      <div class="loader-progress-track">
+        <div id="loader-progress-bar" class="loader-progress-bar"></div>
+      </div>
+      <span id="loader-percentage" class="loader-percentage">0%</span>
+    </div>
+  </div>
+
+  <!-- 2. STICKY NAVIGATION BAR -->
+  <header id="navbar" class="navbar">
+    <div class="container nav-container">
+      <a href="#home" class="nav-logo" aria-label="KARTHIKEYAN S Portfolio Home">
+        <div class="nav-logo-badge">K</div>
+        <span class="nav-logo-text">KARTHIKEYAN S</span>
+      </a>
+
+      <nav id="nav-menu" class="nav-menu" aria-label="Main Navigation">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#education" class="nav-link">Education</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#certificates" class="nav-link">Certificates</a>
+        <a href="#goal" class="nav-link">Goal</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <button id="nav-toggle" class="nav-toggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- 3. HERO SECTION (STAGGERED TEXT REVEAL & GRADIENT HEADLINE) -->
+    <section id="home" class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <!-- Item 1: Status Pill & Hello -->
+          <div class="hero-reveal hero-element-1">
+            <div class="status-pill">
+              <span class="status-dot"></span> Available for Opportunities
+            </div>
+            <div class="hero-greeting">
+              <span class="wave-emoji">👋</span> Hello, I'm
+            </div>
+          </div>
+
+          <!-- Item 2: Name & Gradient Animated Headline -->
+          <div class="hero-reveal hero-element-2">
+            <h1 class="hero-name gradient-animated-text">KARTHIKEYAN S</h1>
+          </div>
+          
+          <!-- Item 3: Typing Text, Animated Underline & Role Badges -->
+          <div class="hero-reveal hero-element-3">
+            <div class="hero-typing-box">
+              <span class="typing-prefix">Specializing in </span>
+              <span id="typing-text" class="typing-text">Prompt Engineering</span><span class="typing-cursor">|</span>
+            </div>
+            <div class="title-animated-underline"></div>
+
+            <div class="hero-roles">
+              <span class="role-badge primary">Prompt Engineer</span>
+              <span class="role-badge secondary">Software Developer</span>
+              <span class="role-badge accent">AI &amp; Web Developer</span>
+            </div>
+          </div>
+
+          <!-- Item 4: Description -->
+          <div class="hero-reveal hero-element-4">
+            <p class="hero-bio">
+              Computer Science Engineering student passionate about software development, artificial intelligence, prompt engineering, and modern web technologies.
+            </p>
+          </div>
+
+          <!-- Item 5: Action Buttons -->
+          <div class="hero-reveal hero-element-5">
+            <div class="hero-actions">
+              <a href="#projects" class="btn btn-primary shimmer-btn">
+                <span>VIEW PROJECTS</span>
+                <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+              <a href="resume/KARTHIKEYAN_S_RESUME.pdf" download="KARTHIKEYAN_S_RESUME.pdf" target="_blank" class="btn btn-secondary shimmer-btn">
+                <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <span>DOWNLOAD RESUME</span>
+              </a>
+              <a href="#contact" class="btn btn-outline shimmer-btn"><span>CONTACT ME</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Image (Glowing Border + Fade + Scale) -->
+        <div class="hero-image-container hero-reveal hero-element-img">
+          <div class="profile-card glow-profile-card">
+            <div class="profile-img-wrapper">
+              <img src="assets/images/profile.jpg" alt="KARTHIKEYAN S Profile Picture" class="profile-img">
+            </div>
+            <div class="profile-badge glow-badge">
+              <span class="target-icon">🎯</span> Target: AI Engineer @ Google
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Animated Scroll Down Indicator -->
+      <a href="#about" class="scroll-indicator" aria-label="Scroll Down to About Section">
+        <span class="scroll-indicator-text">SCROLL DOWN</span>
+        <span class="scroll-indicator-arrow">↓</span>
+      </a>
+    </section>
+
+    <!-- 4. ABOUT ME SECTION -->
+    <section id="about" class="section reveal-on-scroll">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">01 / ABOUT</span>
+          <h2 class="section-title">About <span class="accent-text">Me</span></h2>
+          <div class="heading-line"></div>
+          <p class="section-subtitle">My academic background, technical skills, and career objective.</p>
+        </div>
+
+        <div class="about-grid">
+          <div class="glass-card about-card staggered-item" style="--delay: 0.05s">
+            <div class="about-text">
+              <p>
+                Hello! I'm <strong>KARTHIKEYAN S</strong> from Salem, Tamil Nadu, India.
+              </p>
+              <p>
+                I completed my schooling at <strong>Sengunthar Matric Higher Secondary School, Salem</strong>.
+              </p>
+              <p>
+                I am pursuing <strong>B.E. Computer Science and Engineering</strong> at <strong>M.P. Nachimuthu M. Jaganathan Engineering College, Chennimalai, Erode</strong>, with graduation planned for <strong>2027</strong>.
+              </p>
+              <p>
+                I am passionate about software development, artificial intelligence, web development, and prompt engineering.
+              </p>
+              <p>
+                I have learned <strong>Python and Java</strong> and have knowledge of <strong>HTML, CSS, and JavaScript</strong>.
+              </p>
+              <p class="highlight-paragraph">
+                My goal is to become an <strong>AI Engineer at Google</strong>.
+              </p>
+            </div>
+          </div>
+
+          <div class="about-info-cards">
+            <div class="glass-card info-mini-card staggered-item" style="--delay: 0.10s">
+              <div class="info-icon">📍</div>
+              <div class="info-details">
+                <h4>Location</h4>
+                <p>Salem, Tamil Nadu, India</p>
+              </div>
+            </div>
+
+            <div class="glass-card info-mini-card staggered-item" style="--delay: 0.15s">
+              <div class="info-icon">🎓</div>
+              <div class="info-details">
+                <h4>Education</h4>
+                <p>B.E. CSE (2023 - 2027)</p>
+              </div>
+            </div>
+
+            <div class="glass-card info-mini-card staggered-item" style="--delay: 0.20s">
+              <div class="info-icon">🎯</div>
+              <div class="info-details">
+                <h4>Target Goal</h4>
+                <p>AI Engineer at Google</p>
+              </div>
+            </div>
+
+            <div class="glass-card info-mini-card staggered-item" style="--delay: 0.25s">
+              <div class="info-icon">💡</div>
+              <div class="info-details">
+                <h4>Personal Motto</h4>
+                <p>"Code. Create. Innovate."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. EDUCATION SECTION -->
+    <section id="education" class="section reveal-on-scroll">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">02 / EDUCATION</span>
+          <h2 class="section-title">Education <span class="accent-text">Timeline</span></h2>
+          <div class="heading-line"></div>
+          <p class="section-subtitle">Academic qualifications and institutional history.</p>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-vertical-line"></div>
+          
+          <!-- College -->
+          <div class="timeline-item staggered-item" style="--delay: 0.05s">
+            <div class="timeline-marker">🎓</div>
+            <div class="glass-card timeline-card">
+              <div class="timeline-header">
+                <h3 class="timeline-title">B.E. Computer Science and Engineering</h3>
+                <span class="timeline-date">2023 – 2027 (Expected)</span>
+              </div>
+              <p class="timeline-institution">M.P. Nachimuthu M. Jaganathan Engineering College, Chennimalai, Erode</p>
+              <p class="timeline-desc">
+                Currently in 4th year B.E. CSE. Developing strong fundamentals in Programming (Python, Java), Web Development (HTML, CSS, JS), Software Engineering principles, and Artificial Intelligence applications.
+              </p>
+            </div>
+          </div>
+
+          <!-- School -->
+          <div class="timeline-item staggered-item" style="--delay: 0.12s">
+            <div class="timeline-marker">🏫</div>
+            <div class="glass-card timeline-card">
+              <div class="timeline-header">
+                <h3 class="timeline-title">Secondary &amp; Higher Secondary Schooling</h3>
+                <span class="timeline-date">Completed</span>
+              </div>
+              <p class="timeline-institution">Sengunthar Matric Higher Secondary School, Salem</p>
+              <p class="timeline-desc">
+                Completed secondary and higher secondary education with a strong foundation in Computer Science, Mathematics, and Physical Sciences.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. SKILLS SECTION -->
+    <section id="skills" class="section reveal-on-scroll">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">03 / SKILLS</span>
+          <h2 class="section-title">Technical <span class="accent-text">Skills</span></h2>
+          <div class="heading-line"></div>
+          <p class="section-subtitle">Practical technologies, programming languages, and AI tools.</p>
+        </div>
+
+        <div class="skills-grid">
+          <!-- PROGRAMMING -->
+          <div class="glass-card skill-card staggered-item" style="--delay: 0.05s">
+            <div class="skill-card-header">
+              <div class="skill-card-icon">💻</div>
+              <h3 class="skill-card-category">PROGRAMMING</h3>
+            </div>
+            <div class="tech-items-grid">
+              <div class="tech-item staggered-item" style="--delay: 0.08s">
+                <span class="tech-icon">🐍</span>
+                <div class="tech-info">
+                  <span class="tech-name">Python</span>
+                  <span class="tech-desc">Core language for AI, data logic &amp; scripting</span>
+                </div>
+              </div>
+              <div class="tech-item staggered-item" style="--delay: 0.14s">
+                <span class="tech-icon">☕</span>
+                <div class="tech-info">
+                  <span class="tech-name">Java</span>
+                  <span class="tech-desc">Object-oriented programming &amp; console apps</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- WEB DEVELOPMENT -->
+          <div class="glass-card skill-card staggered-item" style="--delay: 0.12s">
+            <div class="skill-card-header">
+              <div class="skill-card-icon">🌐</div>
+              <h3 class="skill-card-category">WEB DEVELOPMENT</h3>
+            </div>
+            <div class="tech-items-grid">
+              <div class="tech-item staggered-item" style="--delay: 0.16s">
+                <span class="tech-icon">📄</span>
+                <div class="tech-info">
+                  <span class="tech-name">HTML5</span>
+                  <span class="tech-desc">Semantic document structuring &amp; accessibility</span>
+                </div>
+              </div>
+              <div class="tech-item staggered-item" style="--delay: 0.22s">
+                <span class="tech-icon">🎨</span>
+                <div class="tech-info">
+                  <span class="tech-name">CSS3</span>
+                  <span class="tech-desc">Modern Flexbox, CSS Grid &amp; glassmorphism</span>
+                </div>
+              </div>
+              <div class="tech-item staggered-item" style="--delay: 0.28s">
+                <span class="tech-icon">⚡</span>
+                <div class="tech-info">
+                  <span class="tech-name">JavaScript</span>
+                  <span class="tech-desc">Vanilla JS interactive DOM manipulation</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI & PROMPT ENGINEERING -->
+          <div class="glass-card skill-card staggered-item" style="--delay: 0.18s">
+            <div class="skill-card-header">
+              <div class="skill-card-icon">🤖</div>
+              <h3 class="skill-card-category">AI &amp; PROMPT ENGINEERING</h3>
+            </div>
+            <div class="tech-items-grid">
+              <div class="tech-item staggered-item" style="--delay: 0.22s">
+                <span class="tech-icon">✨</span>
+                <div class="tech-info">
+                  <span class="tech-name">Prompt Engineering</span>
+                  <span class="tech-desc">Designing precise LLM prompts &amp; workflows</span>
+                </div>
+              </div>
+              <div class="tech-item staggered-item" style="--delay: 0.28s">
+                <span class="tech-icon">🛠️</span>
+                <div class="tech-info">
+                  <span class="tech-name">AI Tools</span>
+                  <span class="tech-desc">AI-assisted coding &amp; productivity suites</span>
+                </div>
+              </div>
+              <div class="tech-item staggered-item" style="--delay: 0.34s">
+                <span class="tech-icon">💬</span>
+                <div class="tech-info">
+                  <span class="tech-name">ChatGPT</span>
+                  <span class="tech-desc">OpenAI LLM prompt optimization &amp; logic</span>
+                </div>
+              </div>
+              <div class="tech-item staggered-item" style="--delay: 0.40s">
+                <span class="tech-icon">🧠</span>
+                <div class="tech-info">
+                  <span class="tech-name">Claude AI</span>
+                  <span class="tech-desc">Anthropic model reasoning &amp; code generation</span>
+                </div>
+              </div>
+              <div class="tech-item staggered-item" style="--delay: 0.46s">
+                <span class="tech-icon">💎</span>
+                <div class="tech-info">
+                  <span class="tech-name">Gemini AI</span>
+                  <span class="tech-desc">Google AI multimodal tools &amp; APIs</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. PROJECTS SECTION -->
+    <section id="projects" class="section reveal-on-scroll">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">04 / PROJECTS</span>
+          <h2 class="section-title">Featured <span class="accent-text">Projects</span></h2>
+          <div class="heading-line"></div>
+          <p class="section-subtitle">Practical applications built using web and IoT technologies.</p>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Project 1: GameVault -->
+          <div class="glass-card project-card staggered-item" style="--delay: 0.08s">
+            <div class="project-img-wrapper">
+              <span class="project-number-badge">PROJECT 01</span>
+              <img src="assets/images/gamevault.jpg" alt="GameVault Project Screenshot" class="project-img" loading="lazy">
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">GAMEVAULT</h3>
+              <p class="project-description">
+                A modern gaming website designed for gaming enthusiasts with an attractive interface, responsive design, and engaging user experience.
+              </p>
+              <div class="project-tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+              </div>
+              <div class="project-actions">
+                <a href="https://s-karthikeyan-portfolio.vercel.app/" target="_blank" class="btn btn-primary btn-sm shimmer-btn"><span>Live Demo</span></a>
+                <a href="https://github.com/KARTHI212006" target="_blank" class="btn btn-outline btn-sm shimmer-btn"><span>GitHub</span></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2: Smart Irrigation System -->
+          <div class="glass-card project-card staggered-item" style="--delay: 0.16s">
+            <div class="project-img-wrapper">
+              <span class="project-number-badge">PROJECT 02</span>
+              <img src="assets/images/irrigation.jpg" alt="Smart Irrigation System Hardware" class="project-img" loading="lazy">
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">SMART IRRIGATION SYSTEM</h3>
+              <p class="project-description">
+                An IoT-based mini project designed to monitor soil moisture and automate irrigation to improve water efficiency.
+              </p>
+              <div class="project-tags">
+                <span class="tag">Arduino</span>
+                <span class="tag">IoT</span>
+                <span class="tag">Soil Moisture Sensor</span>
+              </div>
+              <div class="project-actions">
+                <a href="https://github.com/KARTHI212006" target="_blank" class="btn btn-outline btn-sm shimmer-btn"><span>GitHub</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. INDUSTRIAL INTERNSHIP / EXPERIENCE SECTION -->
+    <section id="experience" class="section reveal-on-scroll">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">05 / EXPERIENCE</span>
+          <h2 class="section-title">Industrial <span class="accent-text">Internship</span></h2>
+          <div class="heading-line"></div>
+          <p class="section-subtitle">Real-world technical exposure in an industry setting.</p>
+        </div>
+
+        <div class="glass-card experience-card staggered-item" style="--delay: 0.08s">
+          <div class="experience-details">
+            <div class="exp-badge">34 Days Internship</div>
+            <h3 class="exp-company">ZEN 1 Tech Park</h3>
+            <p class="exp-location">📍 Coimbatore, Tamil Nadu</p>
+            <p class="exp-domain">🔌 <strong>Domain:</strong> Internet of Things (IoT)</p>
+            <p class="exp-duration">📅 <strong>Duration:</strong> 34 Days (22 June 2026 – 25 July 2026)</p>
+            
+            <p class="exp-summary">
+              Gained hands-on experience in microcontroller programming, IoT sensor data acquisition, hardware integration, and automated system development during an intensive 34-day industrial training program.
+            </p>
+          </div>
+
+          <div class="experience-cert-preview">
+            <div class="cert-image-frame" onclick="openCertModal('assets/certificates/zen1_internship_certificate.png', 'ZEN 1 Tech Park Internship Certificate')">
+              <img src="assets/certificates/zen1_internship_certificate.png" alt="ZEN 1 Tech Park Internship Certificate" class="cert-thumb-img" loading="lazy">
+              <div class="cert-hover-overlay">
+                <span>🔍 Click to Enlarge</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. CERTIFICATES GALLERY SECTION -->
+    <section id="certificates" class="section reveal-on-scroll">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">06 / CERTIFICATES</span>
+          <h2 class="section-title">Certificates &amp; <span class="accent-text">Credentials</span></h2>
+          <div class="heading-line"></div>
+          <p class="section-subtitle">Verified technical achievements and internship certifications.</p>
+        </div>
+
+        <div class="certificates-grid">
+          <div class="glass-card cert-card staggered-item" style="--delay: 0.08s">
+            <div class="cert-card-img-container">
+              <img src="assets/certificates/zen1_internship_certificate.png" alt="ZEN 1 Tech Park IoT Certificate" class="cert-card-img" loading="lazy">
+            </div>
+            <div class="cert-card-body">
+              <h3 class="cert-card-title">IoT Internship Certificate</h3>
+              <p class="cert-card-org">ZEN 1 Tech Park, Coimbatore</p>
+              <p class="cert-card-date">22 June 2026 – 25 July 2026</p>
+              <button class="btn btn-outline btn-sm cert-modal-btn shimmer-btn" onclick="openCertModal('assets/certificates/zen1_internship_certificate.png', 'ZEN 1 Tech Park IoT Certificate')">
+                <span>View Certificate</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. CAREER GOAL SECTION (SPOTLIGHT CARD WITH SUBTLE ANIMATED GRADIENT BORDER) -->
+    <section id="goal" class="section reveal-on-scroll">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">07 / GOAL</span>
+        </div>
+        
+        <div class="glass-card goal-card animated-border-card staggered-item" style="--delay: 0.08s">
+          <div class="goal-icon">🎯</div>
+          <span class="goal-tag">VISION &amp; ASPIRATION</span>
+          <h2 class="goal-title">MY CAREER GOAL</h2>
+          <p class="goal-main-text gradient-animated-text">AI ENGINEER AT GOOGLE</p>
+          <p class="goal-subtext">
+            I am continuously developing my skills in artificial intelligence, software engineering, web development, and prompt engineering to build intelligent solutions that solve real-world problems.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. INTERESTS SECTION -->
+    <section id="interests" class="section reveal-on-scroll">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">08 / INTERESTS</span>
+          <h2 class="section-title">Fields of <span class="accent-text">Interest</span></h2>
+          <div class="heading-line"></div>
+          <p class="section-subtitle">Topics and domains that motivate my daily growth.</p>
+        </div>
+
+        <div class="interests-grid">
+          <div class="glass-card interest-badge staggered-item" style="--delay: 0.05s">
+            <span class="interest-icon">🎮</span>
+            <span class="interest-name">Story-driven Games</span>
+          </div>
+          <div class="glass-card interest-badge staggered-item" style="--delay: 0.10s">
+            <span class="interest-icon">🤖</span>
+            <span class="interest-name">Artificial Intelligence</span>
+          </div>
+          <div class="glass-card interest-badge staggered-item" style="--delay: 0.15s">
+            <span class="interest-icon">💻</span>
+            <span class="interest-name">Software Development</span>
+          </div>
+          <div class="glass-card interest-badge staggered-item" style="--delay: 0.20s">
+            <span class="interest-icon">🌐</span>
+            <span class="interest-name">Web Development</span>
+          </div>
+          <div class="glass-card interest-badge staggered-item" style="--delay: 0.25s">
+            <span class="interest-icon">🚀</span>
+            <span class="interest-name">Learning New Technologies</span>
+          </div>
+          <div class="glass-card interest-badge staggered-item" style="--delay: 0.30s">
+            <span class="interest-icon">✨</span>
+            <span class="interest-name">Prompt Engineering</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. CONTACT SECTION -->
+    <section id="contact" class="section reveal-on-scroll">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">09 / CONTACT</span>
+          <h2 class="section-title">Contact <span class="accent-text">Me</span></h2>
+          <div class="heading-line"></div>
+          <p class="section-subtitle">Reach out for opportunities, collaborations, or inquiries.</p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Info Column -->
+          <div class="glass-card contact-info-card staggered-item" style="--delay: 0.08s">
+            <h3>Contact Details</h3>
+            <p>Feel free to reach out via email or connect with me on social platforms.</p>
+
+            <div class="contact-list">
+              <a href="mailto:karthikeyankarthikeyan1710@gmail.com" class="contact-item">
+                <div class="contact-icon">✉️</div>
+                <div>
+                  <span class="contact-label">Email</span>
+                  <span class="contact-val">karthikeyankarthikeyan1710@gmail.com</span>
+                </div>
+              </a>
+
+              <a href="https://github.com/KARTHI212006" target="_blank" class="contact-item">
+                <div class="contact-icon">🐙</div>
+                <div>
+                  <span class="contact-label">GitHub</span>
+                  <span class="contact-val">github.com/KARTHI212006</span>
+                </div>
+              </a>
+
+              <a href="https://instagram.com/itz_karthi_k_k" target="_blank" class="contact-item">
+                <div class="contact-icon">📷</div>
+                <div>
+                  <span class="contact-label">Instagram</span>
+                  <span class="contact-val">@itz_karthi_k_k</span>
+                </div>
+              </a>
+
+              <a href="https://www.linkedin.com/in/karthikeyan-s-467313382" target="_blank" class="contact-item">
+                <div class="contact-icon">💼</div>
+                <div>
+                  <span class="contact-label">LinkedIn</span>
+                  <span class="contact-val">linkedin.com/in/karthikeyan-s-467313382</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Form Column -->
+          <div class="glass-card contact-form-card staggered-item" style="--delay: 0.16s">
+            <form id="contact-form" novalidate>
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" class="form-input" placeholder="Your Full Name" required>
+                <span class="form-error" id="name-error">Please enter your name.</span>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" class="form-input" placeholder="your.email@example.com" required>
+                <span class="form-error" id="email-error">Please enter a valid email address.</span>
+              </div>
+
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" class="form-input" placeholder="Message Subject" required>
+                <span class="form-error" id="subject-error">Please enter a subject.</span>
+              </div>
+
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" class="form-input" rows="4" placeholder="Write your message here..." required></textarea>
+                <span class="form-error" id="message-error">Please enter your message.</span>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block shimmer-btn"><span>SEND MESSAGE</span></button>
+              <div id="form-feedback" class="form-feedback"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 13. CERTIFICATE MODAL PREVIEW -->
+  <div id="cert-modal" class="modal" aria-hidden="true" role="dialog" aria-label="Certificate Modal Preview">
+    <div class="modal-backdrop" onclick="closeCertModal()"></div>
+    <div class="modal-content glass-card">
+      <button class="modal-close-btn" onclick="closeCertModal()" aria-label="Close Modal">&times;</button>
+      <img id="modal-img" src="" alt="Certificate Large Preview" class="modal-img">
+      <p id="modal-caption" class="modal-caption"></p>
+    </div>
+  </div>
+
+  <!-- 14. BACK TO TOP BUTTON -->
+  <button id="back-to-top" class="back-to-top-btn" aria-label="Back to Top" onclick="scrollToTop()">
+    ↑
+  </button>
+
+  <!-- 15. FOOTER WITH ANIMATED GRADIENT SEPARATOR -->
+  <footer class="footer reveal-on-scroll">
+    <div class="footer-gradient-line"></div>
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <h3 class="footer-logo">KARTHIKEYAN S</h3>
+        <p class="footer-subtitle">Prompt Engineer | Software Developer | AI &amp; Web Developer</p>
+        <p class="footer-motto">"CODE. CREATE. INNOVATE."</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div class="footer-socials">
+        <a href="https://github.com/KARTHI212006" target="_blank" aria-label="GitHub">🐙</a>
+        <a href="https://instagram.com/itz_karthi_k_k" target="_blank" aria-label="Instagram">📷</a>
+        <a href="https://www.linkedin.com/in/karthikeyan-s-467313382" target="_blank" aria-label="LinkedIn">💼</a>
+        <a href="mailto:karthikeyankarthikeyan1710@gmail.com" aria-label="Email">✉️</a>
+      </div>
+
+      <div class="footer-copy">
+        © 2026 KARTHIKEYAN S. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script -->
+  <script src="js/script.js"></script>
+</body>
+</html>
