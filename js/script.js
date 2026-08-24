@@ -1,32 +1,17 @@
 /**
- * KARTHIKEYAN S — PORTFOLIO MOTION SCRIPT (v3)
- * Pure Vanilla JS | ES6+ | Zero external libraries
- *
- * Modules:
- *   1. Loading Screen — cinematic stagger, dismiss @900ms
- *   2. Scroll Progress Bar — passive, scaleX only
- *   3. Navbar — glassmorphism, active section, mobile menu
- *   4. Nav Pill Indicator — smooth translateX
- *   5. Text Mask Reveal — section title overflow:hidden injection
- *   6. Scroll Reveal — IntersectionObserver, single-fire
- *   7. Project Clip-Path Reveal — separate IO observer
- *   8. Certificate Modal — scale + opacity + ESC + backdrop
- *   9. Contact Form — validation + success feedback
- *  10. Back-to-Top — fade + slide
- *  11. Keyboard Accessibility
- *
- * Performance: passive scroll listeners, unobserve on trigger,
- *              GPU-only animations, no rAF loops, no mouse effects
+ * KARTHIKEYAN S — PORTFOLIO MAIN SCRIPT (v4)
+ * Pure Vanilla JS | ES6+ Modules | Zero External Frameworks
  */
+
+import { projectsData } from '../data/projects.js';
+import { initTerminal } from './terminal.js';
 
 'use strict';
 
-/* ──────────────────────────────────────────────────────────────────────────
-   BOOT — run all modules after DOM is ready
-   ────────────────────────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   initLoadingScreen();
   initNavbar();
+  initHeroRoleSwitcher();
   initHeroParallax();
   initSectionAmbientGlow();
   initScrollProgress();
@@ -34,16 +19,17 @@ document.addEventListener('DOMContentLoaded', () => {
   initTextMaskReveal();
   initScrollReveal();
   initProjectClipReveal();
+  initProjectFiltering();
+  initProjectModal();
+  initSkillFiltering();
+  initTerminal();
   initContactForm();
   initBackToTop();
   initKeyboardAccessibility();
 });
 
 /* ──────────────────────────────────────────────────────────────────────────
-   1. LOADING SCREEN (Req #1: Max 1.3s Cinematic Opening Sequence)
-   CSS keyframes handle K -> Name Mask -> Motto entrance.
-   JS dismisses at 1.05s with a 0.25s fade-out (total 1.3s max).
-   Trigger navbar entrance (.navbar-loaded) on dismiss.
+   1. LOADING SCREEN (1.2s Max Cinematic Sequence)
    ────────────────────────────────────────────────────────────────────────── */
 function initLoadingScreen() {
   const screen = document.getElementById('loading-screen');
@@ -54,16 +40,14 @@ function initLoadingScreen() {
     return;
   }
 
-  // Dismiss intro smoothly at 1050ms (completes by 1.3s max)
-  const dismissTimer = setTimeout(dismiss, 1050);
+  const dismissTimer = setTimeout(dismiss, 1000);
 
-  // Safety fallback (max 1.5s)
   setTimeout(() => {
     clearTimeout(dismissTimer);
     if (screen && screen.style.display !== 'none' && !screen.classList.contains('fade-out')) {
       dismiss();
     }
-  }, 1500);
+  }, 1300);
 
   function dismiss() {
     screen.classList.add('fade-out');
@@ -75,16 +59,44 @@ function initLoadingScreen() {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-   2. HERO PARALLAX-LIKE DEPTH (Req #3 & Req #33: Hero Exit)
-   Scroll position ONLY (NO mouse parallax).
-   Very subtle translateY offsets on bg, content, and profile image.
-   Fades hero content slightly as user scrolls down.
-   Pauses calculations when hero leaves viewport.
+   2. HERO DYNAMIC ROLE TEXT SWITCHER
+   Cycles through titles smoothly without typing jitter
+   ────────────────────────────────────────────────────────────────────────── */
+function initHeroRoleSwitcher() {
+  const roleEl = document.getElementById('dynamic-role-text');
+  if (!roleEl) return;
+
+  const roles = [
+    'JAVA FULL STACK DEVELOPER',
+    'PROMPT ENGINEER',
+    'AI & WEB DEVELOPER',
+    'SOFTWARE ENGINEER'
+  ];
+
+  let index = 0;
+
+  setInterval(() => {
+    roleEl.classList.add('role-fade-out');
+
+    setTimeout(() => {
+      index = (index + 1) % roles.length;
+      roleEl.textContent = roles[index];
+      roleEl.classList.remove('role-fade-out');
+      roleEl.classList.add('role-fade-in');
+    }, 280);
+
+    setTimeout(() => {
+      roleEl.classList.remove('role-fade-in');
+    }, 600);
+  }, 3200);
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   3. HERO PARALLAX-LIKE DEPTH & EXIT TRANSITION
    ────────────────────────────────────────────────────────────────────────── */
 function initHeroParallax() {
   const hero       = document.getElementById('home');
   const scrollHint = document.querySelector('.scroll-hint');
-  const ambientBg  = document.getElementById('bg-ambient');
   if (!hero) return;
 
   let isTicking = false;
@@ -101,17 +113,14 @@ function initHeroParallax() {
     const scrollY    = window.scrollY;
     const heroHeight = hero.offsetHeight || 700;
 
-    // Scroll hint fade out (Req #10)
     if (scrollHint) {
       scrollHint.classList.toggle('hidden', scrollY > 50);
     }
 
-    // Stop execution once hero leaves viewport
     if (scrollY > heroHeight + 100) return;
 
-    // Parallax translateY offsets
-    const contentY = scrollY * -0.18;
-    const imgY     = scrollY * -0.28;
+    const contentY    = scrollY * -0.18;
+    const imgY        = scrollY * -0.28;
     const exitOpacity = Math.max(1 - (scrollY / (heroHeight * 0.75)), 0.35);
 
     hero.style.setProperty('--hero-parallax-content', `${contentY}px`);
@@ -121,8 +130,7 @@ function initHeroParallax() {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-   3. SECTION AMBIENT GLOW SWITCHER (Req #30: Section Color Transitions)
-   Shifts ambient background radial glow positions/colors as user scrolls.
+   4. SECTION AMBIENT GLOW SWITCHER
    ────────────────────────────────────────────────────────────────────────── */
 function initSectionAmbientGlow() {
   const ambientBg = document.getElementById('bg-ambient');
@@ -144,7 +152,7 @@ function initSectionAmbientGlow() {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-   4. SCROLL PROGRESS BAR — scaleX only, GPU composited
+   5. SCROLL PROGRESS BAR
    ────────────────────────────────────────────────────────────────────────── */
 function initScrollProgress() {
   const bar = document.getElementById('scroll-progress-bar');
@@ -158,7 +166,7 @@ function initScrollProgress() {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-   5. NAVBAR — glassmorphism on scroll, active section, mobile menu
+   6. NAVBAR & ACTIVE SECTION LINK
    ────────────────────────────────────────────────────────────────────────── */
 function initNavbar() {
   const navbar   = document.getElementById('navbar');
@@ -174,7 +182,6 @@ function initNavbar() {
     updateActiveLink();
   }, { passive: true });
 
-  // Mobile hamburger
   if (toggle && menu) {
     toggle.addEventListener('click', () => {
       const open = menu.classList.contains('open');
@@ -183,15 +190,11 @@ function initNavbar() {
       toggle.setAttribute('aria-expanded', String(!open));
     });
 
-    // Close menu when any link is clicked
-    links.forEach(link => link.addEventListener('click', closeMobileMenu));
-  }
-
-  function closeMobileMenu() {
-    if (!menu || !toggle) return;
-    menu.classList.remove('open');
-    toggle.classList.remove('open');
-    toggle.setAttribute('aria-expanded', 'false');
+    links.forEach(link => link.addEventListener('click', () => {
+      menu.classList.remove('open');
+      toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }));
   }
 
   function updateActiveLink() {
@@ -214,20 +217,13 @@ function initNavbar() {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-   4. NAV PILL INDICATOR — smooth sliding highlight via translateX
-   Injects a <span id="nav-pill"> and moves it with transform, not left/width.
+   7. NAV PILL INDICATOR
    ────────────────────────────────────────────────────────────────────────── */
 let pillEl = null;
 
 function initNavPillIndicator() {
-  const menu = document.getElementById('nav-menu');
-  if (!menu) return;
-
-  // pill already in HTML; just get reference
   pillEl = document.getElementById('nav-pill');
   if (!pillEl) return;
-
-  // Initial position after layout settles
   setTimeout(updatePillPosition, 120);
 }
 
@@ -252,13 +248,11 @@ function updatePillPosition() {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-   5. TEXT MASK REVEAL — wraps .section-title content in .title-inner
-   CSS applies overflow:hidden + translateY(108%)→0 transition
-   Called before IntersectionObserver setup so structure is ready
+   8. TEXT MASK REVEAL
    ────────────────────────────────────────────────────────────────────────── */
 function initTextMaskReveal() {
   document.querySelectorAll('.section-title').forEach(title => {
-    if (title.querySelector('.title-inner')) return; // skip if already wrapped
+    if (title.querySelector('.title-inner')) return;
 
     const inner = document.createElement('span');
     inner.className = 'title-inner';
@@ -272,7 +266,7 @@ function initTextMaskReveal() {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-   6. SCROLL REVEAL — IntersectionObserver, single-fire unobserve
+   9. SCROLL REVEAL
    ────────────────────────────────────────────────────────────────────────── */
 function initScrollReveal() {
   const targets = document.querySelectorAll('.reveal-on-scroll');
@@ -287,24 +281,19 @@ function initScrollReveal() {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('revealed');
-          obs.unobserve(entry.target); // strict single-fire
-          updatePillPosition();        // re-sync nav pill on scroll
+          obs.unobserve(entry.target);
+          updatePillPosition();
         }
       });
     },
-    {
-      root: null,
-      rootMargin: '0px 0px -42px 0px',
-      threshold: 0.07
-    }
+    { root: null, rootMargin: '0px 0px -42px 0px', threshold: 0.07 }
   );
 
   targets.forEach(t => observer.observe(t));
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-   7. PROJECT CLIP-PATH REVEAL — separate observer for project images
-   Adds .clip-revealed to .project-img-wrapper; CSS transitions clip-path
+   10. PROJECT CLIP-PATH REVEAL
    ────────────────────────────────────────────────────────────────────────── */
 function initProjectClipReveal() {
   const wrappers = document.querySelectorAll('.project-img-wrapper');
@@ -331,38 +320,186 @@ function initProjectClipReveal() {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-   8. CERTIFICATE MODAL — scale + opacity; ESC key + backdrop close
+   11. INTERACTIVE PROJECT FILTERING
+   Filters projects by category: ALL, WEB, JAVA, AI / IOT
    ────────────────────────────────────────────────────────────────────────── */
-function openCertModal(src, caption) {
+function initProjectFiltering() {
+  const filterBtns = document.querySelectorAll('.filter-btn[data-filter]');
+  const cards      = document.querySelectorAll('.project-card[data-category]');
+
+  if (!filterBtns.length || !cards.length) return;
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter');
+
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        const match = (filter === 'all' || cat === filter);
+
+        if (match) {
+          card.style.display = 'flex';
+          requestAnimationFrame(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0) scale(1)';
+          });
+        } else {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(15px) scale(0.95)';
+          setTimeout(() => {
+            if (card.style.opacity === '0') {
+              card.style.display = 'none';
+            }
+          }, 300);
+        }
+      });
+    });
+  });
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   12. INTERACTIVE PROJECT DETAIL MODAL
+   Populates project detail modal with verified Problem, Solution, Features
+   ────────────────────────────────────────────────────────────────────────── */
+function initProjectModal() {
+  const modal      = document.getElementById('project-detail-modal');
+  const openBtns   = document.querySelectorAll('.open-project-modal-btn');
+  const closeBtns  = document.querySelectorAll('.project-modal-close');
+
+  if (!modal) return;
+
+  openBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const projectId = btn.getAttribute('data-project-id');
+      const project = projectsData.find(p => p.id === projectId);
+      if (!project) return;
+
+      populateProjectModal(project);
+      openModal(modal);
+    });
+  });
+
+  closeBtns.forEach(btn => btn.addEventListener('click', () => closeModal(modal)));
+
+  const backdrop = modal.querySelector('.modal-backdrop');
+  if (backdrop) backdrop.addEventListener('click', () => closeModal(modal));
+}
+
+function populateProjectModal(project) {
+  const titleEl    = document.getElementById('pmodal-title');
+  const badgeEl    = document.getElementById('pmodal-badge');
+  const problemEl  = document.getElementById('pmodal-problem');
+  const solutionEl = document.getElementById('pmodal-solution');
+  const featuresEl = document.getElementById('pmodal-features');
+  const techEl     = document.getElementById('pmodal-tech');
+  const contribEl  = document.getElementById('pmodal-contrib');
+  const githubBtn  = document.getElementById('pmodal-github-btn');
+  const demoBtn    = document.getElementById('pmodal-demo-btn');
+
+  if (titleEl)    titleEl.textContent    = project.title;
+  if (badgeEl)    badgeEl.textContent    = project.badge;
+  if (problemEl)  problemEl.textContent  = project.problem;
+  if (solutionEl) solutionEl.textContent = project.solution;
+  if (contribEl)  contribEl.textContent  = project.myContribution;
+
+  if (featuresEl) {
+    featuresEl.innerHTML = project.features.map(f => `<li>${f}</li>`).join('');
+  }
+
+  if (techEl) {
+    techEl.innerHTML = project.tech.map(t => `<span class="tag">${t}</span>`).join('');
+  }
+
+  if (githubBtn) {
+    githubBtn.href = project.github;
+    githubBtn.style.display = project.github ? 'inline-flex' : 'none';
+  }
+
+  if (demoBtn) {
+    demoBtn.href = project.demo || '#';
+    demoBtn.style.display = project.demo ? 'inline-flex' : 'none';
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   13. INTERACTIVE SKILL CATEGORY FILTERING
+   ────────────────────────────────────────────────────────────────────────── */
+function initSkillFiltering() {
+  const tabs  = document.querySelectorAll('.skill-tab-btn[data-skill-cat]');
+  const cards = document.querySelectorAll('.skill-card[data-skill-category]');
+
+  if (!tabs.length || !cards.length) return;
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const cat = tab.getAttribute('data-skill-cat');
+
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      cards.forEach(card => {
+        const cardCat = card.getAttribute('data-skill-category');
+        const match   = (cat === 'all' || cardCat === cat);
+
+        if (match) {
+          card.style.display = 'block';
+          requestAnimationFrame(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0) scale(1)';
+          });
+        } else {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(12px) scale(0.96)';
+          setTimeout(() => {
+            if (card.style.opacity === '0') {
+              card.style.display = 'none';
+            }
+          }, 280);
+        }
+      });
+    });
+  });
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   14. CERTIFICATE MODAL
+   ────────────────────────────────────────────────────────────────────────── */
+window.openCertModal = function(src, caption) {
   const modal = document.getElementById('cert-modal');
   const img   = document.getElementById('modal-img');
   const cap   = document.getElementById('modal-caption');
 
   if (!modal || !img) return;
 
-  img.src            = src;
-  img.alt            = caption || 'Certificate Preview';
+  img.src = src;
+  img.alt = caption || 'Certificate Preview';
   if (cap) cap.textContent = caption || '';
 
+  openModal(modal);
+};
+
+window.closeCertModal = function() {
+  const modal = document.getElementById('cert-modal');
+  if (modal) closeModal(modal);
+};
+
+function openModal(modal) {
   modal.classList.add('active');
   modal.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
-
-  const closeBtn = modal.querySelector('.modal-close-btn');
-  if (closeBtn) requestAnimationFrame(() => closeBtn.focus());
 }
 
-function closeCertModal() {
-  const modal = document.getElementById('cert-modal');
-  if (!modal) return;
-
+function closeModal(modal) {
   modal.classList.remove('active');
   modal.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-   9. CONTACT FORM — validation + success state
+   15. CONTACT FORM VALIDATION
    ────────────────────────────────────────────────────────────────────────── */
 function initContactForm() {
   const form     = document.getElementById('contact-form');
@@ -370,10 +507,10 @@ function initContactForm() {
   if (!form) return;
 
   const fields = [
-    { id: 'name',    test: v => v.trim().length > 0 },
+    { id: 'name',    test: v => v.trim().length >= 2 },
     { id: 'email',   test: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) },
-    { id: 'subject', test: v => v.trim().length > 0 },
-    { id: 'message', test: v => v.trim().length > 0 }
+    { id: 'subject', test: v => v.trim().length >= 3 },
+    { id: 'message', test: v => v.trim().length >= 10 }
   ];
 
   form.addEventListener('submit', e => {
@@ -395,7 +532,8 @@ function initContactForm() {
 
     if (feedback) {
       feedback.className   = 'form-feedback success';
-      feedback.textContent = '✅ Thank you! Your message has been received. Karthikeyan will get back to you soon.';
+      feedback.textContent = '✅ Message received! Karthikeyan will respond via email shortly.';
+      feedback.style.display = 'block';
     }
 
     form.reset();
@@ -413,26 +551,29 @@ function initContactForm() {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-   10. BACK TO TOP
+   16. BACK TO TOP
    ────────────────────────────────────────────────────────────────────────── */
 function initBackToTop() {
   const btn = document.getElementById('back-to-top');
   if (!btn) return;
 
   window.addEventListener('scroll', () => {
-    btn.classList.toggle('visible', window.scrollY > 420);
+    btn.classList.toggle('visible', window.scrollY > 480);
   }, { passive: true });
-}
 
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-   11. KEYBOARD ACCESSIBILITY — ESC closes modal
+   17. KEYBOARD ACCESSIBILITY — ESC Key closes modals
    ────────────────────────────────────────────────────────────────────────── */
 function initKeyboardAccessibility() {
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeCertModal();
+    if (e.key === 'Escape') {
+      const activeModal = document.querySelector('.modal.active');
+      if (activeModal) closeModal(activeModal);
+    }
   });
 }

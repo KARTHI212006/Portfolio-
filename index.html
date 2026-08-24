@@ -6,15 +6,23 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
   <!-- SEO Meta -->
-  <title>KARTHIKEYAN S | AI &amp; Software Developer Portfolio</title>
-  <meta name="description" content="Portfolio of KARTHIKEYAN S – Computer Science Engineering student specializing in Java Development, Full Stack Web Development, Prompt Engineering, and Artificial Intelligence.">
-  <meta name="keywords" content="Karthikeyan S, AI Developer, Software Engineer, Java Developer, Full Stack Developer, Prompt Engineer, Portfolio, Web Development, Python, IoT">
+  <title>Karthikeyan S | AI &amp; Software Developer</title>
+  <meta name="description" content="Karthikeyan S — AI &amp; Software Developer, Java Full Stack Developer and Prompt Engineer building practical software and AI-powered solutions.">
+  <meta name="keywords" content="Karthikeyan S, AI Developer, Software Engineer, Java Developer, Full Stack Developer, Prompt Engineer, Portfolio, Web Development, Python, IoT, Salem">
   <meta name="author" content="KARTHIKEYAN S">
   <meta name="robots" content="index, follow">
-  <meta property="og:title" content="KARTHIKEYAN S | AI &amp; Software Developer">
-  <meta property="og:description" content="Passionate CS Engineering student specializing in Java, Full Stack Web Dev, Prompt Engineering and AI.">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="Karthikeyan S | AI &amp; Software Developer">
+  <meta property="og:description" content="Portfolio of Karthikeyan S — AI &amp; Software Developer specializing in Java, Web Development, Prompt Engineering, and AI.">
   <meta property="og:image" content="assets/images/profile.jpg">
   <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Karthikeyan S | AI &amp; Software Developer">
+  <meta name="twitter:description" content="AI &amp; Software Developer portfolio of Karthikeyan S.">
+  <meta name="twitter:image" content="assets/images/profile.jpg">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="public/favicon.svg">
@@ -22,7 +30,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
@@ -41,7 +49,7 @@
   </div>
 
   <!-- ═══════════════════════════════════════════════════════════════
-       LOADING SCREEN (1.3s Max Cinematic Intro)
+       LOADING SCREEN (1.2s Max Opening Sequence)
   ═══════════════════════════════════════════════════════════════ -->
   <div id="loading-screen" role="status" aria-label="Loading Portfolio">
     <div class="loader-inner">
@@ -63,12 +71,12 @@
       <a href="#home" class="nav-brand" aria-label="Karthikeyan S – Home">
         <div class="nav-badge-logo">K</div>
         <div class="nav-brand-info">
-          <span class="nav-brand-name">KARTHIKEYAN</span>
-          <span class="nav-brand-sub">JAVA &amp; FULL STACK DEV</span>
+          <span class="nav-brand-name">KARTHIKEYAN S</span>
+          <span class="nav-brand-sub">AI &amp; SOFTWARE DEVELOPER</span>
         </div>
       </a>
 
-      <!-- Main Navigation -->
+      <!-- Navigation Links -->
       <nav id="nav-menu" class="nav-menu" aria-label="Main Navigation">
         <a href="#home"         class="nav-link active">Home</a>
         <a href="#about"        class="nav-link">About</a>
@@ -78,13 +86,12 @@
         <a href="#certificates" class="nav-link">Certifications</a>
         <a href="#interests"    class="nav-link">Interests</a>
         <a href="#contact"      class="nav-link">Contact</a>
-        <!-- Sliding pill indicator (injected by JS) -->
         <span id="nav-pill" aria-hidden="true"></span>
       </nav>
 
       <!-- Right: Hire Me + Hamburger -->
       <div class="nav-actions">
-        <a href="#contact" class="btn-hire">Hire Me</a>
+        <a href="#contact" class="btn-hire">HIRE ME</a>
         <button id="nav-toggle" class="nav-toggle" aria-label="Open Navigation Menu" aria-expanded="false" aria-controls="nav-menu">
           <span class="hamburger-bar"></span>
           <span class="hamburger-bar"></span>
@@ -103,13 +110,19 @@
     <section id="home" class="hero-section">
       <div class="container hero-grid">
 
-        <!-- LEFT: Text Content -->
+        <!-- LEFT: Content Column -->
         <div class="hero-content">
 
-          <!-- Welcome pill -->
-          <div class="welcome-pill hero-reveal hero-el-1">
-            <span class="pill-dot"></span>
-            WELCOME TO MY PORTFOLIO
+          <!-- Badges & Status -->
+          <div class="hero-badge-row hero-reveal hero-el-1">
+            <div class="welcome-pill">
+              <span class="pill-dot"></span>
+              AI • SOFTWARE • WEB
+            </div>
+            <div class="dev-status-pill">
+              <span class="status-dot"></span>
+              AVAILABLE FOR OPPORTUNITIES
+            </div>
           </div>
 
           <!-- Greeting -->
@@ -117,24 +130,25 @@
             Hi, I'm <span class="wave-emoji">👋</span>
           </p>
 
-          <!-- Main Name — gradient, large, cinematic mask reveal -->
+          <!-- Signature Name with Mask Reveal & Gradient Motion -->
           <div class="hero-name-mask hero-reveal hero-el-3">
             <h1 class="hero-name">KARTHIKEYAN S</h1>
           </div>
 
-          <!-- Professional Title -->
+          <!-- Main Role & Dynamic Role Transition -->
           <div class="hero-title-line hero-reveal hero-el-4">
-            <span class="hero-title-text">AI &amp; SOFTWARE DEVELOPER</span>
+            <span class="hero-title-main">AI &amp; SOFTWARE DEVELOPER</span>
+            <span class="title-separator">•</span>
+            <span id="dynamic-role-text" class="hero-role-dynamic">JAVA FULL STACK DEVELOPER</span>
           </div>
 
           <!-- Bio -->
           <p class="hero-bio hero-reveal hero-el-5">
-            I am a passionate Computer Science Engineering student with a strong interest in
-            Java Development, Full Stack Web Development, Prompt Engineering, and AI.
-            I enjoy solving real-world problems through software and technology.
+            I build practical software experiences using Java, web technologies and AI.
+            Computer Science Engineering student focused on software development, intelligent applications, and scalable solution architecture.
           </p>
 
-          <!-- CTA Buttons -->
+          <!-- Action Buttons -->
           <div class="hero-actions hero-reveal hero-el-6">
             <a href="#projects" class="btn btn-primary shimmer-btn" id="hero-projects-btn">
               <span>VIEW PROJECTS</span>
@@ -149,7 +163,7 @@
             </a>
           </div>
 
-          <!-- Social Links Row -->
+          <!-- Social Links -->
           <div class="hero-socials hero-reveal hero-el-7">
             <a href="https://github.com/KARTHI212006" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub Profile">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
@@ -167,7 +181,7 @@
 
         </div>
 
-        <!-- RIGHT: Profile Image Column -->
+        <!-- RIGHT: Portrait Column & Developer Identity Card -->
         <div class="hero-image-col">
           <div class="hero-profile-wrap">
 
@@ -177,7 +191,7 @@
               <span>Java Developer</span>
             </div>
 
-            <!-- Profile Frame (gradient border → glass → image) -->
+            <!-- Profile Frame -->
             <div class="profile-frame hero-reveal hero-el-img">
               <div class="profile-glow-aura"></div>
               <div class="profile-gradient-border">
@@ -200,21 +214,21 @@
             <!-- Floating Badge 3 -->
             <div class="float-badge badge-bottom-left hero-reveal hero-badge-3" aria-hidden="true">
               <span class="badge-emoji">🤖</span>
-              <span>AI Developer</span>
+              <span>AI &amp; Web Developer</span>
             </div>
 
-            <!-- Profile Info Card -->
+            <!-- Developer Identity Card -->
             <div class="profile-info-card hero-reveal hero-el-infocard">
               <div class="pic-row">
                 <div class="pic-avatar" aria-hidden="true">K</div>
                 <div class="pic-text">
                   <h4 class="pic-name">KARTHIKEYAN S</h4>
-                  <p class="pic-role">Java Dev · Full Stack · AI</p>
+                  <p class="pic-role">Java Developer | Full Stack Developer</p>
                 </div>
               </div>
               <div class="pic-tags">
-                <span class="pic-tag">B.E. CSE 2027</span>
-                <span class="pic-tag">IoT Intern</span>
+                <span class="pic-tag">B.E. CSE • 2027</span>
+                <span class="pic-tag">CGPA 7.94</span>
                 <span class="pic-tag">Salem, TN</span>
               </div>
             </div>
@@ -225,11 +239,47 @@
       </div><!-- /.hero-grid -->
 
       <!-- Scroll Hint -->
-      <a href="#about" class="scroll-hint" aria-label="Scroll down to About section">
-        <span class="scroll-hint-text">SCROLL</span>
+      <a href="#terminal-section" class="scroll-hint" aria-label="Scroll down to Terminal section">
+        <span class="scroll-hint-text">SCROLL DOWN</span>
         <span class="scroll-hint-arrow">↓</span>
       </a>
 
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         INTERACTIVE DEVELOPER TERMINAL SECTION
+    ═══════════════════════════════════════════════════════════════ -->
+    <section id="terminal-section" class="section reveal-on-scroll">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="section-eyebrow">DEVELOPER CLI</span>
+          <h2 class="section-title">Interactive <span class="gradient-span">Terminal</span></h2>
+          <div class="heading-line"></div>
+          <p class="section-subtitle">Type commands or hit TAB for autocompletion to query portfolio data directly.</p>
+        </div>
+
+        <div class="terminal-card glass-card">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <div class="terminal-title">karthikeyan@developer: ~ (bash)</div>
+          </div>
+          <div class="terminal-body">
+            <div id="terminal-output" class="terminal-output-container">
+              <div class="terminal-line">Welcome to <span class="cmd-cyan">Karthikeyan Dev CLI v2.4</span>. Type <span class="cmd-highlight">'help'</span> to view commands.</div>
+            </div>
+            <div class="terminal-input-line">
+              <span class="prompt-user">karthikeyan@developer</span>:<span class="prompt-dir">~</span>$&nbsp;
+              <input type="text" id="terminal-input" class="terminal-input-field" autocomplete="off" spellcheck="false" placeholder="type 'help'...">
+            </div>
+          </div>
+        </div>
+
+      </div>
     </section>
 
     <!-- ═══════════════════════════════════════════════════════════════
@@ -242,47 +292,48 @@
           <span class="section-eyebrow">01 / ABOUT</span>
           <h2 class="section-title">About <span class="gradient-span">Me</span></h2>
           <div class="heading-line"></div>
-          <p class="section-subtitle">My academic background, technical skills, and career objective.</p>
+          <p class="section-subtitle">My academic background, technical focus, and career objectives.</p>
         </div>
 
         <div class="about-grid">
+          <!-- LEFT Column: Professional Story -->
           <div class="glass-card about-card staggered-item" style="--delay: 0.05s">
             <div class="about-text">
               <p>Hello! I'm <strong>KARTHIKEYAN S</strong> from Salem, Tamil Nadu, India.</p>
-              <p>I completed my schooling at <strong>Sengunthar Matric Higher Secondary School, Salem</strong>.</p>
-              <p>Currently pursuing <strong>B.E. Computer Science and Engineering</strong> at <strong>M.P. Nachimuthu M. Jaganathan Engineering College, Chennimalai, Erode</strong>, with graduation expected in <strong>2027</strong>.</p>
-              <p>I am passionate about software development, artificial intelligence, web development, and prompt engineering.</p>
-              <p>I have learned <strong>Python and Java</strong> and have practical knowledge of <strong>HTML, CSS, and JavaScript</strong>.</p>
-              <p class="highlight-para">My long-term goal is to become an <strong>AI Engineer at Google</strong> 🎯</p>
+              <p>Currently pursuing <strong>B.E. Computer Science and Engineering</strong> at <strong>M.P. Nachimuthu M. Jaganathan Engineering College, Chennimalai, Erode</strong>, expected to graduate in <strong>2027</strong> with a current CGPA of <strong>7.94 / 10</strong>.</p>
+              <p>I completed my secondary and higher secondary schooling at <strong>Sengunthar Matric Higher Secondary School, Salem</strong>.</p>
+              <p>I specialize in <strong>Java Full Stack Development</strong>, building robust backend systems, clean web UIs (HTML/CSS/JS), relational MySQL databases, and integrating modern <strong>Prompt Engineering &amp; AI tools</strong>.</p>
+              <p class="highlight-para">Long-term Career Objective: <strong>AI Engineer at Google</strong> 🎯</p>
             </div>
           </div>
 
+          <!-- RIGHT Column: Interactive Information Cards -->
           <div class="about-info-cards">
-            <div class="glass-card info-mini-card staggered-item" style="--delay: 0.10s">
+            <div class="glass-card info-mini-card staggered-item" style="--delay: 0.08s">
+              <div class="info-icon">🎓</div>
+              <div class="info-details">
+                <h4>EDUCATION</h4>
+                <p>B.E. CSE (2023 – 2027) • CGPA 7.94</p>
+              </div>
+            </div>
+            <div class="glass-card info-mini-card staggered-item" style="--delay: 0.14s">
               <div class="info-icon">📍</div>
               <div class="info-details">
-                <h4>Location</h4>
+                <h4>LOCATION</h4>
                 <p>Salem, Tamil Nadu, India</p>
               </div>
             </div>
-            <div class="glass-card info-mini-card staggered-item" style="--delay: 0.15s">
-              <div class="info-icon">🎓</div>
-              <div class="info-details">
-                <h4>Education</h4>
-                <p>B.E. CSE (2023 – 2027)</p>
-              </div>
-            </div>
             <div class="glass-card info-mini-card staggered-item" style="--delay: 0.20s">
-              <div class="info-icon">🏆</div>
+              <div class="info-icon">⚡</div>
               <div class="info-details">
-                <h4>CGPA</h4>
-                <p>7.94 (Current)</p>
+                <h4>CURRENT FOCUS</h4>
+                <p>Java Full Stack, MySQL &amp; AI Workflows</p>
               </div>
             </div>
-            <div class="glass-card info-mini-card staggered-item" style="--delay: 0.25s">
+            <div class="glass-card info-mini-card staggered-item" style="--delay: 0.26s">
               <div class="info-icon">🎯</div>
               <div class="info-details">
-                <h4>Career Goal</h4>
+                <h4>CAREER GOAL</h4>
                 <p>AI Engineer at Google</p>
               </div>
             </div>
@@ -302,18 +353,18 @@
                   <span class="timeline-date">2023 – 2027</span>
                 </div>
                 <p class="timeline-institution">M.P. Nachimuthu M. Jaganathan Engineering College, Chennimalai, Erode</p>
-                <p class="timeline-desc">Developing strong fundamentals in Programming (Python, Java), Web Development (HTML, CSS, JS), Software Engineering principles, and Artificial Intelligence applications.</p>
+                <p class="timeline-desc">Developing strong core fundamentals in Data Structures, Object-Oriented Programming (Java, Python), Web Engineering (HTML, CSS, JS), Relational Databases (MySQL), and AI applications. Current CGPA: 7.94.</p>
               </div>
             </div>
             <div class="timeline-item staggered-item" style="--delay: 0.16s">
               <div class="timeline-marker">🏫</div>
               <div class="glass-card timeline-card">
                 <div class="timeline-header">
-                  <h3 class="timeline-title">Secondary &amp; Higher Secondary Schooling</h3>
+                  <h3 class="timeline-title">Secondary &amp; Higher Secondary Education</h3>
                   <span class="timeline-date">Completed</span>
                 </div>
                 <p class="timeline-institution">Sengunthar Matric Higher Secondary School, Salem</p>
-                <p class="timeline-desc">Completed secondary and higher secondary education with a strong foundation in Computer Science, Mathematics, and Physical Sciences.</p>
+                <p class="timeline-desc">Completed secondary and higher secondary education with a strong foundation in Computer Science, Mathematics, and Physics.</p>
               </div>
             </div>
           </div>
@@ -330,104 +381,132 @@
 
         <div class="section-header">
           <span class="section-eyebrow">02 / SKILLS</span>
-          <h2 class="section-title">Technical <span class="gradient-span">Skills</span></h2>
+          <h2 class="section-title">Technical <span class="gradient-span">Ecosystem</span></h2>
           <div class="heading-line"></div>
-          <p class="section-subtitle">Practical technologies, programming languages, and AI tools I work with.</p>
+          <p class="section-subtitle">Explore my practical technologies across development and AI tools.</p>
         </div>
 
+        <!-- Interactive Category Filtering Tabs -->
+        <div class="skill-tabs-container">
+          <button class="skill-tab-btn active" data-skill-cat="all">ALL</button>
+          <button class="skill-tab-btn" data-skill-cat="programming">PROGRAMMING</button>
+          <button class="skill-tab-btn" data-skill-cat="web">WEB</button>
+          <button class="skill-tab-btn" data-skill-cat="database">DATABASE</button>
+          <button class="skill-tab-btn" data-skill-cat="tools">TOOLS</button>
+          <button class="skill-tab-btn" data-skill-cat="ai">AI</button>
+        </div>
+
+        <!-- Skill Cards Grid -->
         <div class="skills-grid">
-          <!-- Programming -->
-          <div class="glass-card skill-card staggered-item" style="--delay: 0.05s">
+
+          <!-- Java -->
+          <div class="glass-card skill-card staggered-item" data-skill-category="programming" style="--delay: 0.05s">
             <div class="skill-card-header">
-              <span class="skill-card-icon">💻</span>
-              <h3 class="skill-card-category">PROGRAMMING</h3>
+              <span class="skill-card-icon">☕</span>
+              <h3 class="skill-card-category">JAVA</h3>
             </div>
-            <div class="tech-items-grid">
-              <div class="tech-item">
-                <span class="tech-icon">🐍</span>
-                <div class="tech-info">
-                  <span class="tech-name">Python</span>
-                  <span class="tech-desc">AI scripting, data logic &amp; automation</span>
-                </div>
-              </div>
-              <div class="tech-item">
-                <span class="tech-icon">☕</span>
-                <div class="tech-info">
-                  <span class="tech-name">Java</span>
-                  <span class="tech-desc">Object-oriented programming &amp; console apps</span>
-                </div>
-              </div>
+            <div class="tech-info">
+              <span class="tech-name">Java</span>
+              <p class="tech-desc">Object-Oriented Programming, console applications, and backend logic.</p>
             </div>
           </div>
 
-          <!-- Web Development -->
-          <div class="glass-card skill-card staggered-item" style="--delay: 0.12s">
+          <!-- Python -->
+          <div class="glass-card skill-card staggered-item" data-skill-category="programming" style="--delay: 0.10s">
             <div class="skill-card-header">
-              <span class="skill-card-icon">🌐</span>
-              <h3 class="skill-card-category">WEB DEVELOPMENT</h3>
+              <span class="skill-card-icon">🐍</span>
+              <h3 class="skill-card-category">PYTHON</h3>
             </div>
-            <div class="tech-items-grid">
-              <div class="tech-item">
-                <span class="tech-icon">📄</span>
-                <div class="tech-info">
-                  <span class="tech-name">HTML5</span>
-                  <span class="tech-desc">Semantic structure &amp; accessibility</span>
-                </div>
-              </div>
-              <div class="tech-item">
-                <span class="tech-icon">🎨</span>
-                <div class="tech-info">
-                  <span class="tech-name">CSS3</span>
-                  <span class="tech-desc">Flexbox, Grid, animations &amp; glassmorphism</span>
-                </div>
-              </div>
-              <div class="tech-item">
-                <span class="tech-icon">⚡</span>
-                <div class="tech-info">
-                  <span class="tech-name">JavaScript</span>
-                  <span class="tech-desc">Vanilla JS, DOM manipulation &amp; interactions</span>
-                </div>
-              </div>
+            <div class="tech-info">
+              <span class="tech-name">Python</span>
+              <p class="tech-desc">Scripting, algorithmic logic, automation, and AI prototyping.</p>
             </div>
           </div>
 
-          <!-- AI & Prompt Engineering -->
-          <div class="glass-card skill-card staggered-item" style="--delay: 0.19s">
+          <!-- HTML5 -->
+          <div class="glass-card skill-card staggered-item" data-skill-category="web" style="--delay: 0.15s">
+            <div class="skill-card-header">
+              <span class="skill-card-icon">📄</span>
+              <h3 class="skill-card-category">HTML5</h3>
+            </div>
+            <div class="tech-info">
+              <span class="tech-name">HTML5</span>
+              <p class="tech-desc">Semantic document markup, accessibility standards, and clean DOM structuring.</p>
+            </div>
+          </div>
+
+          <!-- CSS3 -->
+          <div class="glass-card skill-card staggered-item" data-skill-category="web" style="--delay: 0.20s">
+            <div class="skill-card-header">
+              <span class="skill-card-icon">🎨</span>
+              <h3 class="skill-card-category">CSS3</h3>
+            </div>
+            <div class="tech-info">
+              <span class="tech-name">CSS3</span>
+              <p class="tech-desc">Flexbox, Grid layouts, GPU keyframe animations, and custom design tokens.</p>
+            </div>
+          </div>
+
+          <!-- JavaScript -->
+          <div class="glass-card skill-card staggered-item" data-skill-category="web" style="--delay: 0.25s">
+            <div class="skill-card-header">
+              <span class="skill-card-icon">⚡</span>
+              <h3 class="skill-card-category">JAVASCRIPT</h3>
+            </div>
+            <div class="tech-info">
+              <span class="tech-name">JavaScript (ES6+)</span>
+              <p class="tech-desc">Vanilla JS DOM interactions, ES modules, asynchronous fetch, and event logic.</p>
+            </div>
+          </div>
+
+          <!-- MySQL -->
+          <div class="glass-card skill-card staggered-item" data-skill-category="database" style="--delay: 0.30s">
+            <div class="skill-card-header">
+              <span class="skill-card-icon">🗄️</span>
+              <h3 class="skill-card-category">MYSQL</h3>
+            </div>
+            <div class="tech-info">
+              <span class="tech-name">MySQL &amp; JDBC</span>
+              <p class="tech-desc">Relational schema design, SQL querying, and Java database connectivity.</p>
+            </div>
+          </div>
+
+          <!-- Git & GitHub -->
+          <div class="glass-card skill-card staggered-item" data-skill-category="tools" style="--delay: 0.35s">
+            <div class="skill-card-header">
+              <span class="skill-card-icon">🐙</span>
+              <h3 class="skill-card-category">GIT &amp; GITHUB</h3>
+            </div>
+            <div class="tech-info">
+              <span class="tech-name">Git &amp; GitHub</span>
+              <p class="tech-desc">Version control, branch management, repositories, and continuous workflow.</p>
+            </div>
+          </div>
+
+          <!-- Prompt Engineering -->
+          <div class="glass-card skill-card staggered-item" data-skill-category="ai" style="--delay: 0.40s">
+            <div class="skill-card-header">
+              <span class="skill-card-icon">✨</span>
+              <h3 class="skill-card-category">PROMPT ENGINEERING</h3>
+            </div>
+            <div class="tech-info">
+              <span class="tech-name">Prompt Engineering</span>
+              <p class="tech-desc">Designing precise LLM prompts, context conditioning, and automated AI output parsing.</p>
+            </div>
+          </div>
+
+          <!-- AI Tools -->
+          <div class="glass-card skill-card staggered-item" data-skill-category="ai" style="--delay: 0.45s">
             <div class="skill-card-header">
               <span class="skill-card-icon">🤖</span>
-              <h3 class="skill-card-category">AI &amp; PROMPT ENGINEERING</h3>
+              <h3 class="skill-card-category">AI TOOLS</h3>
             </div>
-            <div class="tech-items-grid">
-              <div class="tech-item">
-                <span class="tech-icon">✨</span>
-                <div class="tech-info">
-                  <span class="tech-name">Prompt Engineering</span>
-                  <span class="tech-desc">Designing precise LLM prompts &amp; workflows</span>
-                </div>
-              </div>
-              <div class="tech-item">
-                <span class="tech-icon">💬</span>
-                <div class="tech-info">
-                  <span class="tech-name">ChatGPT</span>
-                  <span class="tech-desc">OpenAI LLM optimization &amp; reasoning</span>
-                </div>
-              </div>
-              <div class="tech-item">
-                <span class="tech-icon">🧠</span>
-                <div class="tech-info">
-                  <span class="tech-name">Claude AI</span>
-                  <span class="tech-desc">Anthropic model code generation</span>
-                </div>
-              </div>
-              <div class="tech-item">
-                <span class="tech-icon">💎</span>
-                <div class="tech-info">
-                  <span class="tech-name">Gemini AI</span>
-                  <span class="tech-desc">Google multimodal AI &amp; APIs</span>
-                </div>
-              </div>
+            <div class="tech-info">
+              <span class="tech-name">AI Ecosystem</span>
+              <p class="tech-desc">ChatGPT, Claude AI, and Google Gemini optimization for software development.</p>
             </div>
           </div>
+
         </div>
 
       </div>
@@ -443,28 +522,37 @@
           <span class="section-eyebrow">03 / PROJECTS</span>
           <h2 class="section-title">Featured <span class="gradient-span">Projects</span></h2>
           <div class="heading-line"></div>
-          <p class="section-subtitle">Practical applications built with web and IoT technologies.</p>
+          <p class="section-subtitle">Verified software and IoT systems built with clean architecture.</p>
         </div>
 
+        <!-- Interactive Project Filtering Tabs -->
+        <div class="project-filters-container">
+          <button class="filter-btn active" data-filter="all">ALL</button>
+          <button class="filter-btn" data-filter="web">WEB</button>
+          <button class="filter-btn" data-filter="java">JAVA</button>
+          <button class="filter-btn" data-filter="ai-iot">AI / IOT</button>
+        </div>
+
+        <!-- Project Grid -->
         <div class="projects-grid">
 
-          <!-- GameVault Showcase -->
-          <div class="glass-card project-card staggered-item" style="--delay: 0.08s">
+          <!-- PROJECT 01: GameVault -->
+          <div class="glass-card project-card staggered-item" data-category="web" style="--delay: 0.08s">
             <div class="project-img-wrapper">
               <span class="project-badge">PROJECT 01</span>
               <img src="assets/images/gamevault.jpg"
-                   alt="GameVault – Modern Gaming Website Project Screenshot"
+                   alt="GameVault – Responsive Gaming Discovery Web Application"
                    class="project-img"
                    loading="lazy"
                    width="600" height="340">
             </div>
             <div class="project-content">
               <h3 class="project-title">GAMEVAULT</h3>
+              <p class="project-desc">A responsive gaming platform for discovering gaming information, trailers, news and price updates without framework bloat.</p>
               
               <div class="project-story">
-                <p class="story-item"><strong>PROBLEM:</strong> Gaming enthusiasts need an engaging, responsive portal to explore games without heavy framework bloat.</p>
-                <p class="story-item"><strong>SOLUTION:</strong> Designed and built a lightweight, zero-dependency web interface with smooth transitions and high performance.</p>
-                <p class="story-item"><strong>RESULT:</strong> Ultra-fast page load times, 100% responsive layout across mobile and desktop devices.</p>
+                <p class="story-item"><strong>PROBLEM:</strong> Gamers require an engaging portal to discover game details without heavy JS framework overhead.</p>
+                <p class="story-item"><strong>SOLUTION:</strong> Built a pure HTML5/CSS3/Vanilla JS interface featuring fluid layout transitions and fast rendering.</p>
               </div>
 
               <div class="project-tags">
@@ -472,7 +560,11 @@
                 <span class="tag">CSS3</span>
                 <span class="tag">JavaScript</span>
               </div>
+
               <div class="project-actions">
+                <button class="btn btn-secondary btn-sm open-project-modal-btn" data-project-id="gamevault">
+                  <span>VIEW DETAILS</span>
+                </button>
                 <a href="https://s-karthikeyan-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm shimmer-btn">
                   <span>Live Demo</span>
                   <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -484,32 +576,73 @@
             </div>
           </div>
 
-          <!-- Smart Irrigation System Showcase -->
-          <div class="glass-card project-card staggered-item" style="--delay: 0.18s">
+          <!-- PROJECT 02: Smart Irrigation System -->
+          <div class="glass-card project-card staggered-item" data-category="ai-iot" style="--delay: 0.16s">
             <div class="project-img-wrapper">
               <span class="project-badge">PROJECT 02</span>
               <img src="assets/images/irrigation.jpg"
-                   alt="Smart Irrigation System – IoT Hardware Project"
+                   alt="Smart Irrigation System – Automated IoT Hardware Prototype"
                    class="project-img"
                    loading="lazy"
                    width="600" height="340">
             </div>
             <div class="project-content">
               <h3 class="project-title">SMART IRRIGATION SYSTEM</h3>
+              <p class="project-desc">IoT-based automated irrigation system using real-time soil-moisture sensing and automated pump relay logic.</p>
               
               <div class="project-story">
-                <p class="story-item"><strong>PROBLEM:</strong> Traditional farming suffers from inefficient water usage and manual moisture inspection.</p>
-                <p class="story-item"><strong>SOLUTION:</strong> Engineered an automated IoT system with soil sensors and microcontroller logic to trigger irrigation automatically.</p>
-                <p class="story-item"><strong>RESULT:</strong> Optimized water conservation and automated real-time soil moisture monitoring.</p>
+                <p class="story-item"><strong>PROBLEM:</strong> Traditional farming suffers from excessive water wastage and manual soil testing.</p>
+                <p class="story-item"><strong>SOLUTION:</strong> Integrated soil moisture sensors with microcontroller firmware to automate watering cycles.</p>
               </div>
 
               <div class="project-tags">
-                <span class="tag">Arduino</span>
                 <span class="tag">IoT</span>
-                <span class="tag">Soil Moisture Sensor</span>
-                <span class="tag">Automation</span>
+                <span class="tag">Embedded Systems</span>
+                <span class="tag">Arduino</span>
+                <span class="tag">Sensors</span>
               </div>
+
               <div class="project-actions">
+                <button class="btn btn-secondary btn-sm open-project-modal-btn" data-project-id="smart-irrigation">
+                  <span>VIEW DETAILS</span>
+                </button>
+                <a href="https://github.com/KARTHI212006" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm shimmer-btn">
+                  <span>GitHub</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- PROJECT 03: Bus Booking Management System -->
+          <div class="glass-card project-card staggered-item" data-category="java" style="--delay: 0.24s">
+            <div class="project-img-wrapper">
+              <span class="project-badge">PROJECT 03</span>
+              <img src="assets/images/gamevault.jpg"
+                   alt="Bus Booking Management System – Java Application"
+                   class="project-img"
+                   loading="lazy"
+                   width="600" height="340">
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">BUS BOOKING MANAGEMENT SYSTEM</h3>
+              <p class="project-desc">Java-based bus booking system supporting bus search, ticket booking, passenger management, payment and booking records.</p>
+              
+              <div class="project-story">
+                <p class="story-item"><strong>PROBLEM:</strong> Manual reservation causes booking collisions and unorganized passenger log records.</p>
+                <p class="story-item"><strong>SOLUTION:</strong> Developed OOP Java backend logic integrated with MySQL relational database via JDBC driver.</p>
+              </div>
+
+              <div class="project-tags">
+                <span class="tag">Java</span>
+                <span class="tag">MySQL</span>
+                <span class="tag">JDBC</span>
+                <span class="tag">OOP</span>
+              </div>
+
+              <div class="project-actions">
+                <button class="btn btn-secondary btn-sm open-project-modal-btn" data-project-id="bus-booking">
+                  <span>VIEW DETAILS</span>
+                </button>
                 <a href="https://github.com/KARTHI212006" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm shimmer-btn">
                   <span>GitHub</span>
                 </a>
@@ -518,11 +651,12 @@
           </div>
 
         </div>
+
       </div>
     </section>
 
     <!-- ═══════════════════════════════════════════════════════════════
-         EXPERIENCE / INTERNSHIP SECTION — 04
+         EXPERIENCE SECTION — 04
     ═══════════════════════════════════════════════════════════════ -->
     <section id="experience" class="section reveal-on-scroll">
       <div class="container">
@@ -531,20 +665,21 @@
           <span class="section-eyebrow">04 / EXPERIENCE</span>
           <h2 class="section-title">Industrial <span class="gradient-span">Internship</span></h2>
           <div class="heading-line"></div>
-          <p class="section-subtitle">Real-world technical exposure in an industry environment.</p>
+          <p class="section-subtitle">Real-world technical training in IoT &amp; embedded systems.</p>
         </div>
 
         <div class="glass-card experience-card staggered-item" style="--delay: 0.08s">
           <div class="experience-details">
-            <div class="exp-badge-pill">34 Days Internship</div>
-            <h3 class="exp-company">ZEN 1 Tech Park</h3>
+            <div class="exp-badge-pill">34 DAYS INTERNSHIP</div>
+            <h3 class="exp-company">ZEN 1 TECHPARK</h3>
+            <p class="exp-role">IoT Intern</p>
             <p class="exp-location"><span class="exp-icon">📍</span> Coimbatore, Tamil Nadu</p>
             <p class="exp-meta"><span class="exp-icon">🔌</span> <strong>Domain:</strong> Internet of Things (IoT)</p>
-            <p class="exp-meta"><span class="exp-icon">📅</span> <strong>Duration:</strong> 22 June 2026 – 25 July 2026 (34 Days)</p>
-            <p class="exp-summary">Gained hands-on experience in microcontroller programming, IoT sensor data acquisition, hardware integration, and automated system development during an intensive 34-day industrial training program.</p>
+            <p class="exp-meta"><span class="exp-icon">📅</span> <strong>Duration:</strong> 22 Jun 2026 — 25 Jul 2026 (34 Days)</p>
+            <p class="exp-summary">Acquired hands-on practical experience in microcontroller programming, IoT sensor data acquisition, relay hardware integration, and automated system development during a 34-day industrial training program.</p>
           </div>
           <div class="experience-cert-preview">
-            <div class="cert-image-frame" onclick="openCertModal('assets/certificates/zen1_internship_certificate.png', 'ZEN 1 Tech Park – IoT Internship Certificate')" role="button" tabindex="0" aria-label="View Internship Certificate">
+            <div class="cert-image-frame" onclick="openCertModal('assets/certificates/zen1_internship_certificate.png', 'ZEN 1 TECHPARK – IoT Internship Certificate')" role="button" tabindex="0" aria-label="View Internship Certificate">
               <img src="assets/certificates/zen1_internship_certificate.png"
                    alt="ZEN 1 Tech Park Internship Certificate Preview"
                    class="cert-thumb-img"
@@ -560,7 +695,7 @@
     </section>
 
     <!-- ═══════════════════════════════════════════════════════════════
-         CERTIFICATES SECTION — 05
+         CERTIFICATIONS SECTION — 05
     ═══════════════════════════════════════════════════════════════ -->
     <section id="certificates" class="section reveal-on-scroll">
       <div class="container">
@@ -569,7 +704,7 @@
           <span class="section-eyebrow">05 / CERTIFICATIONS</span>
           <h2 class="section-title">Certificates &amp; <span class="gradient-span">Credentials</span></h2>
           <div class="heading-line"></div>
-          <p class="section-subtitle">Verified achievements and internship certification.</p>
+          <p class="section-subtitle">Verified industrial credentials and achievements.</p>
         </div>
 
         <div class="certificates-grid">
@@ -582,10 +717,10 @@
             </div>
             <div class="cert-body">
               <h3 class="cert-title">IoT Internship Certificate</h3>
-              <p class="cert-org">ZEN 1 Tech Park, Coimbatore</p>
-              <p class="cert-date">22 June 2026 – 25 July 2026</p>
+              <p class="cert-org">ZEN 1 TECHPARK, Coimbatore</p>
+              <p class="cert-date">22 Jun 2026 — 25 Jul 2026</p>
               <button class="btn btn-outline btn-sm cert-open-btn shimmer-btn"
-                      onclick="openCertModal('assets/certificates/zen1_internship_certificate.png', 'ZEN 1 Tech Park – IoT Internship Certificate')"
+                      onclick="openCertModal('assets/certificates/zen1_internship_certificate.png', 'ZEN 1 TECHPARK – IoT Internship Certificate')"
                       id="open-cert-btn">
                 <span>View Certificate</span>
               </button>
@@ -593,24 +728,29 @@
           </div>
         </div>
 
-        <!-- Verified Achievements Grid -->
+        <!-- Verified Real Achievements Statistics -->
         <div class="achievements-wrap">
-          <h3 class="achievements-heading">Key <span class="gradient-span">Achievements</span></h3>
+          <h3 class="achievements-heading">Verified <span class="gradient-span">Milestones</span></h3>
           <div class="achievements-grid">
             <div class="glass-card achievement-card staggered-item" style="--delay: 0.05s">
-              <span class="achieve-icon">🏆</span>
-              <h4>34-Day IoT Internship</h4>
-              <p>Completed intensive industrial training in Coimbatore at ZEN 1 Tech Park.</p>
+              <span class="achieve-num">3</span>
+              <h4>PROJECTS BUILT</h4>
+              <p>GameVault, Smart Irrigation, and Bus Booking System.</p>
             </div>
             <div class="glass-card achievement-card staggered-item" style="--delay: 0.12s">
-              <span class="achieve-icon">🚀</span>
-              <h4>IoT &amp; Web Systems</h4>
-              <p>Engineered GameVault web platform and Smart Irrigation System prototype.</p>
+              <span class="achieve-num">34</span>
+              <h4>DAYS INTERNSHIP</h4>
+              <p>Industrial IoT training completed at ZEN 1 TECHPARK.</p>
             </div>
             <div class="glass-card achievement-card staggered-item" style="--delay: 0.19s">
-              <span class="achieve-icon">🎓</span>
-              <h4>Academic Standard</h4>
-              <p>7.94 CGPA in B.E. Computer Science and Engineering.</p>
+              <span class="achieve-num">7.94</span>
+              <h4>CGPA METRIC</h4>
+              <p>Current academic record in B.E. CSE at M.P.N.M.J. Engineering College.</p>
+            </div>
+            <div class="glass-card achievement-card staggered-item" style="--delay: 0.26s">
+              <span class="achieve-num">10+</span>
+              <h4>TECH SKILLS</h4>
+              <p>Java, Python, JS, HTML/CSS, MySQL, Git, AI Tools.</p>
             </div>
           </div>
         </div>
@@ -628,7 +768,7 @@
           <span class="section-eyebrow">06 / INTERESTS</span>
           <h2 class="section-title">Fields of <span class="gradient-span">Interest</span></h2>
           <div class="heading-line"></div>
-          <p class="section-subtitle">Topics and domains that motivate my continuous learning.</p>
+          <p class="section-subtitle">Domains that drive my continuous technical curiosity.</p>
         </div>
 
         <div class="interests-grid">
@@ -649,12 +789,12 @@
             <span class="interest-name">Web Development</span>
           </div>
           <div class="glass-card interest-pill staggered-item" style="--delay: 0.25s">
-            <span class="interest-icon">🚀</span>
-            <span class="interest-name">Technology</span>
-          </div>
-          <div class="glass-card interest-pill staggered-item" style="--delay: 0.30s">
             <span class="interest-icon">✨</span>
             <span class="interest-name">Prompt Engineering</span>
+          </div>
+          <div class="glass-card interest-pill staggered-item" style="--delay: 0.30s">
+            <span class="interest-icon">👾</span>
+            <span class="interest-name">Gaming Technology</span>
           </div>
         </div>
 
@@ -667,10 +807,10 @@
     <section class="section vision-section reveal-on-scroll">
       <div class="container">
         <div class="goal-card glass-card animated-border-card staggered-item" style="--delay: 0.08s">
-          <span class="goal-eyebrow">MY VISION</span>
+          <span class="goal-eyebrow">MY FUTURE</span>
           <h2 class="goal-main gradient-span">AI ENGINEER AT GOOGLE</h2>
           <p class="goal-quote">"Building intelligent software that solves real-world problems."</p>
-          <p class="goal-desc">Continuously mastering Artificial Intelligence, Full Stack Software Engineering, and Prompt Architecture to deliver scalable, human-centered technology.</p>
+          <p class="goal-desc">Mastering Artificial Intelligence systems, Full Stack Software Engineering, and Prompt Architecture to build scalable, human-centered technology.</p>
         </div>
       </div>
     </section>
@@ -685,15 +825,15 @@
           <span class="section-eyebrow">07 / CONTACT</span>
           <h2 class="section-title">LET'S BUILD <span class="gradient-span">SOMETHING.</span></h2>
           <div class="heading-line"></div>
-          <p class="section-subtitle">Reach out for opportunities, collaborations, or inquiries.</p>
+          <p class="section-subtitle">Reach out for opportunities, software collaborations, or technical inquiries.</p>
         </div>
 
         <div class="contact-grid">
 
-          <!-- Contact Info -->
+          <!-- Contact Details Card -->
           <div class="glass-card contact-info-card staggered-item" style="--delay: 0.08s">
-            <h3 class="contact-info-title">Contact Details</h3>
-            <p class="contact-info-sub">Feel free to reach out via email or connect on social platforms.</p>
+            <h3 class="contact-info-title">Contact Information</h3>
+            <p class="contact-info-sub">Available for software developer roles, AI projects, and engineering opportunities.</p>
             <div class="contact-list">
               <a href="mailto:karthikeyankarthikeyan1710@gmail.com" class="contact-item">
                 <div class="contact-icon-wrap">✉️</div>
@@ -709,13 +849,6 @@
                   <span class="contact-val">github.com/KARTHI212006</span>
                 </div>
               </a>
-              <a href="https://instagram.com/itz_karthi_k_k" target="_blank" rel="noopener noreferrer" class="contact-item">
-                <div class="contact-icon-wrap">📷</div>
-                <div class="contact-text">
-                  <span class="contact-label">Instagram</span>
-                  <span class="contact-val">@itz_karthi_k_k</span>
-                </div>
-              </a>
               <a href="https://www.linkedin.com/in/karthikeyan-s-467313382" target="_blank" rel="noopener noreferrer" class="contact-item">
                 <div class="contact-icon-wrap">💼</div>
                 <div class="contact-text">
@@ -723,16 +856,23 @@
                   <span class="contact-val">karthikeyan-s-467313382</span>
                 </div>
               </a>
+              <a href="https://instagram.com/itz_karthi_k_k" target="_blank" rel="noopener noreferrer" class="contact-item">
+                <div class="contact-icon-wrap">📷</div>
+                <div class="contact-text">
+                  <span class="contact-label">Instagram</span>
+                  <span class="contact-val">@itz_karthi_k_k</span>
+                </div>
+              </a>
             </div>
           </div>
 
-          <!-- Contact Form -->
+          <!-- Working Frontend Contact Form -->
           <div class="glass-card contact-form-card staggered-item" style="--delay: 0.18s">
             <form id="contact-form" novalidate>
               <div class="form-group">
                 <label for="name">Full Name</label>
                 <input type="text" id="name" name="name" class="form-input" placeholder="Your Full Name" required autocomplete="name">
-                <span class="form-error" id="name-error">Please enter your name.</span>
+                <span class="form-error" id="name-error">Please enter your name (at least 2 characters).</span>
               </div>
               <div class="form-group">
                 <label for="email">Email Address</label>
@@ -742,12 +882,12 @@
               <div class="form-group">
                 <label for="subject">Subject</label>
                 <input type="text" id="subject" name="subject" class="form-input" placeholder="Message Subject" required>
-                <span class="form-error" id="subject-error">Please enter a subject.</span>
+                <span class="form-error" id="subject-error">Please enter a subject (at least 3 characters).</span>
               </div>
               <div class="form-group">
                 <label for="message">Message</label>
                 <textarea id="message" name="message" class="form-input" rows="5" placeholder="Write your message here..." required></textarea>
-                <span class="form-error" id="message-error">Please enter your message.</span>
+                <span class="form-error" id="message-error">Please enter a message (at least 10 characters).</span>
               </div>
               <button type="submit" id="contact-submit-btn" class="btn btn-primary btn-block shimmer-btn">
                 <span>SEND MESSAGE</span>
@@ -764,7 +904,7 @@
   </main>
 
   <!-- ═══════════════════════════════════════════════════════════════
-       CERTIFICATE MODAL
+       CERTIFICATE PREVIEW MODAL
   ═══════════════════════════════════════════════════════════════ -->
   <div id="cert-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Certificate Preview">
     <div class="modal-backdrop" onclick="closeCertModal()"></div>
@@ -775,8 +915,54 @@
     </div>
   </div>
 
-  <!-- Back to Top -->
-  <button id="back-to-top" class="back-to-top-btn" onclick="scrollToTop()" aria-label="Scroll back to top">↑</button>
+  <!-- ═══════════════════════════════════════════════════════════════
+       PROJECT DETAIL MODAL
+  ═══════════════════════════════════════════════════════════════ -->
+  <div id="project-detail-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Project Details">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content glass-card pmodal-content">
+      <button class="modal-close-btn project-modal-close" aria-label="Close Project Details">&times;</button>
+      <span id="pmodal-badge" class="project-badge pmodal-badge-pos">PROJECT</span>
+      <h3 id="pmodal-title" class="pmodal-heading">Project Title</h3>
+      
+      <div class="pmodal-body">
+        <div class="pmodal-section">
+          <h4>PROBLEM STATEMENT</h4>
+          <p id="pmodal-problem"></p>
+        </div>
+        <div class="pmodal-section">
+          <h4>ENGINEERING SOLUTION</h4>
+          <p id="pmodal-solution"></p>
+        </div>
+        <div class="pmodal-section">
+          <h4>KEY FEATURES</h4>
+          <ul id="pmodal-features" class="pmodal-list"></ul>
+        </div>
+        <div class="pmodal-section">
+          <h4>MY CONTRIBUTION</h4>
+          <p id="pmodal-contrib"></p>
+        </div>
+        <div class="pmodal-section">
+          <h4>TECHNOLOGY STACK</h4>
+          <div id="pmodal-tech" class="project-tags"></div>
+        </div>
+      </div>
+
+      <div class="pmodal-actions">
+        <a id="pmodal-demo-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm shimmer-btn">
+          <span>Live Demo</span>
+          <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a id="pmodal-github-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm shimmer-btn">
+          <span>GitHub</span>
+        </a>
+        <button class="btn btn-secondary btn-sm project-modal-close">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="back-to-top-btn" aria-label="Scroll back to top">↑</button>
 
   <!-- ═══════════════════════════════════════════════════════════════
        FOOTER
@@ -789,7 +975,7 @@
           <div class="footer-logo-badge">K</div>
           <span class="footer-logo-name">KARTHIKEYAN S</span>
         </div>
-        <p class="footer-subtitle">Prompt Engineer · Software Developer · AI &amp; Web Developer</p>
+        <p class="footer-subtitle">AI &amp; Software Developer · Java Full Stack · Prompt Engineer</p>
         <p class="footer-motto">"CODE. CREATE. INNOVATE."</p>
       </div>
       <nav class="footer-links" aria-label="Footer Navigation">
@@ -798,6 +984,7 @@
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
         <a href="#experience">Experience</a>
+        <a href="#certificates">Certifications</a>
         <a href="#contact">Contact</a>
       </nav>
       <div class="footer-socials">
@@ -818,6 +1005,6 @@
     </div>
   </footer>
 
-  <script src="js/script.js"></script>
+  <script type="module" src="js/script.js"></script>
 </body>
 </html>
