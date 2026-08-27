@@ -286,6 +286,7 @@
          ABOUT SECTION — 01
     ═══════════════════════════════════════════════════════════════ -->
     <section id="about" class="section reveal-on-scroll">
+      <div class="section-backdrop-text" aria-hidden="true">ENGINEERING &amp; CREATIVITY</div>
       <div class="container">
 
         <div class="section-header">
@@ -377,6 +378,7 @@
          SKILLS SECTION — 02
     ═══════════════════════════════════════════════════════════════ -->
     <section id="skills" class="section reveal-on-scroll">
+      <div class="section-backdrop-text" aria-hidden="true">JAVA • FULL STACK • MYSQL • PYTHON</div>
       <div class="container">
 
         <div class="section-header">
@@ -389,11 +391,11 @@
         <!-- Interactive Category Filtering Tabs -->
         <div class="skill-tabs-container">
           <button class="skill-tab-btn active" data-skill-cat="all">ALL</button>
-          <button class="skill-tab-btn" data-skill-cat="programming">PROGRAMMING</button>
-          <button class="skill-tab-btn" data-skill-cat="web">WEB</button>
+          <button class="skill-tab-btn" data-skill-cat="programming">PROGRAMMING LANGUAGES</button>
+          <button class="skill-tab-btn" data-skill-cat="frontend">FRONTEND</button>
+          <button class="skill-tab-btn" data-skill-cat="backend">BACKEND</button>
           <button class="skill-tab-btn" data-skill-cat="database">DATABASE</button>
-          <button class="skill-tab-btn" data-skill-cat="tools">TOOLS</button>
-          <button class="skill-tab-btn" data-skill-cat="ai">AI</button>
+          <button class="skill-tab-btn" data-skill-cat="tools">DEVELOPER TOOLS</button>
         </div>
 
         <!-- Skill Cards Grid -->
@@ -407,103 +409,163 @@
             </div>
             <div class="tech-info">
               <span class="tech-name">Java</span>
-              <p class="tech-desc">Object-Oriented Programming, console applications, and backend logic.</p>
+              <p class="tech-desc">Object-Oriented Programming, Data Structures, Collection Framework, and Core Logic.</p>
             </div>
           </div>
 
           <!-- Python -->
-          <div class="glass-card skill-card staggered-item" data-skill-category="programming" style="--delay: 0.10s">
+          <div class="glass-card skill-card staggered-item" data-skill-category="programming" style="--delay: 0.08s">
             <div class="skill-card-header">
               <span class="skill-card-icon">🐍</span>
               <h3 class="skill-card-category">PYTHON</h3>
             </div>
             <div class="tech-info">
               <span class="tech-name">Python</span>
-              <p class="tech-desc">Scripting, algorithmic logic, automation, and AI prototyping.</p>
+              <p class="tech-desc">Scripting, algorithmic logic, automation, and AI system integration.</p>
+            </div>
+          </div>
+
+          <!-- C Language -->
+          <div class="glass-card skill-card staggered-item" data-skill-category="programming" style="--delay: 0.11s">
+            <div class="skill-card-header">
+              <span class="skill-card-icon">⚙️</span>
+              <h3 class="skill-card-category">C LANGUAGE</h3>
+            </div>
+            <div class="tech-info">
+              <span class="tech-name">C Language</span>
+              <p class="tech-desc">Core programming fundamentals, memory management, and structured logic.</p>
             </div>
           </div>
 
           <!-- HTML5 -->
-          <div class="glass-card skill-card staggered-item" data-skill-category="web" style="--delay: 0.15s">
+          <div class="glass-card skill-card staggered-item" data-skill-category="frontend" style="--delay: 0.14s">
             <div class="skill-card-header">
               <span class="skill-card-icon">📄</span>
               <h3 class="skill-card-category">HTML5</h3>
             </div>
             <div class="tech-info">
               <span class="tech-name">HTML5</span>
-              <p class="tech-desc">Semantic document markup, accessibility standards, and clean DOM structuring.</p>
+              <p class="tech-desc">Semantic document markup, web accessibility (WCAG), and clean DOM structuring.</p>
             </div>
           </div>
 
           <!-- CSS3 -->
-          <div class="glass-card skill-card staggered-item" data-skill-category="web" style="--delay: 0.20s">
+          <div class="glass-card skill-card staggered-item" data-skill-category="frontend" style="--delay: 0.17s">
             <div class="skill-card-header">
               <span class="skill-card-icon">🎨</span>
               <h3 class="skill-card-category">CSS3</h3>
             </div>
             <div class="tech-info">
               <span class="tech-name">CSS3</span>
-              <p class="tech-desc">Flexbox, Grid layouts, GPU keyframe animations, and custom design tokens.</p>
+              <p class="tech-desc">Flexbox, Grid layouts, GPU keyframe animations, glassmorphism, and custom tokens.</p>
             </div>
           </div>
 
           <!-- JavaScript -->
-          <div class="glass-card skill-card staggered-item" data-skill-category="web" style="--delay: 0.25s">
+          <div class="glass-card skill-card staggered-item" data-skill-category="frontend" style="--delay: 0.20s">
             <div class="skill-card-header">
               <span class="skill-card-icon">⚡</span>
               <h3 class="skill-card-category">JAVASCRIPT</h3>
             </div>
             <div class="tech-info">
               <span class="tech-name">JavaScript (ES6+)</span>
-              <p class="tech-desc">Vanilla JS DOM interactions, ES modules, asynchronous fetch, and event logic.</p>
+              <p class="tech-desc">Vanilla JS DOM interactions, ES modules, asynchronous fetch APIs, and event handling.</p>
+            </div>
+          </div>
+
+          <!-- Tailwind CSS -->
+          <div class="glass-card skill-card staggered-item" data-skill-category="frontend" style="--delay: 0.23s">
+            <div class="skill-card-header">
+              <span class="skill-card-icon">🌊</span>
+              <h3 class="skill-card-category">TAILWIND CSS</h3>
+            </div>
+            <div class="tech-info">
+              <span class="tech-name">Tailwind CSS</span>
+              <p class="tech-desc">Utility-first responsive design, component styling, and rapid UI development.</p>
+            </div>
+          </div>
+
+          <!-- Java Backend Logic -->
+          <div class="glass-card skill-card staggered-item" data-skill-category="backend" style="--delay: 0.26s">
+            <div class="skill-card-header">
+              <span class="skill-card-icon">🏗️</span>
+              <h3 class="skill-card-category">JAVA BACKEND</h3>
+            </div>
+            <div class="tech-info">
+              <span class="tech-name">Java Backend Systems</span>
+              <p class="tech-desc">Server-side application logic, Object-Oriented design, and backend modularity.</p>
+            </div>
+          </div>
+
+          <!-- JDBC -->
+          <div class="glass-card skill-card staggered-item" data-skill-category="backend" style="--delay: 0.29s">
+            <div class="skill-card-header">
+              <span class="skill-card-icon">🔌</span>
+              <h3 class="skill-card-category">JDBC CONNECTIVITY</h3>
+            </div>
+            <div class="tech-info">
+              <span class="tech-name">JDBC</span>
+              <p class="tech-desc">Java Database Connectivity for executing SQL queries and relational record management.</p>
+            </div>
+          </div>
+
+          <!-- Servlets & REST -->
+          <div class="glass-card skill-card staggered-item" data-skill-category="backend" style="--delay: 0.32s">
+            <div class="skill-card-header">
+              <span class="skill-card-icon">🌐</span>
+              <h3 class="skill-card-category">SERVLETS &amp; REST</h3>
+            </div>
+            <div class="tech-info">
+              <span class="tech-name">Servlets &amp; REST Architecture</span>
+              <p class="tech-desc">HTTP request handling, RESTful API architecture principles, and web server concepts.</p>
             </div>
           </div>
 
           <!-- MySQL -->
-          <div class="glass-card skill-card staggered-item" data-skill-category="database" style="--delay: 0.30s">
+          <div class="glass-card skill-card staggered-item" data-skill-category="database" style="--delay: 0.35s">
             <div class="skill-card-header">
               <span class="skill-card-icon">🗄️</span>
               <h3 class="skill-card-category">MYSQL</h3>
             </div>
             <div class="tech-info">
-              <span class="tech-name">MySQL &amp; JDBC</span>
-              <p class="tech-desc">Relational schema design, SQL querying, and Java database connectivity.</p>
+              <span class="tech-name">MySQL Database</span>
+              <p class="tech-desc">Relational schema design, SQL data querying, joins, index optimization, and CRUD operations.</p>
             </div>
           </div>
 
           <!-- Git & GitHub -->
-          <div class="glass-card skill-card staggered-item" data-skill-category="tools" style="--delay: 0.35s">
+          <div class="glass-card skill-card staggered-item" data-skill-category="tools" style="--delay: 0.38s">
             <div class="skill-card-header">
               <span class="skill-card-icon">🐙</span>
               <h3 class="skill-card-category">GIT &amp; GITHUB</h3>
             </div>
             <div class="tech-info">
               <span class="tech-name">Git &amp; GitHub</span>
-              <p class="tech-desc">Version control, branch management, repositories, and continuous workflow.</p>
+              <p class="tech-desc">Version control, repository management, branch workflows, and project releases.</p>
             </div>
           </div>
 
-          <!-- Prompt Engineering -->
-          <div class="glass-card skill-card staggered-item" data-skill-category="ai" style="--delay: 0.40s">
+          <!-- VS Code & Postman -->
+          <div class="glass-card skill-card staggered-item" data-skill-category="tools" style="--delay: 0.41s">
             <div class="skill-card-header">
-              <span class="skill-card-icon">✨</span>
-              <h3 class="skill-card-category">PROMPT ENGINEERING</h3>
+              <span class="skill-card-icon">🛠️</span>
+              <h3 class="skill-card-category">DEV ENVIRONMENT</h3>
             </div>
             <div class="tech-info">
-              <span class="tech-name">Prompt Engineering</span>
-              <p class="tech-desc">Designing precise LLM prompts, context conditioning, and automated AI output parsing.</p>
+              <span class="tech-name">VS Code, Eclipse &amp; Postman</span>
+              <p class="tech-desc">IDE debugging tools, Postman API endpoint testing, and dev environment configuration.</p>
             </div>
           </div>
 
-          <!-- AI Tools -->
-          <div class="glass-card skill-card staggered-item" data-skill-category="ai" style="--delay: 0.45s">
+          <!-- Prompt Engineering & AI Tools -->
+          <div class="glass-card skill-card staggered-item" data-skill-category="tools" style="--delay: 0.44s">
             <div class="skill-card-header">
               <span class="skill-card-icon">🤖</span>
-              <h3 class="skill-card-category">AI TOOLS</h3>
+              <h3 class="skill-card-category">AI WORKFLOWS</h3>
             </div>
             <div class="tech-info">
-              <span class="tech-name">AI Ecosystem</span>
-              <p class="tech-desc">ChatGPT, Claude AI, and Google Gemini optimization for software development.</p>
+              <span class="tech-name">Prompt Engineering &amp; AI Tools</span>
+              <p class="tech-desc">LLM prompting, context conditioning, ChatGPT/Gemini API integration, and AI-assisted workflows.</p>
             </div>
           </div>
 
@@ -516,6 +578,7 @@
          PROJECTS SECTION — 03
     ═══════════════════════════════════════════════════════════════ -->
     <section id="projects" class="section reveal-on-scroll">
+      <div class="section-backdrop-text" aria-hidden="true">FEATURED SOFTWARE WORK</div>
       <div class="container">
 
         <div class="section-header">
@@ -708,20 +771,49 @@
         </div>
 
         <div class="certificates-grid">
+          <!-- Cert 1: NoviTech Full Stack MasterClass -->
           <div class="glass-card cert-card staggered-item" style="--delay: 0.08s">
-            <div class="cert-img-wrap">
-              <img src="assets/certificates/zen1_internship_certificate.png"
-                   alt="ZEN 1 Tech Park IoT Internship Certificate"
+            <div class="cert-img-wrap" onclick="openCertModal('assets/certificates/novitech_fullstack_certificate.png', 'NoviTech R&D – 30 Days MasterClass in Full Stack Development (NT_B41FSD290)')">
+              <img src="assets/certificates/novitech_fullstack_certificate.png"
+                   alt="NoviTech R&D Private Limited Full Stack Development MasterClass Certificate"
                    class="cert-preview-img"
                    loading="lazy">
+              <div class="cert-hover-overlay">
+                <span>🔍 View Certificate</span>
+              </div>
             </div>
             <div class="cert-body">
+              <div class="cert-badge-tag">ISO 9001:2015 CERTIFIED</div>
+              <h3 class="cert-title">Full Stack MasterClass</h3>
+              <p class="cert-org">NoviTech R&D Private Limited</p>
+              <p class="cert-meta">Cert ID: NT_B41FSD290</p>
+              <p class="cert-date">19 Jun 2025 — 23 Jul 2025 (30 Days)</p>
+              <button class="btn btn-outline btn-sm cert-open-btn shimmer-btn"
+                      onclick="openCertModal('assets/certificates/novitech_fullstack_certificate.png', 'NoviTech R&D – 30 Days MasterClass in Full Stack Development (NT_B41FSD290)')">
+                <span>View Certificate</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Cert 2: ZEN 1 TECHPARK IoT Internship -->
+          <div class="glass-card cert-card staggered-item" style="--delay: 0.16s">
+            <div class="cert-img-wrap" onclick="openCertModal('assets/certificates/zen1_internship_certificate.png', 'ZEN 1 TECHPARK – IoT Industrial Internship Certificate (23CSE15)')">
+              <img src="assets/certificates/zen1_internship_certificate.png"
+                   alt="ZEN 1 Tech Park IoT Industrial Internship Certificate"
+                   class="cert-preview-img"
+                   loading="lazy">
+              <div class="cert-hover-overlay">
+                <span>🔍 View Certificate</span>
+              </div>
+            </div>
+            <div class="cert-body">
+              <div class="cert-badge-tag">HPE PARTNER / ISO 9001</div>
               <h3 class="cert-title">IoT Internship Certificate</h3>
               <p class="cert-org">ZEN 1 TECHPARK, Coimbatore</p>
-              <p class="cert-date">22 Jun 2026 — 25 Jul 2026</p>
+              <p class="cert-meta">Student ID: 23CSE15</p>
+              <p class="cert-date">22 Jun 2026 — 25 Jul 2026 (34 Days)</p>
               <button class="btn btn-outline btn-sm cert-open-btn shimmer-btn"
-                      onclick="openCertModal('assets/certificates/zen1_internship_certificate.png', 'ZEN 1 TECHPARK – IoT Internship Certificate')"
-                      id="open-cert-btn">
+                      onclick="openCertModal('assets/certificates/zen1_internship_certificate.png', 'ZEN 1 TECHPARK – IoT Industrial Internship Certificate (23CSE15)')">
                 <span>View Certificate</span>
               </button>
             </div>
@@ -740,17 +832,17 @@
             <div class="glass-card achievement-card staggered-item" style="--delay: 0.12s">
               <span class="achieve-num">34</span>
               <h4>DAYS INTERNSHIP</h4>
-              <p>Industrial IoT training completed at ZEN 1 TECHPARK.</p>
+              <p>Industrial IoT training at ZEN 1 TECHPARK.</p>
             </div>
             <div class="glass-card achievement-card staggered-item" style="--delay: 0.19s">
+              <span class="achieve-num">30</span>
+              <h4>DAYS MASTERCLASS</h4>
+              <p>Full Stack Development MasterClass by NoviTech R&D.</p>
+            </div>
+            <div class="glass-card achievement-card staggered-item" style="--delay: 0.26s">
               <span class="achieve-num">7.94</span>
               <h4>CGPA METRIC</h4>
               <p>Current academic record in B.E. CSE at M.P.N.M.J. Engineering College.</p>
-            </div>
-            <div class="glass-card achievement-card staggered-item" style="--delay: 0.26s">
-              <span class="achieve-num">10+</span>
-              <h4>TECH SKILLS</h4>
-              <p>Java, Python, JS, HTML/CSS, MySQL, Git, AI Tools.</p>
             </div>
           </div>
         </div>
@@ -819,6 +911,7 @@
          CONTACT SECTION — 07
     ═══════════════════════════════════════════════════════════════ -->
     <section id="contact" class="section reveal-on-scroll">
+      <div class="section-backdrop-text" aria-hidden="true">LET'S BUILD SOMETHING</div>
       <div class="container">
 
         <div class="section-header">
@@ -1004,6 +1097,11 @@
       <p class="footer-copy">© 2026 KARTHIKEYAN S. All Rights Reserved.</p>
     </div>
   </footer>
+
+  <!-- Lenis Smooth Scroll Engine & GSAP Core & ScrollTrigger Plugin -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
   <script type="module" src="js/script.js"></script>
 </body>
