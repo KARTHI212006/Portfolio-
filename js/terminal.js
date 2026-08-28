@@ -1,6 +1,6 @@
 /**
- * KARTHIKEYAN S — INTERACTIVE DEVELOPER TERMINAL
- * Real-working JavaScript CLI component
+ * KARTHIKEYAN S — SMART DEVELOPER CLI v3.0
+ * Interactive bash-style terminal with recruiter easter eggs & live stats
  */
 
 export function initTerminal() {
@@ -12,57 +12,89 @@ export function initTerminal() {
 
   const COMMANDS = {
     help: `Available commands:
-  • <span class="cmd-highlight">whoami</span>      - Display developer identity
-  • <span class="cmd-highlight">about</span>       - Developer background & education
-  • <span class="cmd-highlight">skills</span>      - Technical stack & capabilities
-  • <span class="cmd-highlight">projects</span>    - Key software & IoT projects
-  • <span class="cmd-highlight">experience</span>  - Industrial internship details
-  • <span class="cmd-highlight">goal</span>        - Career vision & target role
-  • <span class="cmd-highlight">contact</span>     - Email & social profiles
-  • <span class="cmd-highlight">version</span>     - Environment details
-  • <span class="cmd-highlight">clear</span>       - Clear terminal output`,
+  • <span class="cmd-highlight">whoami</span>       - Developer identity & primary focus
+  • <span class="cmd-highlight">about</span>        - Background, education & location
+  • <span class="cmd-highlight">skills</span>       - Technical ecosystem & proficiency
+  • <span class="cmd-highlight">projects</span>     - Production web, IoT & Java systems
+  • <span class="cmd-highlight">experience</span>   - 34-day industrial IoT internship
+  • <span class="cmd-highlight">stats</span>        - Real-time verified metrics & CGPA
+  • <span class="cmd-highlight">goal</span>         - Long-term engineering vision
+  • <span class="cmd-highlight">contact</span>      - Email, GitHub & LinkedIn links
+  • <span class="cmd-highlight">resume</span>       - View & download official resume
+  • <span class="cmd-highlight">matrix</span>       - Activate cyberpunk matrix mode
+  • <span class="cmd-highlight">hire</span>         - Recruiter fast-track interview mode
+  • <span class="cmd-highlight">clear</span>        - Clear terminal screen`,
 
-    whoami: `<span class="cmd-cyan">KARTHIKEYAN S</span> — AI & Software Developer
-Roles: Java Full Stack Developer | Prompt Engineer | AI Developer
+    whoami: `<span class="cmd-cyan font-bold">KARTHIKEYAN S</span> — <span class="cmd-green">JAVA FULL STACK DEVELOPER</span>
+Primary: Java, Backend Architecture, Modern Web & Relational Databases (MySQL)
+Specialization: AI Engineering, Intelligent Workflows & Prompt Architecture
 Location: Salem, Tamil Nadu, India
+Status: <span class="cmd-green font-bold">● AVAILABLE FOR OPPORTUNITIES</span>
 Motto: <span class="cmd-purple">CODE. CREATE. INNOVATE.</span>`,
 
-    about: `<span class="cmd-title">EDUCATION & BACKGROUND</span>
-Degree: B.E. Computer Science and Engineering (2023 - 2027)
-College: M.P. Nachimuthu M. Jaganathan Engineering College, Erode
-CGPA: 7.94 / 10
-Schooling: Sengunthar Matric Higher Sec School, Salem`,
+    about: `<span class="cmd-title">ACADEMIC & BACKGROUND</span>
+Degree: B.E. Computer Science and Engineering (2023 – 2027)
+Institution: M.P. Nachimuthu M. Jaganathan Engineering College, Erode
+Academic Metric: <span class="cmd-cyan font-bold">7.94 / 10 CGPA</span>
+Foundation: Sengunthar Matric Higher Secondary School, Salem
+Focus: Object-Oriented Software, Database Systems & Applied AI`,
 
-    skills: `<span class="cmd-title">TECHNICAL ECOSYSTEM</span>
-  [Programming]  Java, Python, JavaScript (ES6+)
-  [Web Dev]      HTML5, CSS3, Vanilla JS
-  [Databases]    MySQL, JDBC
-  [Tools & AI]   Git, GitHub, Prompt Engineering, ChatGPT, Claude, Gemini AI`,
+    skills: `<span class="cmd-title">TECHNICAL ECOSYSTEM MATRIX</span>
+  [Core & Backend]   <span class="cmd-cyan">Java (OOP, Collections, JDBC), Python, C</span>
+  [Web & Frontend]   <span class="cmd-cyan">HTML5, CSS3 (Glassmorphism), JavaScript (ES6+), Tailwind</span>
+  [Databases]        <span class="cmd-cyan">MySQL, Relational Schema Design, SQL Query Optimization</span>
+  [Applied AI]       <span class="cmd-purple">Prompt Engineering, LLM Integration, Gemini/OpenAI API</span>
+  [Dev & DevOps]     <span class="cmd-highlight">Git, GitHub, VS Code, Postman, Vercel, Netlify</span>`,
 
-    projects: `<span class="cmd-title">FEATURED PROJECTS</span>
-  1. <span class="cmd-cyan">GAMEVAULT</span> — Modern gaming portal (HTML5, CSS3, JS)
-  2. <span class="cmd-cyan">SMART IRRIGATION SYSTEM</span> — IoT automated soil sensing & water control (Arduino, Sensors)
-  3. <span class="cmd-cyan">BUS BOOKING MANAGEMENT SYSTEM</span> — Java & MySQL booking application (Java, JDBC, SQL)`,
+    projects: `<span class="cmd-title">PRODUCTION SOFTWARE SHOWCASE</span>
+  1. <span class="cmd-cyan font-bold">GAMEVAULT</span> [Web Discovery Portal]
+     → Zero-bloat HTML5/CSS3/Vanilla JS platform with ultra-fast rendering.
+  2. <span class="cmd-cyan font-bold">SMART IRRIGATION SYSTEM</span> [IoT & Embedded Automation]
+     → Real-time soil moisture telemetry & automated water pump relay control.
+  3. <span class="cmd-cyan font-bold">BUS BOOKING MANAGEMENT SYSTEM</span> [Java & MySQL Architecture]
+     → OOP Java backend with JDBC relational persistence & seat reservation logic.`,
 
-    experience: `<span class="cmd-title">INDUSTRIAL INTERNSHIP</span>
-Company: ZEN 1 Tech Park, Coimbatore
-Domain: Internet of Things (IoT)
-Duration: 22 June 2026 – 25 July 2026 (34 Days)
-Focus: Microcontroller programming, sensor data acquisition, hardware automation`,
+    experience: `<span class="cmd-title">INDUSTRIAL EXPERIENCE</span>
+Organization: <span class="cmd-cyan font-bold">ZEN 1 TECHPARK</span>, Coimbatore
+Role: IoT Engineering Intern
+Duration: 22 June 2026 – 25 July 2026 (<span class="cmd-green font-bold">34 Days</span>)
+Mastery: Microcontroller programming, sensor data acquisition, relay switching & hardware telemetry.`,
 
-    goal: `<span class="cmd-purple">TARGET CAREER VISION</span>
-🎯 Role: AI Engineer at Google
-Focus: Building intelligent software systems that solve real-world problems at scale.`,
+    stats: `<span class="cmd-title">VERIFIED DEVELOPER HUD TELEMETRY</span>
+  [✓] Academic CGPA:        <span class="cmd-cyan font-bold">7.94 / 10</span> (B.E. Computer Science)
+  [✓] Industrial Training:  <span class="cmd-green font-bold">34 Days</span> (ZEN 1 Tech Park IoT)
+  [✓] MasterClass:          <span class="cmd-green font-bold">30 Days</span> (NoviTech Full Stack)
+  [✓] Verified Projects:    <span class="cmd-purple font-bold">3 Production Systems</span>
+  [✓] Core Technologies:    <span class="cmd-highlight font-bold">12+ Practical Tools</span>`,
 
-    contact: `<span class="cmd-title">CONTACT INFORMATION</span>
-📧 Email:     karthikeyankarthikeyan1710@gmail.com
-🐙 GitHub:    https://github.com/KARTHI212006
-💼 LinkedIn:  https://www.linkedin.com/in/karthikeyan-s-467313382
-📷 Instagram: @itz_karthi_k_k`,
+    goal: `<span class="cmd-purple font-bold">TARGET CAREER VISION</span>
+🎯 Goal: <span class="cmd-cyan font-bold">AI Engineer at Google</span>
+Vision: Engineering scalable, human-centered software systems powered by intelligent neural reasoning and robust backend architectures.`,
 
-    version: `<span class="cmd-cyan">Karthikeyan Dev CLI v2.4</span> [x86_64-vanilla-js]
-Core: HTML5 / CSS3 / Vanilla JS (ES6)
-Zero Heavy Frameworks | 100% Custom Motion System`
+    contact: `<span class="cmd-title">DIRECT COMMUNICATION CHANNELS</span>
+  ✉️ Email:     <a href="mailto:karthikeyankarthikeyan1710@gmail.com" class="cmd-cyan">karthikeyankarthikeyan1710@gmail.com</a>
+  🐙 GitHub:    <a href="https://github.com/KARTHI212006" target="_blank" rel="noopener" class="cmd-cyan">github.com/KARTHI212006</a>
+  💼 LinkedIn:  <a href="https://www.linkedin.com/in/karthikeyan-s-467313382" target="_blank" rel="noopener" class="cmd-cyan">linkedin.com/in/karthikeyan-s-467313382</a>
+  📷 Instagram: <span class="cmd-purple">@itz_karthi_k_k</span>`,
+
+    resume: `<span class="cmd-cyan font-bold">RESUME ACCESS:</span>
+📄 Karthikeyan S Resume (PDF) ready for download.
+Opening direct download link...`,
+
+    hire: `<span class="cmd-green font-bold">⚡ RECRUITER MODE ACTIVATED!</span>
+Candidate Profile: <span class="cmd-cyan">KARTHIKEYAN S (Java Full Stack & AI)</span>
+✓ Strong Object-Oriented Fundamentals (Java, JDBC, MySQL)
+✓ Frontend & UI/UX Mastery (HTML5, Modern CSS, ES6+)
+✓ Industrial IoT Experience & Proven Project Track Record
+[Initiating direct contact protocol... Navigating to Contact Section]`,
+
+    'sudo hire karthikeyan': `<span class="cmd-green font-bold">[ROOT PRIVILEGES GRANTED]</span>
+===================================================
+✓ CANDIDATE SELECTED FOR INTERVIEW! 😎
+Authorization ID: RECRUITER_PASS_2026
+Match Score: 9.8 / 10 (Full Stack + AI Ready)
+===================================================
+Opening contact form now... Let's build something remarkable!`
   };
 
   const commandList = Object.keys(COMMANDS);
@@ -101,10 +133,31 @@ Zero Heavy Frameworks | 100% Custom Motion System`
     const responseLine = document.createElement('div');
     responseLine.className = 'terminal-line command-response';
 
-    if (COMMANDS[cmd]) {
+    if (cmd === 'matrix') {
+      runMatrixEffect(responseLine);
+    } else if (cmd === 'resume') {
+      responseLine.innerHTML = COMMANDS.resume;
+      setTimeout(() => {
+        const link = document.createElement('a');
+        link.href = 'resume/KARTHIKEYAN_S_RESUME.pdf';
+        link.download = 'KARTHIKEYAN_S_RESUME.pdf';
+        link.target = '_blank';
+        link.click();
+      }, 500);
+    } else if (cmd === 'hire' || cmd === 'sudo hire karthikeyan') {
+      responseLine.innerHTML = COMMANDS[cmd];
+      setTimeout(() => {
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+          contactSection.scrollIntoView({ behavior: 'smooth' });
+          const nameField = document.getElementById('name');
+          if (nameField) nameField.focus();
+        }
+      }, 1000);
+    } else if (COMMANDS[cmd]) {
       responseLine.innerHTML = COMMANDS[cmd];
     } else {
-      responseLine.innerHTML = `<span class="cmd-error">Command not found: '${escapeHtml(original)}'. Type <span class="cmd-highlight">'help'</span> for available commands.</span>`;
+      responseLine.innerHTML = `<span class="cmd-error">Command not found: '${escapeHtml(original)}'. Type <span class="cmd-highlight">'help'</span> to see available commands or try <span class="cmd-green">'hire'</span>!</span>`;
     }
 
     terminalOutput.appendChild(responseLine);
@@ -112,6 +165,10 @@ Zero Heavy Frameworks | 100% Custom Motion System`
     if (terminalBody) {
       terminalBody.scrollTop = terminalBody.scrollHeight;
     }
+  }
+
+  function runMatrixEffect(container) {
+    container.innerHTML = `<div class="matrix-rain"><span class="cmd-green">01001011 01000001 01010010 01010100 01001000 01001001<br>SYSTEM ONLINE: NEURAL MATRIX ACTIVATED...<br>JAVA_CORE: OK | MYSQL_POOL: ACTIVE | AI_WORKFLOWS: SYNCED</span></div>`;
   }
 
   function escapeHtml(text) {
