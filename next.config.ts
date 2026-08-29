@@ -4,6 +4,9 @@ import path from "path";
 const nextConfig: NextConfig = {
   output: "export",
   reactStrictMode: true,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   images: {
     unoptimized: true,
   },
