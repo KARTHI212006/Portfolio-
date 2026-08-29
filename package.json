@@ -1,12 +1,12 @@
 {
   "name": "karthikeyan-portfolio",
   "version": "1.0.0",
-  "type": "module",
   "private": true,
   "scripts": {
-    "dev": "npx serve .",
-    "serve": "npx serve .",
-    "start": "npx serve ."
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "serve": "npx serve ."
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.6",
