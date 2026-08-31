@@ -51,6 +51,15 @@ export function initLoadingAndHeroSequence() {
   const barFill = document.getElementById('loader-bar-fill');
   const hudStatus = document.getElementById('hud-status');
 
+  // Safety timeout fallback to ensure page is always visible
+  setTimeout(() => {
+    if (screen && screen.style.display !== 'none') {
+      screen.style.display = 'none';
+      screen.style.pointerEvents = 'none';
+      document.body.style.overflow = '';
+    }
+  }, 1600);
+
   if (typeof window.gsap === 'undefined') {
     if (screen) screen.style.display = 'none';
     if (navbar) navbar.classList.add('navbar-loaded');
