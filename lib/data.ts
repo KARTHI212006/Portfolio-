@@ -70,6 +70,7 @@ export interface CertificateItem {
   issuer: string;
   date: string;
   credentialId?: string;
+  badge?: string;
   image: string;
   description: string;
 }
@@ -268,7 +269,7 @@ export const projectsList: ProjectItem[] = [
     myContribution: "Backend & DB Developer — Designed relational tables, wrote JDBC queries, and implemented core Java business logic.",
     githubUrl: "https://github.com/KARTHI212006",
     liveUrl: null, // Hidden as no live URL exists
-    image: "/images/gamevault.jpg",
+    image: "/images/bus_booking.jpg",
   },
 ];
 
@@ -293,13 +294,34 @@ export const experienceList: ExperienceItem[] = [
 
 export const certificatesList: CertificateItem[] = [
   {
+    id: "novitech-fullstack-cert",
+    title: "30 Days MasterClass in Full Stack Development",
+    issuer: "NoviTech R&D Private Limited, Coimbatore",
+    date: "19 Jun 2025 – 23 Jul 2025 (30 Days)",
+    credentialId: "NT_B41FSD290",
+    badge: "ISO 9001:2015 CERTIFIED",
+    image: "/certificates/novitech_fullstack_certificate.png",
+    description: "Successfully completed an intensive 30-day MasterClass covering full-stack web engineering, frontend UI architectures, backend API services, and modern database integration. Certified under ISO 9001:2015 quality standards (Cert ID: NT_B41FSD290).",
+  },
+  {
     id: "zen1-cert",
-    title: "IoT Internship Certificate of Completion",
-    issuer: "ZEN 1 Tech Park, Coimbatore",
-    date: "July 2026",
-    credentialId: "ZEN1-IOT-2026-34D",
+    title: "IoT Industrial Internship Certificate",
+    issuer: "ZEN 1 TECHPARK, Coimbatore (HPE Partner)",
+    date: "22 Jun 2026 – 25 Jul 2026 (34 Days)",
+    credentialId: "23CSE15 (MSME & AICTE)",
+    badge: "HPE PARTNER / ISO 9001",
     image: "/certificates/zen1_internship_certificate.png",
-    description: "Certificate awarded for successfully completing a 34-day practical internship in Internet of Things (IoT) development and hardware automation.",
+    description: "Official internship certification for 34 days of intensive hardware-software engineering, sensor telemetry, and embedded microcontroller automation. Recognised by HPE, MSME (Govt. of India), and AICTE.",
+  },
+  {
+    id: "kongu-iot-bootcamp-cert",
+    title: "Hands-on IoT Bootcamp: Idea to Prototype",
+    issuer: "Kongu Engineering College, Perundurai (Autonomous)",
+    date: "10 April 2026",
+    credentialId: "KEC-CSE-IIPC-2026",
+    badge: "AUTONOMOUS / IIPC CELL",
+    image: "/certificates/kongu_iot_bootcamp_certificate.jpg",
+    description: "Hands-on technical workshop certificate presented by the Department of Computer Science & Engineering and Industry Institute Partnership Cell (IIPC) at Kongu Engineering College for successfully translating IoT concepts into working physical prototypes.",
   },
 ];
 

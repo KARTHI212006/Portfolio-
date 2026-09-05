@@ -48,6 +48,12 @@ if (typeof document !== 'undefined') {
     initMicroInteractions();
     initKeyboardAccessibility();
   });
+
+  window.addEventListener('load', () => {
+    if (typeof window.ScrollTrigger !== 'undefined') {
+      ScrollTrigger.refresh();
+    }
+  });
 }
 
 /* ──────────────────────────────────────────────────────────────────────────

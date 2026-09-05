@@ -73,7 +73,7 @@ export const projectsData = [
     myContribution: 'Backend & Database Engineer — Architected relational MySQL schema, wrote JDBC data access layers, and built core Java reservation logic.',
     github: 'https://github.com/KARTHI212006',
     demo: null,
-    img: 'assets/images/gamevault.webp',
+    img: 'assets/images/bus_booking.webp',
     metrics: { consistency: 'Zero Booking Collisions', db: 'MySQL Relational', architecture: 'Java OOP + JDBC' }
   }
 ];

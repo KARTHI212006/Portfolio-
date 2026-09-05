@@ -321,7 +321,7 @@ export function initHorizontalProjectScroll() {
 
   // Desktop horizontal scroll (992px+)
   mm.add("(min-width: 992px) and (prefers-reduced-motion: no-preference)", () => {
-    const scrollLength = () => track.scrollWidth - window.innerWidth + (window.innerWidth * 0.08);
+    const scrollLength = () => Math.max(0, track.scrollWidth - window.innerWidth + (window.innerWidth * 0.08));
 
     const horizontalTween = gsap.to(track, {
       x: () => -scrollLength(),
@@ -494,6 +494,7 @@ export function initSectionReveals() {
     ScrollTrigger.batch('.achievements-grid .achievement-card, .certificates-grid .cert-card', {
       start: 'top 88%',
       interval: 0.06,
+      once: true,
       onEnter: (batch) => {
         gsap.fromTo(batch,
           { y: 28, autoAlpha: 0, scale: 0.96 },

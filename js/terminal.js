@@ -17,6 +17,7 @@ export function initTerminal() {
   • <span class="cmd-highlight">skills</span>       - Technical ecosystem & proficiency
   • <span class="cmd-highlight">projects</span>     - Production web, IoT & Java systems
   • <span class="cmd-highlight">experience</span>   - 34-day industrial IoT internship
+  • <span class="cmd-highlight">certs</span>        - 3 official verified credentials & certifications
   • <span class="cmd-highlight">stats</span>        - Real-time verified metrics & CGPA
   • <span class="cmd-highlight">goal</span>         - Long-term engineering vision
   • <span class="cmd-highlight">contact</span>      - Email, GitHub & LinkedIn links
@@ -60,8 +61,25 @@ Role: IoT Engineering Intern
 Duration: 22 June 2026 – 25 July 2026 (<span class="cmd-green font-bold">34 Days</span>)
 Mastery: Microcontroller programming, sensor data acquisition, relay switching & hardware telemetry.`,
 
+    certs: `<span class="cmd-title">OFFICIAL VERIFIED CREDENTIALS (3)</span>
+  1. <span class="cmd-cyan font-bold">Full Stack Web Development MasterClass (30 Days)</span>
+     • Issuer: NoviTech R&D Pvt. Ltd. | ID: NT_B41FSD290 | ISO 9001:2015
+  2. <span class="cmd-green font-bold">IoT Industrial Internship (34 Days)</span>
+     • Issuer: ZEN 1 TECHPARK (HPE Partner, AICTE & MSME) | Roll: 23CSE15
+  3. <span class="cmd-purple font-bold">Hands-on IoT Bootcamp: Idea to Prototype</span>
+     • Issuer: Kongu Engineering College (Autonomous, Perundurai) | IIPC Cell`,
+
+    certifications: `<span class="cmd-title">OFFICIAL VERIFIED CREDENTIALS (3)</span>
+  1. <span class="cmd-cyan font-bold">Full Stack Web Development MasterClass (30 Days)</span>
+     • Issuer: NoviTech R&D Pvt. Ltd. | ID: NT_B41FSD290 | ISO 9001:2015
+  2. <span class="cmd-green font-bold">IoT Industrial Internship (34 Days)</span>
+     • Issuer: ZEN 1 TECHPARK (HPE Partner, AICTE & MSME) | Roll: 23CSE15
+  3. <span class="cmd-purple font-bold">Hands-on IoT Bootcamp: Idea to Prototype</span>
+     • Issuer: Kongu Engineering College (Autonomous, Perundurai) | IIPC Cell`,
+
     stats: `<span class="cmd-title">VERIFIED DEVELOPER HUD TELEMETRY</span>
   [✓] Academic CGPA:        <span class="cmd-cyan font-bold">7.94 / 10</span> (B.E. Computer Science)
+  [✓] Verified Credentials: <span class="cmd-cyan font-bold">3 Official Certifications</span>
   [✓] Industrial Training:  <span class="cmd-green font-bold">34 Days</span> (ZEN 1 Tech Park IoT)
   [✓] MasterClass:          <span class="cmd-green font-bold">30 Days</span> (NoviTech Full Stack)
   [✓] Verified Projects:    <span class="cmd-purple font-bold">3 Production Systems</span>
