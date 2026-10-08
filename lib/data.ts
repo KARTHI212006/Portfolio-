@@ -80,24 +80,76 @@ export const personalInfo: PersonalInfo = {
   gradientWordmark: "KARTHIKEYAN S",
   role: "Full Stack Web Developer & AI Engineer",
   roles: [
-    "Full Stack Web Developer",
-    "AI & Software Developer",
-    "Prompt Engineer",
+    "Java Full Stack Developer",
+    "AI & Intelligent Systems",
+    "Prompt Engineer & LLM Workflows",
+    "Software Systems Architect",
   ],
   location: "Salem, Tamil Nadu, India",
   email: "karthikeyankarthikeyan1710@gmail.com",
-  phone: "+91 90422 66085", // TODO: User, confirm if phone number is current
+  phone: "+91 90422 66085", // Note to user: Confirm if +91 90422 66085 is current
   github: "https://github.com/KARTHI212006",
   linkedin: "https://www.linkedin.com/in/karthikeyan-s-467313382",
   instagram: "https://instagram.com/itz_karthi_k_k",
   resumeUrl: "/resume/KARTHIKEYAN_S_RESUME.pdf",
-  bio: "Final-year Computer Science Engineering student focused on full-stack web development, intelligent AI applications, and hardware-software integration.",
+  bio: "Building practical, scalable software using Java, relational MySQL databases, modern web interfaces, and AI-powered workflows. Dedicated to solid architectural design and human-centered solutions.",
   identityPills: [
     { label: "Degree", value: "B.E. CSE (2027)" },
+    { label: "CGPA", value: "7.94 / 10" },
     { label: "Internship", value: "IoT Intern @ ZEN 1" },
     { label: "Location", value: "Salem, TN, India" },
   ],
 };
+
+export interface MilestoneItem {
+  id: string;
+  icon: string;
+  tag: string;
+  value: string;
+  unit?: string;
+  title: string;
+  description: string;
+}
+
+export const milestonesList: MilestoneItem[] = [
+  {
+    id: "projects-built",
+    icon: "Rocket",
+    tag: "PRODUCTION",
+    value: "3+",
+    unit: "SYSTEMS",
+    title: "PROJECTS BUILT",
+    description: "GameVault, Smart Irrigation, and Bus Booking Management System.",
+  },
+  {
+    id: "internship-days",
+    icon: "Zap",
+    tag: "INDUSTRIAL",
+    value: "34",
+    unit: "DAYS",
+    title: "INTERNSHIP IMMERSION",
+    description: "Hands-on IoT hardware engineering at ZEN 1 TECHPARK, Coimbatore.",
+  },
+  {
+    id: "cgpa",
+    icon: "GraduationCap",
+    tag: "ACADEMIC",
+    value: "7.94",
+    unit: "/ 10",
+    title: "CURRENT CGPA",
+    description: "B.E. Computer Science at M.P.N.M.J. Engineering College.",
+  },
+  {
+    id: "core-tech",
+    icon: "Wrench",
+    tag: "SKILLSET",
+    value: "12+",
+    unit: "TOOLS",
+    title: "CORE TECHNOLOGIES",
+    description: "Java, MySQL, JDBC, HTML5, CSS3, JS, Python, Git, and AI Workflows.",
+  },
+];
+
 
 export const educationList: EducationItem[] = [
   {
@@ -267,9 +319,31 @@ export const projectsList: ProjectItem[] = [
     tech: ["Java", "MySQL", "JDBC", "OOP Architecture"],
     result: "Prevented booking conflicts and structured SQL data persistence for passenger ticket reservations.",
     myContribution: "Backend & DB Developer — Designed relational tables, wrote JDBC queries, and implemented core Java business logic.",
-    githubUrl: "https://github.com/KARTHI212006",
+    githubUrl: "https://github.com/KARTHI212006/BusbookingSystemManagement",
     liveUrl: null, // Hidden as no live URL exists
-    image: "/images/bus_booking.jpg",
+    image: "/images/bus_booking.svg",
+  },
+  {
+    id: "employee-attendance",
+    badge: "JAVA & SWING",
+    title: "Employee Attendance Tracking System",
+    category: "Java & Backend",
+    shortDesc: "A Java Swing and MySQL-driven enterprise application for employee profile management, daily attendance tracking, leave workflows, and reporting.",
+    problem: "Organizations struggle with inaccurate attendance logging, disorganized manual leave records, and time-consuming manual report compilation.",
+    solution: "Developed an authenticated Java desktop application utilizing Java Swing for administrative UI and MySQL via JDBC for reliable record persistence and reporting.",
+    features: [
+      "Secure administrative and HR authentication system",
+      "Employee profile management with full CRUD capability",
+      "Daily attendance logging with status classification (Present, Absent, Leave)",
+      "Leave management module with request tracking and status updates",
+      "Automated attendance and leave summary report generation",
+    ],
+    tech: ["Java", "Java Swing", "MySQL", "JDBC", "Desktop UI"],
+    result: "Streamlined attendance logging and administrative leave tracking with structured SQL persistence and automated reporting.",
+    myContribution: "Software & Database Developer — Designed graphical user interfaces using Java Swing, created normalized MySQL relational tables, and implemented JDBC data operations.",
+    githubUrl: "https://github.com/KARTHI212006/Employee-Attendance-Tracking-System",
+    liveUrl: null,
+    image: "/images/employee_attendance.svg",
   },
 ];
 
@@ -326,9 +400,9 @@ export const certificatesList: CertificateItem[] = [
 ];
 
 export const careerGoal = {
-  title: "Career Objective",
-  statement: "Become an AI Engineer at Google",
-  supportingText: "Passionate about combining full-stack web engineering with cutting-edge artificial intelligence, large language models, and intelligent automated systems to solve complex real-world challenges.",
+  title: "Current Career Goal",
+  statement: "Building strong expertise in Java Full Stack Development and Artificial Intelligence, with a long-term goal of becoming an AI Engineer.",
+  supportingText: "Dedicated to mastering robust backend systems, relational databases, and modern web architectures while integrating intelligent AI workflows to solve real-world problems.",
 };
 
 export const interestsList: string[] = [

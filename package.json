@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "npx serve .",
+    "build": "echo Static portfolio ready for deployment",
+    "start": "npx serve .",
     "serve": "npx serve ."
   },
   "dependencies": {

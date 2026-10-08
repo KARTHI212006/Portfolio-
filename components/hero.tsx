@@ -1,9 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
   Download,
@@ -16,6 +16,8 @@ import {
   GraduationCap,
   Briefcase,
   Award,
+  Terminal as TerminalIcon,
+  Database,
 } from "lucide-react";
 import {
   personalInfo,
@@ -25,6 +27,15 @@ import {
 } from "@/lib/data";
 
 export default function Hero() {
+  const [roleIndex, setRoleIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setRoleIndex((prev) => (prev + 1) % personalInfo.roles.length);
+    }, 2800);
+    return () => clearInterval(timer);
+  }, []);
+
   // Real computed statistics directly from data arrays
   const stats = [
     {
@@ -39,7 +50,7 @@ export default function Hero() {
     },
     {
       value: `${certificatesList.length}`,
-      label: "Verified Certificate",
+      label: "Verified Credentials",
       icon: Award,
     },
   ];
@@ -50,8 +61,8 @@ export default function Hero() {
       className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden"
     >
       {/* Decorative ambient background glows */}
-      <div className="bg-glow-cyan top-10 -left-20" />
-      <div className="bg-glow-violet bottom-10 right-0" />
+      <div className="bg-glow-cyan top-10 -left-20 opacity-40" />
+      <div className="bg-glow-violet bottom-10 right-0 opacity-35" />
 
       <div className="container-custom relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -72,26 +83,39 @@ export default function Hero() {
                 <span>AVAILABLE FOR OPPORTUNITIES</span>
               </div>
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-muted-foreground text-xs font-mono">
-                <span>CSE 2027</span>
+                <span>CSE 2027 • CGPA 7.94</span>
               </div>
             </div>
 
             {/* Greeting */}
             <p className="text-sm md:text-base font-mono text-accent-cyan tracking-wide">
-              Hello, I&apos;m 👋
+              Hi, I&apos;m 👋
             </p>
 
-            {/* Gradient Name Wordmark (Unique single instance) */}
+            {/* Gradient Name Wordmark */}
             <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-tight">
               <span className="text-gradient-cyan">
                 {personalInfo.gradientWordmark}
               </span>
             </h1>
 
-            {/* Main Role & Eyebrow */}
-            <div className="flex items-center gap-2 text-lg sm:text-xl font-heading font-semibold text-slate-200">
+            {/* Dynamic Cycling Role Line */}
+            <div className="flex items-center gap-2 text-lg sm:text-2xl font-heading font-semibold text-slate-200 min-h-[40px]">
               <span className="text-accent-cyan font-mono">{`//`}</span>
-              <h2>{personalInfo.role}</h2>
+              <div className="relative overflow-hidden h-9 flex items-center">
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={roleIndex}
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -15 }}
+                    transition={{ duration: 0.35 }}
+                    className="text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-200 to-accent-cyan"
+                  >
+                    {personalInfo.roles[roleIndex]}
+                  </motion.span>
+                </AnimatePresence>
+              </div>
             </div>
 
             {/* Bio Description */}
@@ -99,13 +123,13 @@ export default function Hero() {
               {personalInfo.bio}
             </p>
 
-            {/* 3 Primary Action Buttons */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
+            {/* Primary Action Buttons */}
+            <div className="flex flex-wrap items-center gap-3 pt-2">
               <Link
                 href="#projects"
                 className="inline-flex items-center gap-2 px-6 py-3 text-xs font-heading font-bold text-white bg-gradient-to-r from-accent-cyan to-accent-violet rounded-xl shadow-lg hover:shadow-glow transition-all duration-300 transform hover:-translate-y-0.5"
               >
-                <span>VIEW PROJECTS</span>
+                <span>EXPLORE PROJECTS</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
 
@@ -114,18 +138,26 @@ export default function Hero() {
                 download
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 text-xs font-heading font-bold text-white bg-white/5 border border-white/15 hover:border-accent-cyan/50 hover:bg-white/10 rounded-xl transition-all duration-300 transform hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2 px-5 py-3 text-xs font-heading font-bold text-white bg-white/5 border border-white/15 hover:border-accent-cyan/50 hover:bg-white/10 rounded-xl transition-all duration-300 transform hover:-translate-y-0.5"
               >
                 <Download className="w-4 h-4 text-accent-cyan" />
-                <span>DOWNLOAD RESUME</span>
+                <span>RESUME</span>
               </a>
 
               <Link
+                href="#terminal"
+                className="inline-flex items-center gap-2 px-5 py-3 text-xs font-heading font-bold text-accent-cyan bg-accent-cyan/10 border border-accent-cyan/30 hover:bg-accent-cyan hover:text-black rounded-xl transition-all duration-300 transform hover:-translate-y-0.5"
+              >
+                <TerminalIcon className="w-4 h-4" />
+                <span>DEV CLI</span>
+              </Link>
+
+              <Link
                 href="#contact"
-                className="inline-flex items-center gap-2 px-5 py-3 text-xs font-heading font-semibold text-slate-300 hover:text-accent-cyan transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-3 text-xs font-heading font-semibold text-slate-300 hover:text-white transition-colors"
               >
                 <Mail className="w-4 h-4" />
-                <span>Contact Me</span>
+                <span>Contact</span>
               </Link>
             </div>
 
@@ -174,7 +206,7 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Real Stats Row (Computed directly from data.ts length) */}
+            {/* Real Stats Row */}
             <div className="grid grid-cols-3 gap-3 pt-4">
               {stats.map((stat, idx) => {
                 const IconComp = stat.icon;
@@ -198,7 +230,7 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* RIGHT COLUMN: Photo with Identity Card & Floating Tags */}
+          {/* RIGHT COLUMN: Photo with Identity Card & Floating Badges */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -206,24 +238,30 @@ export default function Hero() {
             className="lg:col-span-5 flex justify-center relative"
           >
             <div className="relative w-full max-w-md">
-              {/* Corner Tag 1: Top Left */}
-              <div className="absolute -top-3 -left-3 z-20 px-3 py-1.5 rounded-lg bg-[#0B1020]/90 border border-accent-cyan/40 backdrop-blur-md shadow-lg flex items-center gap-2">
+              {/* Floating Badge 1: Top Left */}
+              <div className="absolute -top-4 -left-4 z-20 px-3.5 py-1.5 rounded-xl bg-[#080d22]/90 border border-accent-cyan/40 backdrop-blur-md shadow-[0_4px_20px_rgba(6,182,212,0.25)] flex items-center gap-2 animate-bounce [animation-duration:3s]">
                 <Code2 className="w-4 h-4 text-accent-cyan" />
-                <span className="font-mono text-xs text-white">Java Dev</span>
+                <span className="font-mono text-xs text-white font-medium">☕ Java & Backend</span>
               </div>
 
-              {/* Corner Tag 2: Top Right */}
-              <div className="absolute -top-3 -right-3 z-20 px-3 py-1.5 rounded-lg bg-[#0B1020]/90 border border-accent-violet/40 backdrop-blur-md shadow-lg flex items-center gap-2">
+              {/* Floating Badge 2: Top Right */}
+              <div className="absolute -top-4 -right-4 z-20 px-3.5 py-1.5 rounded-xl bg-[#080d22]/90 border border-accent-violet/40 backdrop-blur-md shadow-[0_4px_20px_rgba(139,92,246,0.25)] flex items-center gap-2 animate-bounce [animation-duration:3.4s]">
                 <Cpu className="w-4 h-4 text-accent-violet" />
-                <span className="font-mono text-xs text-white">AI Tools</span>
+                <span className="font-mono text-xs text-white font-medium">🤖 AI Workflows</span>
               </div>
 
-              {/* Profile Image Box */}
-              <div className="relative rounded-2xl p-1 bg-gradient-to-b from-accent-cyan/30 via-accent-violet/20 to-transparent border border-white/10 overflow-hidden shadow-2xl">
-                <div className="relative w-full h-[380px] sm:h-[420px] rounded-xl overflow-hidden bg-[#0B1020]">
+              {/* Floating Badge 3: Bottom Left */}
+              <div className="absolute top-[280px] -left-6 z-20 px-3 py-1.5 rounded-xl bg-[#080d22]/90 border border-emerald-500/40 backdrop-blur-md shadow-[0_4px_20px_rgba(16,185,129,0.2)] flex items-center gap-2 hidden sm:flex">
+                <Database className="w-3.5 h-3.5 text-emerald-400" />
+                <span className="font-mono text-xs text-white">🗄️ MySQL & JDBC</span>
+              </div>
+
+              {/* Profile Image Box with Glowing Aura */}
+              <div className="relative rounded-2xl p-1 bg-gradient-to-b from-accent-cyan/40 via-accent-violet/30 to-cyan-500/20 border border-white/15 overflow-hidden shadow-[0_0_50px_rgba(6,182,212,0.2)]">
+                <div className="relative w-full h-[380px] sm:h-[420px] rounded-xl overflow-hidden bg-[#080d22]">
                   <Image
                     src="/images/profile.jpg"
-                    alt="KARTHIKEYAN S - AI & Software Developer"
+                    alt="KARTHIKEYAN S - Java Full Stack Developer & AI Engineer"
                     fill
                     sizes="(max-width: 768px) 100vw, 450px"
                     className="object-cover object-top hover:scale-105 transition-transform duration-500"
@@ -244,7 +282,7 @@ export default function Hero() {
                     Active Student
                   </span>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
                   {personalInfo.identityPills.map((pill, idx) => (
                     <div
                       key={idx}

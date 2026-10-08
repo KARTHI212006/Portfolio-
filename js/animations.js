@@ -51,14 +51,14 @@ export function initLoadingAndHeroSequence() {
   const barFill = document.getElementById('loader-bar-fill');
   const hudStatus = document.getElementById('hud-status');
 
-  // Safety timeout fallback to ensure page is always visible
+  // Instant FCP safety fallback to ensure page is always visible immediately without delay
   setTimeout(() => {
     if (screen && screen.style.display !== 'none') {
       screen.style.display = 'none';
       screen.style.pointerEvents = 'none';
       document.body.style.overflow = '';
     }
-  }, 1600);
+  }, 250);
 
   if (typeof window.gsap === 'undefined') {
     if (screen) screen.style.display = 'none';
@@ -79,7 +79,7 @@ export function initLoadingAndHeroSequence() {
     gsap.set('.hero-reveal, .profile-frame, .float-badge', { autoAlpha: 1, y: 0, scale: 1 });
   });
 
-  // Full motion experience
+  // Full motion experience (Instant FCP snappy boot sequence <0.2s)
   mm.add("(prefers-reduced-motion: no-preference)", () => {
     document.body.style.overflow = 'hidden';
 
@@ -87,46 +87,46 @@ export function initLoadingAndHeroSequence() {
       defaults: { ease: 'power2.out' }
     });
 
-    // Step A: Futuristic Boot Sequence (0.0s – 1.1s)
+    // Step A: Ultra-snappy Instant FCP Boot Sequence (0.0s – 0.18s)
     if (screen) {
       if (barFill) {
         bootTl.to(barFill, {
           width: '100%',
-          duration: 0.85,
-          ease: 'power1.inOut'
-        }, 0.1);
+          duration: 0.12,
+          ease: 'power2.inOut'
+        }, 0.0);
       }
 
       bootTl.to(hudStatus, {
-        duration: 0.1,
+        duration: 0.02,
         onComplete: () => {
           if (hudStatus) {
             hudStatus.textContent = '[SYSTEM ONLINE]';
             hudStatus.style.color = '#10B981';
           }
         }
-      }, 0.7);
+      }, 0.08);
 
       bootTl.to(screen, {
         autoAlpha: 0,
-        scale: 1.03,
-        duration: 0.35,
-        ease: 'power3.in',
+        scale: 1.01,
+        duration: 0.12,
+        ease: 'power2.in',
         onComplete: () => {
           screen.style.display = 'none';
           screen.style.pointerEvents = 'none';
           document.body.style.overflow = '';
         }
-      }, 1.05);
+      }, 0.14);
     }
 
-    // Step B: Navbar & Hero Entrance Timeline (Kicks off seamlessly at 0.95s)
-    const heroStartTime = screen ? 0.95 : 0.0;
+    // Step B: Navbar & Hero Entrance Timeline (Kicks off immediately at 0.08s)
+    const heroStartTime = screen ? 0.08 : 0.0;
 
     if (navbar) {
       bootTl.fromTo(navbar, 
-        { y: -30, autoAlpha: 0 },
-        { y: 0, autoAlpha: 1, duration: 0.6, ease: 'power3.out', onStart: () => navbar.classList.add('navbar-loaded') },
+        { y: -24, autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: 0.35, ease: 'power3.out', onStart: () => navbar.classList.add('navbar-loaded') },
         heroStartTime
       );
     }

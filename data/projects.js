@@ -1,37 +1,87 @@
 /**
- * KARTHIKEYAN S — PORTFOLIO PROJECT DATA
- * Verified production project dataset for cinematic showcases & case study modals
+ * KARTHIKEYAN S — VERIFIED PRODUCTION PROJECT DATASET
+ * Sourced directly from GitHub repositories & real implementations.
  */
 
 export const projectsData = [
   {
     id: 'gamevault',
-    badge: 'PROJECT 01 / 03',
+    badge: 'PROJECT 01 / 04',
     number: '01',
     title: 'GAMEVAULT',
     category: 'web',
-    tagline: 'Modern Web Architecture & Gaming Discovery Hub',
-    shortDesc: 'A fast, responsive gaming discovery portal built with pure HTML5, CSS3, and Vanilla JavaScript without heavy framework bloat.',
-    problem: 'Modern gaming discovery platforms are frequently bloated with heavy third-party bundles, leading to slow initial loads and sluggish mobile interactions.',
-    solution: 'Engineered a pure vanilla web architecture utilizing optimized DOM manipulation, custom CSS glassmorphism, responsive CSS Grid, and lightweight asset pipelines.',
+    tagline: 'Full-Stack Gaming Discovery & Catalog Platform',
+    shortDesc: 'A modern full-stack gaming platform built with React, Vite, Supabase, and Tailwind CSS featuring AAA game discovery, trailers, ratings, and persistent cart/wishlist management.',
+    problem: 'Gamers face sluggish discovery platforms burdened with heavy bloat, missing hardware spec requirements, and fragmented game discount information.',
+    solution: 'Engineered a fluid single-page web application utilizing modular React components, Steam official artwork, Supabase database integration, and local storage state persistence for cart and wishlist tracking.',
     features: [
-      'Responsive multi-viewport game discovery & detail views',
-      'Dynamic trailer showcase & real-time pricing telemetry links',
-      'Custom pure-CSS glassmorphism with 60 FPS transitions',
-      'Zero external framework overhead for instantaneous initial load'
+      'Comprehensive game discovery & search with real AAA titles and ratings',
+      'Dynamic game detail views with trailers, screenshots & minimum specs',
+      'Interactive cart & wishlist persistence across browser sessions',
+      'Responsive gaming interface with Framer Motion transitions'
     ],
-    tech: ['HTML5', 'CSS3', 'JavaScript ES6+', 'Vercel', 'Responsive UI'],
-    result: 'Achieved sub-second page loads and 100% fluid responsiveness across mobile, tablet, and ultra-wide displays.',
-    myContribution: 'Full Stack & UI Developer — Designed UI/UX layout, coded vanilla JavaScript DOM interactions, and deployed production build.',
-    github: 'https://github.com/KARTHI212006',
-    demo: 'https://s-karthikeyan-portfolio.vercel.app/',
+    tech: ['React', 'Vite', 'JavaScript ES6+', 'Supabase DB', 'Tailwind CSS', 'REST APIs', 'Full Stack Web'],
+    result: 'Delivered a high-performance, fluid gaming discovery application deployed on Vercel with instant state synchronization.',
+    myContribution: 'Frontend & Full Stack Developer — Engineered responsive UI components, integrated game catalog metadata, built cart and wishlist state logic, and handled Vercel deployment.',
+    github: 'https://github.com/KARTHI212006/next-program-',
+    demo: 'https://next-program-two.vercel.app',
     img: 'assets/images/gamevault.webp',
-    metrics: { speed: '< 0.8s Load', bundle: '0 KB Framework Bloat', ui: '100% Fluid' }
+    metrics: { speed: '< 0.9s Load', stack: 'React + Supabase', ui: '100% Fluid' }
+  },
+  {
+    id: 'bus-booking',
+    badge: 'PROJECT 02 / 04',
+    number: '02',
+    title: 'BUS BOOKING MANAGEMENT SYSTEM',
+    category: 'java',
+    tagline: 'Enterprise Java Backend & Relational MySQL Reservation Engine',
+    shortDesc: 'An enterprise object-oriented Java application with relational MySQL database persistence via JDBC for managing bus routes, schedules, seat reservations, and passenger records.',
+    problem: 'Manual passenger log management and paper-based ticketing create frequent reservation conflicts, double-booking errors, and untraceable records.',
+    solution: 'Constructed an OOP Java backend coupled with MySQL via JDBC, enforcing ACID transactional consistency, automated seat allocation, and structured relational queries.',
+    features: [
+      'Comprehensive bus route lookup and real-time seat availability checks',
+      'Passenger record logging with automated unique Ticket ID generation',
+      'JDBC-driven relational persistence with parameterized SQL queries',
+      'Structured database schema with integrity constraints preventing double-bookings',
+      'ACID transaction safety with manual commit & rollback controls'
+    ],
+    tech: ['Java', 'OOP Architecture', 'MySQL Relational', 'JDBC Driver', 'Relational Persistence', 'SQL Schema Design'],
+    result: 'Eliminated double-booking conflicts and established reliable relational data persistence for transport operations.',
+    myContribution: 'Java Backend & Database Engineer — Architected relational MySQL schema, wrote JDBC data access layers, and built core Java reservation logic.',
+    github: 'https://github.com/KARTHI212006/BusbookingSystemManagement',
+    demo: null,
+    img: 'assets/images/bus_booking.svg',
+    metrics: { consistency: 'Zero Booking Collisions', db: 'MySQL Relational', architecture: 'Java OOP + JDBC' }
+  },
+  {
+    id: 'employee-attendance',
+    badge: 'PROJECT 03 / 04',
+    number: '03',
+    title: 'EMPLOYEE ATTENDANCE TRACKING SYSTEM',
+    category: 'java',
+    tagline: 'Java Desktop Application & Relational Attendance Management',
+    shortDesc: 'A Java Swing and MySQL-driven enterprise desktop application for employee profile management, daily attendance tracking, leave workflows, and reporting.',
+    problem: 'Organizations struggle with inaccurate attendance logging, disorganized manual leave records, and time-consuming manual report compilation.',
+    solution: 'Developed an authenticated Java desktop application utilizing Java Swing for administrative UI and MySQL via JDBC for reliable relational record persistence and automated reporting.',
+    features: [
+      'Secure administrative and HR authentication system',
+      'Employee profile management with full CRUD capability',
+      'Daily attendance logging with status classification (Present, Absent, Leave)',
+      'Leave management module with request tracking and status updates',
+      'Automated attendance and leave summary report generation with SQL aggregation'
+    ],
+    tech: ['Java', 'Java Swing GUI', 'MySQL Relational', 'JDBC', 'Relational Data Persistence', 'Full Stack Logic'],
+    result: 'Streamlined attendance logging and administrative leave tracking with structured SQL persistence and automated reporting.',
+    myContribution: 'Java Software & Database Developer — Designed graphical user interfaces using Java Swing, created normalized MySQL relational tables, and implemented JDBC data operations.',
+    github: 'https://github.com/KARTHI212006/Employee-Attendance-Tracking-System',
+    demo: null,
+    img: 'assets/images/employee_attendance.svg',
+    metrics: { auth: 'Role-Based Auth', db: 'MySQL JDBC', ui: 'Java Swing UI' }
   },
   {
     id: 'smart-irrigation',
-    badge: 'PROJECT 02 / 03',
-    number: '02',
+    badge: 'PROJECT 04 / 04',
+    number: '04',
     title: 'SMART IRRIGATION SYSTEM',
     category: 'ai-iot',
     tagline: 'IoT-Powered Automated Soil Moisture & Water Control Prototype',
@@ -44,36 +94,12 @@ export const projectsData = [
       'Power-efficient microcontroller logic with hardware safety cutoffs',
       'Prevents crop over-saturation and optimizes agricultural water conservation'
     ],
-    tech: ['Arduino', 'IoT Sensors', 'Embedded C', 'Hardware Relay', 'Automation'],
+    tech: ['Arduino', 'IoT Sensors', 'Embedded C/C++', 'Hardware Relay', 'Automation'],
     result: 'Demonstrated reliable automated irrigation cycles, eliminating manual inspection and reducing water wastage in prototype tests.',
     myContribution: 'IoT Project Lead — Calibrated soil moisture sensors, developed microcontroller automation firmware, and assembled circuit prototype.',
-    github: 'https://github.com/KARTHI212006',
+    github: 'https://github.com/KARTHI212006?tab=repositories',
     demo: null,
     img: 'assets/images/irrigation.webp',
     metrics: { telemetry: 'Real-time Soil Sensing', hardware: 'Relay Automated', efficiency: 'Eco Water Saving' }
-  },
-  {
-    id: 'bus-booking',
-    badge: 'PROJECT 03 / 03',
-    number: '03',
-    title: 'BUS BOOKING MANAGEMENT SYSTEM',
-    category: 'java',
-    tagline: 'Enterprise Java Backend & Relational MySQL Reservation Engine',
-    shortDesc: 'An object-oriented Java application with relational database persistence for managing bus schedules, passenger reservations, and ticket records.',
-    problem: 'Manual passenger log management and paper-based ticketing create frequent reservation conflicts, double-booking errors, and untraceable records.',
-    solution: 'Constructed an OOP Java backend coupled with MySQL via JDBC, enforcing transactional consistency, automated seat allocation, and structured record querying.',
-    features: [
-      'Comprehensive bus route lookup and real-time seat availability checks',
-      'Passenger record logging with automated unique Ticket ID generation',
-      'JDBC-driven relational persistence with parameterized SQL queries',
-      'Structured database schema with integrity constraints preventing double-bookings'
-    ],
-    tech: ['Java', 'MySQL', 'JDBC', 'OOP Architecture', 'SQL Schema Design'],
-    result: 'Ensured zero reservation conflicts and structured relational storage for passenger travel logs.',
-    myContribution: 'Backend & Database Engineer — Architected relational MySQL schema, wrote JDBC data access layers, and built core Java reservation logic.',
-    github: 'https://github.com/KARTHI212006',
-    demo: null,
-    img: 'assets/images/bus_booking.webp',
-    metrics: { consistency: 'Zero Booking Collisions', db: 'MySQL Relational', architecture: 'Java OOP + JDBC' }
   }
 ];

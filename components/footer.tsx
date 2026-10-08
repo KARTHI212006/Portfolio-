@@ -38,6 +38,9 @@ export default function Footer() {
             <Link href="#home" className="hover:text-accent-cyan transition-colors">
               Home
             </Link>
+            <Link href="#terminal" className="hover:text-accent-cyan transition-colors">
+              Terminal CLI
+            </Link>
             <Link href="#about" className="hover:text-accent-cyan transition-colors">
               About
             </Link>
@@ -47,8 +50,8 @@ export default function Footer() {
             <Link href="#projects" className="hover:text-accent-cyan transition-colors">
               Projects
             </Link>
-            <Link href="#experience" className="hover:text-accent-cyan transition-colors">
-              Experience
+            <Link href="#milestones" className="hover:text-accent-cyan transition-colors">
+              Milestones
             </Link>
             <Link href="#certificates" className="hover:text-accent-cyan transition-colors">
               Certificates
@@ -56,6 +59,15 @@ export default function Footer() {
             <Link href="#contact" className="hover:text-accent-cyan transition-colors">
               Contact
             </Link>
+            <button
+              onClick={() => {
+                sessionStorage.removeItem("portfolio_booted");
+                window.location.reload();
+              }}
+              className="text-accent-cyan/80 hover:text-accent-cyan underline cursor-pointer"
+            >
+              Re-run OS Boot
+            </button>
           </div>
 
           {/* Social Icons & Back to Top */}

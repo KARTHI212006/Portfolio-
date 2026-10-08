@@ -1,0 +1,190 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" width="1200" height="680" style="background:#060b18;font-family:'Segoe UI',Roboto,Helvetica,sans-serif;">
+  <defs>
+    <linearGradient id="bgGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a1226"/>
+      <stop offset="50%" stop-color="#040814"/>
+      <stop offset="100%" stop-color="#080e1e"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="50%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0f1b36" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#091124" stop-opacity="0.95"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="20" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- Ambient background glow -->
+  <rect width="1200" height="680" fill="url(#bgGlow)"/>
+  <circle cx="200" cy="150" r="280" fill="#2563eb" opacity="0.12" filter="blur(80px)"/>
+  <circle cx="1000" cy="500" r="320" fill="#7c3aed" opacity="0.12" filter="blur(90px)"/>
+
+  <!-- Desktop App Window Frame -->
+  <rect x="60" y="45" width="1080" height="590" rx="16" fill="url(#cardGrad)" stroke="#1e293b" stroke-width="1.5" filter="url(#cardShadow)"/>
+
+  <!-- Window Titlebar -->
+  <rect x="60" y="45" width="1080" height="48" rx="16" fill="#0d172e"/>
+  <rect x="60" y="77" width="1080" height="16" fill="#0d172e"/>
+  <line x1="60" y1="93" x2="1140" y2="93" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- Window controls -->
+  <circle cx="90" cy="69" r="6" fill="#ef4444"/>
+  <circle cx="110" cy="69" r="6" fill="#f59e0b"/>
+  <circle cx="130" cy="69" r="6" fill="#10b981"/>
+
+  <!-- App Title in titlebar -->
+  <text x="600" y="73" fill="#94a3b8" font-size="13" font-weight="600" text-anchor="middle" letter-spacing="1">EMPLOYEE ATTENDANCE TRACKING SYSTEM • JAVA SWING / MYSQL</text>
+
+  <!-- Left Sidebar -->
+  <rect x="60" y="93" width="220" height="542" fill="#091224"/>
+  <line x1="280" y1="93" x2="280" y2="635" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- User / Admin Profile in sidebar -->
+  <circle cx="105" cy="140" r="22" fill="url(#accentGrad)"/>
+  <text x="105" y="146" fill="#ffffff" font-size="14" font-weight="bold" text-anchor="middle">HR</text>
+  <text x="140" y="137" fill="#f8fafc" font-size="14" font-weight="700">Administrator</text>
+  <text x="140" y="152" fill="#10b981" font-size="11" font-weight="600">● Connected (JDBC)</text>
+
+  <!-- Sidebar Nav items -->
+  <g transform="translate(75, 185)">
+    <!-- Active Item: Dashboard -->
+    <rect x="0" y="0" width="190" height="38" rx="8" fill="#1e293b" fill-opacity="0.7" stroke="#38bdf8" stroke-width="1" stroke-opacity="0.3"/>
+    <text x="15" y="24" fill="#38bdf8" font-size="13" font-weight="700">📊  Dashboard Overview</text>
+
+    <!-- Item: Employees -->
+    <rect x="0" y="48" width="190" height="38" rx="8" fill="transparent"/>
+    <text x="15" y="72" fill="#94a3b8" font-size="13" font-weight="600">👥  Employee Directory</text>
+
+    <!-- Item: Mark Attendance -->
+    <rect x="0" y="96" width="190" height="38" rx="8" fill="transparent"/>
+    <text x="15" y="120" fill="#94a3b8" font-size="13" font-weight="600">⏱️  Mark Attendance</text>
+
+    <!-- Item: Leave Requests -->
+    <rect x="0" y="144" width="190" height="38" rx="8" fill="transparent"/>
+    <text x="15" y="168" fill="#94a3b8" font-size="13" font-weight="600">📝  Leave Management</text>
+
+    <!-- Item: Reports -->
+    <rect x="0" y="192" width="190" height="38" rx="8" fill="transparent"/>
+    <text x="15" y="216" fill="#94a3b8" font-size="13" font-weight="600">📈  Monthly Reports</text>
+  </g>
+
+  <!-- Database telemetry badge in sidebar -->
+  <rect x="75" y="555" width="190" height="55" rx="8" fill="#0d172e" stroke="#1e293b"/>
+  <text x="88" y="577" fill="#64748b" font-size="10" font-weight="700" letter-spacing="1">PERSISTENCE</text>
+  <text x="88" y="596" fill="#38bdf8" font-size="12" font-weight="600">MySQL Database via JDBC</text>
+
+  <!-- Main Content Area -->
+  <!-- Header row inside window -->
+  <g transform="translate(310, 115)">
+    <text x="0" y="22" fill="#f8fafc" font-size="20" font-weight="800">Daily Attendance Console</text>
+    <text x="0" y="40" fill="#64748b" font-size="12">Session: Java Runtime • Shift: General • Database: employee_db</text>
+  </g>
+
+  <!-- Stat Cards Row -->
+  <g transform="translate(310, 175)">
+    <!-- Card 1 -->
+    <rect x="0" y="0" width="180" height="85" rx="10" fill="#0c162d" stroke="#1e293b"/>
+    <text x="16" y="26" fill="#94a3b8" font-size="11" font-weight="600">TOTAL EMPLOYEES</text>
+    <text x="16" y="58" fill="#f8fafc" font-size="28" font-weight="800">48</text>
+    <text x="75" y="56" fill="#38bdf8" font-size="12" font-weight="600">Active Records</text>
+
+    <!-- Card 2 -->
+    <rect x="195" y="0" width="180" height="85" rx="10" fill="#0c162d" stroke="#1e293b"/>
+    <text x="211" y="26" fill="#94a3b8" font-size="11" font-weight="600">PRESENT TODAY</text>
+    <text x="211" y="58" fill="#10b981" font-size="28" font-weight="800">44</text>
+    <text x="260" y="56" fill="#10b981" font-size="12" font-weight="600">91.6% Attendance</text>
+
+    <!-- Card 3 -->
+    <rect x="390" y="0" width="180" height="85" rx="10" fill="#0c162d" stroke="#1e293b"/>
+    <text x="406" y="26" fill="#94a3b8" font-size="11" font-weight="600">APPROVED LEAVE</text>
+    <text x="406" y="58" fill="#f59e0b" font-size="28" font-weight="800">03</text>
+    <text x="455" y="56" fill="#f59e0b" font-size="12" font-weight="600">Pending: 01</text>
+
+    <!-- Card 4 -->
+    <rect x="585" y="0" width="205" height="85" rx="10" fill="#0c162d" stroke="#1e293b"/>
+    <text x="601" y="26" fill="#94a3b8" font-size="11" font-weight="600">UNEXCUSED ABSENT</text>
+    <text x="601" y="58" fill="#ef4444" font-size="28" font-weight="800">01</text>
+    <text x="645" y="56" fill="#ef4444" font-size="12" font-weight="600">Requires Review</text>
+  </g>
+
+  <!-- Attendance Table Section -->
+  <g transform="translate(310, 280)">
+    <rect x="0" y="0" width="790" height="315" rx="10" fill="#0c162d" stroke="#1e293b"/>
+    
+    <!-- Table Header Bar -->
+    <rect x="0" y="0" width="790" height="40" rx="10" fill="#132142"/>
+    <text x="25" y="25" fill="#94a3b8" font-size="11" font-weight="700">EMP ID</text>
+    <text x="110" y="25" fill="#94a3b8" font-size="11" font-weight="700">NAME</text>
+    <text x="280" y="25" fill="#94a3b8" font-size="11" font-weight="700">DEPARTMENT</text>
+    <text x="430" y="25" fill="#94a3b8" font-size="11" font-weight="700">CHECK-IN</text>
+    <text x="560" y="25" fill="#94a3b8" font-size="11" font-weight="700">STATUS</text>
+    <text x="690" y="25" fill="#94a3b8" font-size="11" font-weight="700">ACTION</text>
+
+    <!-- Row 1 -->
+    <g transform="translate(0, 40)">
+      <line x1="0" y1="52" x2="790" y2="52" stroke="#1e293b" stroke-width="1"/>
+      <text x="25" y="32" fill="#cbd5e1" font-size="13" font-family="monospace">EMP-1001</text>
+      <text x="110" y="32" fill="#f8fafc" font-size="13" font-weight="600">Karthikeyan S</text>
+      <text x="280" y="32" fill="#94a3b8" font-size="13">Software Engineering</text>
+      <text x="430" y="32" fill="#38bdf8" font-size="13" font-family="monospace">09:02:14 AM</text>
+      <!-- Status pill: Present -->
+      <rect x="555" y="16" width="75" height="24" rx="12" fill="#065f46" fill-opacity="0.4" stroke="#10b981" stroke-width="1"/>
+      <text x="592" y="32" fill="#34d399" font-size="11" font-weight="700" text-anchor="middle">PRESENT</text>
+      <text x="710" y="32" fill="#38bdf8" font-size="12" font-weight="600">Update ▾</text>
+    </g>
+
+    <!-- Row 2 -->
+    <g transform="translate(0, 92)">
+      <line x1="0" y1="52" x2="790" y2="52" stroke="#1e293b" stroke-width="1"/>
+      <text x="25" y="32" fill="#cbd5e1" font-size="13" font-family="monospace">EMP-1002</text>
+      <text x="110" y="32" fill="#f8fafc" font-size="13" font-weight="600">Ravi Chandran</text>
+      <text x="280" y="32" fill="#94a3b8" font-size="13">Backend Architecture</text>
+      <text x="430" y="32" fill="#38bdf8" font-size="13" font-family="monospace">08:58:30 AM</text>
+      <rect x="555" y="16" width="75" height="24" rx="12" fill="#065f46" fill-opacity="0.4" stroke="#10b981" stroke-width="1"/>
+      <text x="592" y="32" fill="#34d399" font-size="11" font-weight="700" text-anchor="middle">PRESENT</text>
+      <text x="710" y="32" fill="#38bdf8" font-size="12" font-weight="600">Update ▾</text>
+    </g>
+
+    <!-- Row 3 -->
+    <g transform="translate(0, 144)">
+      <line x1="0" y1="52" x2="790" y2="52" stroke="#1e293b" stroke-width="1"/>
+      <text x="25" y="32" fill="#cbd5e1" font-size="13" font-family="monospace">EMP-1003</text>
+      <text x="110" y="32" fill="#f8fafc" font-size="13" font-weight="600">Pooja Sharma</text>
+      <text x="280" y="32" fill="#94a3b8" font-size="13">Quality Assurance</text>
+      <text x="430" y="32" fill="#64748b" font-size="13" font-family="monospace">-- : -- : --</text>
+      <!-- Status pill: Leave -->
+      <rect x="555" y="16" width="75" height="24" rx="12" fill="#78350f" fill-opacity="0.4" stroke="#f59e0b" stroke-width="1"/>
+      <text x="592" y="32" fill="#fbbf24" font-size="11" font-weight="700" text-anchor="middle">ON LEAVE</text>
+      <text x="710" y="32" fill="#38bdf8" font-size="12" font-weight="600">Update ▾</text>
+    </g>
+
+    <!-- Row 4 -->
+    <g transform="translate(0, 196)">
+      <line x1="0" y1="52" x2="790" y2="52" stroke="#1e293b" stroke-width="1"/>
+      <text x="25" y="32" fill="#cbd5e1" font-size="13" font-family="monospace">EMP-1004</text>
+      <text x="110" y="32" fill="#f8fafc" font-size="13" font-weight="600">Vikram Kumar</text>
+      <text x="280" y="32" fill="#94a3b8" font-size="13">Database Admin</text>
+      <text x="430" y="32" fill="#38bdf8" font-size="13" font-family="monospace">09:15:02 AM</text>
+      <rect x="555" y="16" width="75" height="24" rx="12" fill="#065f46" fill-opacity="0.4" stroke="#10b981" stroke-width="1"/>
+      <text x="592" y="32" fill="#34d399" font-size="11" font-weight="700" text-anchor="middle">PRESENT</text>
+      <text x="710" y="32" fill="#38bdf8" font-size="12" font-weight="600">Update ▾</text>
+    </g>
+
+    <!-- Row 5 -->
+    <g transform="translate(0, 248)">
+      <text x="25" y="32" fill="#cbd5e1" font-size="13" font-family="monospace">EMP-1005</text>
+      <text x="110" y="32" fill="#f8fafc" font-size="13" font-weight="600">Ananya Verma</text>
+      <text x="280" y="32" fill="#94a3b8" font-size="13">UI/UX Design</text>
+      <text x="430" y="32" fill="#64748b" font-size="13" font-family="monospace">-- : -- : --</text>
+      <!-- Status pill: Absent -->
+      <rect x="555" y="16" width="75" height="24" rx="12" fill="#7f1d1d" fill-opacity="0.4" stroke="#ef4444" stroke-width="1"/>
+      <text x="592" y="32" fill="#f87171" font-size="11" font-weight="700" text-anchor="middle">ABSENT</text>
+      <text x="710" y="32" fill="#38bdf8" font-size="12" font-weight="600">Update ▾</text>
+    </g>
+  </g>
+</svg>

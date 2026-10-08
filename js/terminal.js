@@ -27,67 +27,67 @@ export function initTerminal() {
   • <span class="cmd-highlight">clear</span>        - Clear terminal screen`,
 
     whoami: `<span class="cmd-cyan font-bold">KARTHIKEYAN S</span> — <span class="cmd-green">JAVA FULL STACK DEVELOPER</span>
-Primary: Java, Backend Architecture, Modern Web & Relational Databases (MySQL)
-Specialization: AI Engineering, Intelligent Workflows & Prompt Architecture
-Location: Salem, Tamil Nadu, India
-Status: <span class="cmd-green font-bold">● AVAILABLE FOR OPPORTUNITIES</span>
-Motto: <span class="cmd-purple">CODE. CREATE. INNOVATE.</span>`,
+Supporting: <span class="cmd-highlight">Java • Spring Boot • JavaScript • MySQL • AI</span>
+Secondary:  <span class="cmd-purple">AI & Software Developer</span>
+Location:   Salem, Tamil Nadu, India
+Status:     <span class="cmd-green font-bold">● OPEN TO OPPORTUNITIES</span>
+Focus:      Building modern web apps, backend systems & AI-powered experiences`,
 
     about: `<span class="cmd-title">ACADEMIC & BACKGROUND</span>
-Degree: B.E. Computer Science and Engineering (2023 – 2027)
+Degree:      B.E. Computer Science and Engineering (2023 – 2027)
 Institution: M.P. Nachimuthu M. Jaganathan Engineering College, Erode
-Academic Metric: <span class="cmd-cyan font-bold">7.94 / 10 CGPA</span>
-Foundation: Sengunthar Matric Higher Secondary School, Salem
-Focus: Object-Oriented Software, Database Systems & Applied AI`,
+Academic:    <span class="cmd-cyan font-bold">7.94 / 10 CGPA</span>
+Focus:       Java Full Stack Development, Backend, Relational Databases & AI`,
 
     skills: `<span class="cmd-title">TECHNICAL ECOSYSTEM MATRIX</span>
-  [Core & Backend]   <span class="cmd-cyan">Java (OOP, Collections, JDBC), Python, C</span>
-  [Web & Frontend]   <span class="cmd-cyan">HTML5, CSS3 (Glassmorphism), JavaScript (ES6+), Tailwind</span>
-  [Databases]        <span class="cmd-cyan">MySQL, Relational Schema Design, SQL Query Optimization</span>
-  [Applied AI]       <span class="cmd-purple">Prompt Engineering, LLM Integration, Gemini/OpenAI API</span>
-  [Dev & DevOps]     <span class="cmd-highlight">Git, GitHub, VS Code, Postman, Vercel, Netlify</span>`,
+  [Core Development] <span class="cmd-cyan">Java (OOP, Data Structures), MySQL, JDBC</span>
+  [Web Development]  <span class="cmd-cyan">HTML5, CSS3, JavaScript (ES6+)</span>
+  [Backend Systems]  <span class="cmd-cyan">Spring Boot, REST APIs, MySQL Relational Architecture</span>
+  [Tools & DevOps]   <span class="cmd-highlight">Git, GitHub, VS Code, Postman, Vercel</span>
+  [Artificial Intel] <span class="cmd-purple">Prompt Engineering, AI APIs, AI-Assisted Development</span>`,
 
-    projects: `<span class="cmd-title">PRODUCTION SOFTWARE SHOWCASE</span>
-  1. <span class="cmd-cyan font-bold">GAMEVAULT</span> [Web Discovery Portal]
-     → Zero-bloat HTML5/CSS3/Vanilla JS platform with ultra-fast rendering.
-  2. <span class="cmd-cyan font-bold">SMART IRRIGATION SYSTEM</span> [IoT & Embedded Automation]
-     → Real-time soil moisture telemetry & automated water pump relay control.
-  3. <span class="cmd-cyan font-bold">BUS BOOKING MANAGEMENT SYSTEM</span> [Java & MySQL Architecture]
-     → OOP Java backend with JDBC relational persistence & seat reservation logic.`,
+    projects: `<span class="cmd-title">VERIFIED PRODUCTION PROJECTS (4)</span>
+  1. <span class="cmd-cyan font-bold">GAMEVAULT</span> [Full-Stack Web Discovery Platform]
+     → React + Vite + Supabase + Tailwind CSS + Framer Motion. AAA discovery & cart/wishlist.
+  2. <span class="cmd-cyan font-bold">BUS BOOKING MANAGEMENT SYSTEM</span> [Java Backend & MySQL]
+     → Java OOP architecture with JDBC relational persistence & seat reservation logic.
+  3. <span class="cmd-cyan font-bold">EMPLOYEE ATTENDANCE TRACKING SYSTEM</span> [Java Swing Desktop App]
+     → Java Swing UI + MySQL JDBC. Role-based auth, daily tracking & leave reports.
+  4. <span class="cmd-cyan font-bold">SMART IRRIGATION SYSTEM</span> [IoT & Embedded Automation]
+     → Soil moisture telemetry with Arduino microcontroller firmware & automated relay switching.`,
 
     experience: `<span class="cmd-title">INDUSTRIAL EXPERIENCE</span>
-Organization: <span class="cmd-cyan font-bold">ZEN 1 TECHPARK</span>, Coimbatore
-Role: IoT Engineering Intern
-Duration: 22 June 2026 – 25 July 2026 (<span class="cmd-green font-bold">34 Days</span>)
-Mastery: Microcontroller programming, sensor data acquisition, relay switching & hardware telemetry.`,
+Organization: <span class="cmd-cyan font-bold">ZEN 1 TECHPARK</span>, Coimbatore, Tamil Nadu
+Role:         IoT Intern
+Duration:     22 June 2026 – 25 July 2026 (<span class="cmd-green font-bold">34 Days</span>)
+Practical:    Sensor telemetry, microcontroller firmware, automated relay control & prototyping.`,
 
-    certs: `<span class="cmd-title">OFFICIAL VERIFIED CREDENTIALS (3)</span>
-  1. <span class="cmd-cyan font-bold">Full Stack Web Development MasterClass (30 Days)</span>
-     • Issuer: NoviTech R&D Pvt. Ltd. | ID: NT_B41FSD290 | ISO 9001:2015
-  2. <span class="cmd-green font-bold">IoT Industrial Internship (34 Days)</span>
-     • Issuer: ZEN 1 TECHPARK (HPE Partner, AICTE & MSME) | Roll: 23CSE15
+    certs: `<span class="cmd-title">OFFICIAL ACCREDITED CREDENTIALS (3)</span>
+  1. <span class="cmd-cyan font-bold">30 Days MasterClass in Full Stack Development</span>
+     • NoviTech R&D Pvt. Ltd. | Cert ID: NT_B41FSD290 | ISO 9001:2015
+  2. <span class="cmd-green font-bold">IoT Industrial Internship Certificate (34 Days)</span>
+     • ZEN 1 TECHPARK (HPE Partner, AICTE & MSME) | Roll: 23CSE15
   3. <span class="cmd-purple font-bold">Hands-on IoT Bootcamp: Idea to Prototype</span>
-     • Issuer: Kongu Engineering College (Autonomous, Perundurai) | IIPC Cell`,
+     • Kongu Engineering College (Autonomous, Perundurai) | IIPC Cell`,
 
-    certifications: `<span class="cmd-title">OFFICIAL VERIFIED CREDENTIALS (3)</span>
-  1. <span class="cmd-cyan font-bold">Full Stack Web Development MasterClass (30 Days)</span>
-     • Issuer: NoviTech R&D Pvt. Ltd. | ID: NT_B41FSD290 | ISO 9001:2015
-  2. <span class="cmd-green font-bold">IoT Industrial Internship (34 Days)</span>
-     • Issuer: ZEN 1 TECHPARK (HPE Partner, AICTE & MSME) | Roll: 23CSE15
+    certifications: `<span class="cmd-title">OFFICIAL ACCREDITED CREDENTIALS (3)</span>
+  1. <span class="cmd-cyan font-bold">30 Days MasterClass in Full Stack Development</span>
+     • NoviTech R&D Pvt. Ltd. | Cert ID: NT_B41FSD290 | ISO 9001:2015
+  2. <span class="cmd-green font-bold">IoT Industrial Internship Certificate (34 Days)</span>
+     • ZEN 1 TECHPARK (HPE Partner, AICTE & MSME) | Roll: 23CSE15
   3. <span class="cmd-purple font-bold">Hands-on IoT Bootcamp: Idea to Prototype</span>
-     • Issuer: Kongu Engineering College (Autonomous, Perundurai) | IIPC Cell`,
+     • Kongu Engineering College (Autonomous, Perundurai) | IIPC Cell`,
 
-    stats: `<span class="cmd-title">VERIFIED DEVELOPER HUD TELEMETRY</span>
+    stats: `<span class="cmd-title">VERIFIED DEVELOPER TELEMETRY</span>
   [✓] Academic CGPA:        <span class="cmd-cyan font-bold">7.94 / 10</span> (B.E. Computer Science)
   [✓] Verified Credentials: <span class="cmd-cyan font-bold">3 Official Certifications</span>
-  [✓] Industrial Training:  <span class="cmd-green font-bold">34 Days</span> (ZEN 1 Tech Park IoT)
+  [✓] Industrial Training:  <span class="cmd-green font-bold">34 Days</span> (ZEN 1 Tech Park IoT Intern)
   [✓] MasterClass:          <span class="cmd-green font-bold">30 Days</span> (NoviTech Full Stack)
-  [✓] Verified Projects:    <span class="cmd-purple font-bold">3 Production Systems</span>
-  [✓] Core Technologies:    <span class="cmd-highlight font-bold">12+ Practical Tools</span>`,
+  [✓] Production Projects:  <span class="cmd-purple font-bold">4 Verified Engineering Systems</span>
+  [✓] Core Technologies:    <span class="cmd-highlight font-bold">Java, Spring Boot, JS, MySQL, AI</span>`,
 
-    goal: `<span class="cmd-purple font-bold">TARGET CAREER VISION</span>
-🎯 Goal: <span class="cmd-cyan font-bold">AI Engineer at Google</span>
-Vision: Engineering scalable, human-centered software systems powered by intelligent neural reasoning and robust backend architectures.`,
+    goal: `<span class="cmd-purple font-bold">CURRENT CAREER GOAL</span>
+Building strong expertise in Java Full Stack Development and Artificial Intelligence, with a long-term goal of becoming an AI Engineer.`,
 
     contact: `<span class="cmd-title">DIRECT COMMUNICATION CHANNELS</span>
   ✉️ Email:     <a href="mailto:karthikeyankarthikeyan1710@gmail.com" class="cmd-cyan">karthikeyankarthikeyan1710@gmail.com</a>
