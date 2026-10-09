@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "npx serve .",
+    "dev": "next dev",
     "build": "next build",
-    "start": "npx serve .",
-    "serve": "npx serve ."
+    "start": "npx serve out",
+    "serve": "npx serve out"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.6",
