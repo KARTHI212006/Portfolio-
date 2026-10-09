@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "npx serve .",
-    "build": "echo Static portfolio ready for deployment",
+    "build": "next build",
     "start": "npx serve .",
     "serve": "npx serve ."
   },
