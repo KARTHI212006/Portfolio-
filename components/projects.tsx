@@ -1,345 +1,160 @@
 "use client";
 
-import React, { useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  Terminal,
-  Github,
-  ExternalLink,
-  Code2,
-  CheckCircle2,
-  Layers,
-  X,
-  Sparkles,
-} from "lucide-react";
-import { projectsList, ProjectItem } from "@/lib/data";
+import * as Dialog from "@radix-ui/react-dialog";
+import { ArrowUpRight, Github, X } from "lucide-react";
+import { projectsList, type ProjectItem } from "@/lib/data";
 
-const CATEGORIES = ["ALL", "WEB", "JAVA", "AI / IOT"];
-
-export default function Projects() {
-  const [activeFilter, setActiveFilter] = useState("ALL");
-  const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
-
-  const filteredProjects = projectsList.filter((p) => {
-    if (activeFilter === "ALL") return true;
-    if (activeFilter === "WEB") return p.category.toLowerCase().includes("web");
-    if (activeFilter === "JAVA") return p.category.toLowerCase().includes("java") || p.tech.includes("Java");
-    if (activeFilter === "AI / IOT") return p.category.toLowerCase().includes("iot") || p.category.toLowerCase().includes("ai");
-    return true;
-  });
-
+function ProjectLinks({ p }: { p: ProjectItem }) {
+  if (!p.githubUrl && !p.liveUrl) return null;
   return (
-    <section id="projects" className="py-20 relative overflow-hidden">
-      {/* Background glow */}
-      <div className="bg-glow-cyan top-1/4 right-0 opacity-20" />
-      <div className="bg-glow-violet bottom-10 left-10 opacity-20" />
+    <div className="flex flex-wrap gap-3">
+      {p.githubUrl && (
+        <a href={p.githubUrl} target="_blank" rel="noopener noreferrer" className="btn-outline !min-h-[40px] !px-4">
+          <Github className="h-4 w-4" aria-hidden="true" />
+          GitHub
+          <span className="sr-only"> repository for {p.title} (opens in a new tab)</span>
+        </a>
+      )}
+      {p.liveUrl && (
+        <a href={p.liveUrl} target="_blank" rel="noopener noreferrer" className="btn-red !min-h-[40px] !px-4">
+          Live demo
+          <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+          <span className="sr-only"> of {p.title} (opens in a new tab)</span>
+        </a>
+      )}
+    </div>
+  );
+}
 
-      <div className="container-custom relative z-10">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
-          <div className="flex flex-col space-y-2">
-            <div className="inline-flex items-center gap-2 font-mono text-xs text-accent-cyan bg-accent-cyan/10 px-3 py-1 rounded-md border border-accent-cyan/20 w-fit">
-              <Terminal className="w-3.5 h-3.5" />
-              <span>// PRODUCTION SOFTWARE SHOWCASE</span>
-            </div>
-            <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-white">
-              Featured <span className="text-gradient-cyan">Projects</span>
-            </h2>
-            <p className="text-muted-foreground text-sm max-w-xl">
-              Real software systems built across full-stack web, Java relational databases, and IoT microcontrollers.
-            </p>
+function CaseStudy({ p }: { p: ProjectItem }) {
+  return (
+    <Dialog.Portal>
+      <Dialog.Overlay className="fixed inset-0 z-[60] bg-black/80" />
+      <Dialog.Content className="fixed left-1/2 top-1/2 z-[70] max-h-[92dvh] w-[min(94vw,820px)] -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-3xl border border-line bg-ink p-5 shadow-card sm:p-8">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <p className="label text-red">{p.badge}</p>
+            <Dialog.Title className="mt-2 font-heading text-2xl font-bold tracking-tight sm:text-3xl">
+              {p.title}
+            </Dialog.Title>
           </div>
+          <Dialog.Close
+            aria-label="Close case study"
+            className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-line"
+          >
+            <X className="h-5 w-5" aria-hidden="true" />
+          </Dialog.Close>
+        </div>
+        <Dialog.Description className="mt-3 text-muted">{p.shortDesc}</Dialog.Description>
 
-          {/* Filter Tabs */}
-          <div className="flex flex-wrap items-center gap-2 p-1.5 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md">
-            {CATEGORIES.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveFilter(cat)}
-                className={`px-3.5 py-1.5 rounded-lg text-xs font-mono font-semibold transition-all duration-200 cursor-pointer ${
-                  activeFilter === cat
-                    ? "bg-gradient-to-r from-accent-cyan to-accent-violet text-white shadow-[0_0_15px_rgba(6,182,212,0.4)]"
-                    : "text-slate-400 hover:text-white hover:bg-white/5"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
+        <div className="mt-6 grid gap-6 sm:grid-cols-2">
+          <div>
+            <h3 className="label text-muted">Problem</h3>
+            <p className="mt-2 leading-relaxed">{p.problem}</p>
+          </div>
+          <div>
+            <h3 className="label text-muted">Approach</h3>
+            <p className="mt-2 leading-relaxed">{p.solution}</p>
           </div>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.35, delay: index * 0.08 }}
-                className="glass-card glass-card-hover flex flex-col justify-between overflow-hidden group border border-white/10 hover:border-accent-cyan/40 transition-all shadow-xl"
-              >
-                <div>
-                  {/* Image Header Box */}
-                  <div className="relative w-full h-48 bg-[#0B1020] overflow-hidden border-b border-white/10">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 400px"
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#080d22] via-transparent to-transparent opacity-80" />
+        <h3 className="label mt-7 text-muted">Features</h3>
+        <ul className="mt-3 space-y-2">
+          {p.features.map((f) => (
+            <li key={f} className="flex gap-3 leading-relaxed">
+              <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-red" aria-hidden="true" />
+              {f}
+            </li>
+          ))}
+        </ul>
 
-                    <div className="absolute top-3 left-3">
-                      <span className="font-mono text-[10px] px-2.5 py-1 rounded-full bg-[#050816]/90 text-accent-cyan border border-accent-cyan/40 backdrop-blur-md font-bold">
-                        {project.badge}
-                      </span>
-                    </div>
+        <h3 className="label mt-7 text-muted">My role</h3>
+        <p className="mt-2 leading-relaxed">{p.myContribution}</p>
 
-                    <div className="absolute top-3 right-3">
-                      <span className="font-mono text-[10px] px-2.5 py-1 rounded-full bg-white/10 text-white backdrop-blur-md">
-                        {project.category}
-                      </span>
-                    </div>
-                  </div>
+        <h3 className="label mt-7 text-muted">Tech stack</h3>
+        <ul className="mt-3 flex flex-wrap gap-2">
+          {p.tech.map((t) => (
+            <li key={t} className="chip">
+              {t}
+            </li>
+          ))}
+        </ul>
 
-                  {/* Content Body */}
-                  <div className="p-6 space-y-4">
-                    <h3 className="font-heading font-bold text-xl text-white group-hover:text-accent-cyan transition-colors">
-                      {project.title}
-                    </h3>
+        <div className="mt-8">
+          <ProjectLinks p={p} />
+        </div>
+      </Dialog.Content>
+    </Dialog.Portal>
+  );
+}
 
-                    <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed line-clamp-2">
-                      {project.shortDesc}
-                    </p>
-
-                    {/* Problem / Solution Micro Summary */}
-                    <div className="bg-white/5 p-3 rounded-lg border border-white/5 space-y-1.5 font-sans text-xs">
-                      <div>
-                        <span className="font-mono text-[10px] text-accent-cyan font-bold block uppercase">
-                          Problem
-                        </span>
-                        <p className="text-slate-300 line-clamp-2">{project.problem}</p>
-                      </div>
-                      <div>
-                        <span className="font-mono text-[10px] text-emerald-400 font-bold block uppercase">
-                          Solution
-                        </span>
-                        <p className="text-slate-300 line-clamp-2">{project.solution}</p>
-                      </div>
-                    </div>
-
-                    {/* Tech Tags */}
-                    <div className="flex flex-wrap gap-1.5 pt-1">
-                      {project.tech.map((t) => (
-                        <span
-                          key={t}
-                          className="font-mono text-[10px] px-2 py-0.5 rounded bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20"
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Card Footer: Action Links & Modal Trigger */}
-                <div className="p-6 pt-0 border-t border-white/10 flex items-center justify-between gap-3 mt-4">
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={() => setSelectedProject(project)}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-semibold text-white bg-white/10 hover:bg-white/20 border border-white/15 rounded-lg transition-colors cursor-pointer"
-                    >
-                      <Layers className="w-3.5 h-3.5 text-accent-cyan" />
-                      <span>Details</span>
-                    </button>
-
-                    {project.githubUrl && (
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-semibold text-slate-300 hover:text-white bg-white/5 border border-white/10 rounded-lg transition-colors"
-                      >
-                        <Github className="w-3.5 h-3.5" />
-                        <span>Code</span>
-                      </a>
-                    )}
-                  </div>
-
-                  {project.liveUrl ? (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-semibold text-accent-cyan bg-accent-cyan/15 border border-accent-cyan/40 hover:bg-accent-cyan/30 rounded-lg transition-colors"
-                    >
-                      <ExternalLink className="w-3.5 h-3.5" />
-                      <span>Live</span>
-                    </a>
-                  ) : (
-                    <span className="font-mono text-[10px] text-slate-500 flex items-center gap-1">
-                      <Code2 className="w-3 h-3" />
-                      <span>Verified</span>
-                    </span>
-                  )}
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
+function ProjectCard({ p, featured }: { p: ProjectItem; featured: boolean }) {
+  return (
+    <article
+      data-reveal
+      className={`flex flex-col overflow-hidden rounded-3xl border border-line bg-panel shadow-card ${
+        featured ? "md:col-span-2 md:grid md:grid-cols-2" : ""
+      }`}
+    >
+      <div className={`relative overflow-hidden bg-ink ${featured ? "aspect-[16/10] md:aspect-auto md:min-h-[360px]" : "aspect-[16/10]"}`}>
+        <Image
+          src={p.image}
+          alt={`${p.title} project preview`}
+          fill
+          sizes={featured ? "(min-width: 768px) 560px, 94vw" : "(min-width: 768px) 560px, 94vw"}
+          className="object-cover"
+        />
+      </div>
+      <div className="flex flex-1 flex-col p-6 sm:p-8">
+        <p className="label text-red">{p.badge}</p>
+        <h3 className="mt-3 text-2xl font-bold leading-tight tracking-tight sm:text-3xl">{p.title}</h3>
+        <p className="mt-3 leading-relaxed text-muted">{p.shortDesc}</p>
+        <ul className="mt-5 flex flex-wrap gap-2" aria-label="Tech stack">
+          {p.tech.map((t) => (
+            <li key={t} className="chip !px-3 !py-1 !text-[13px]">
+              {t}
+            </li>
+          ))}
+        </ul>
+        <div className="mt-auto flex flex-wrap items-center gap-3 pt-7">
+          <Dialog.Root>
+            <Dialog.Trigger className="btn-red !min-h-[40px] !px-4">
+              Case study
+              <span className="sr-only"> for {p.title}</span>
+            </Dialog.Trigger>
+            <CaseStudy p={p} />
+          </Dialog.Root>
+          <ProjectLinks p={p} />
         </div>
       </div>
+    </article>
+  );
+}
 
-      {/* Project Breakdown Modal */}
-      <AnimatePresence>
-        {selectedProject && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ duration: 0.25 }}
-              className="relative w-full max-w-2xl rounded-2xl border border-cyan-500/40 bg-[#080d22] p-6 sm:p-8 shadow-[0_0_50px_rgba(6,182,212,0.2)] max-h-[90vh] overflow-y-auto space-y-6 text-slate-200"
-            >
-              {/* Close Button */}
-              <button
-                onClick={() => setSelectedProject(null)}
-                className="absolute top-4 right-4 p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white transition-colors cursor-pointer"
-              >
-                <X className="w-5 h-5" />
-              </button>
+export default function Projects() {
+  return (
+    <section id="projects" className="grain relative scroll-mt-24 bg-ink pb-24 pt-8">
+      <div className="container-x relative z-10">
+        <div data-reveal className="max-w-3xl">
+          <p className="pill label border-line text-muted">
+            <span className="h-2 w-2 rounded-full bg-red" aria-hidden="true" />
+            Projects
+          </p>
+          <h2 className="mt-5 text-[clamp(2.75rem,8vw,5.75rem)] font-bold leading-[0.92] tracking-[-0.04em]">
+            Things I&apos;ve built<span className="text-red">.</span>
+          </h2>
+          <p className="mt-5 max-w-[56ch] text-lg leading-relaxed text-muted">
+            Java and MySQL applications, an IoT prototype and web projects. Each card opens a short case study.
+          </p>
+        </div>
 
-              {/* Modal Header */}
-              <div className="space-y-2">
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="font-mono text-xs px-2.5 py-0.5 rounded-full bg-accent-cyan/20 text-accent-cyan border border-accent-cyan/40 font-bold">
-                    {selectedProject.badge}
-                  </span>
-                  <span className="font-mono text-xs px-2.5 py-0.5 rounded-full bg-white/10 text-slate-300">
-                    {selectedProject.category}
-                  </span>
-                </div>
-                <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-white">
-                  {selectedProject.title}
-                </h3>
-              </div>
-
-              {/* Modal Banner Image */}
-              <div className="relative w-full h-56 rounded-xl overflow-hidden border border-white/10 bg-[#0B1020]">
-                <Image
-                  src={selectedProject.image}
-                  alt={selectedProject.title}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-
-              {/* Problem & Solution */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-1">
-                  <span className="font-mono text-xs text-rose-400 font-bold uppercase flex items-center gap-1.5">
-                    Problem Statement
-                  </span>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                    {selectedProject.problem}
-                  </p>
-                </div>
-                <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-1">
-                  <span className="font-mono text-xs text-emerald-400 font-bold uppercase flex items-center gap-1.5">
-                    Engineering Solution
-                  </span>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                    {selectedProject.solution}
-                  </p>
-                </div>
-              </div>
-
-              {/* Key Features */}
-              <div className="space-y-2">
-                <h4 className="font-mono text-xs text-accent-cyan font-bold uppercase flex items-center gap-2">
-                  <Sparkles className="w-4 h-4" />
-                  Key Architectural Features
-                </h4>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-slate-300">
-                  {selectedProject.features.map((feat, fIdx) => (
-                    <li key={fIdx} className="flex items-start gap-2 bg-white/5 p-2 rounded-lg border border-white/5">
-                      <CheckCircle2 className="w-4 h-4 text-accent-cyan flex-shrink-0 mt-0.5" />
-                      <span>{feat}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Developer Contribution & Result */}
-              <div className="p-4 rounded-xl bg-accent-cyan/10 border border-accent-cyan/20 space-y-2 text-xs sm:text-sm">
-                <div>
-                  <span className="font-mono text-[11px] text-accent-cyan font-bold block uppercase">
-                    My Contribution
-                  </span>
-                  <p className="text-white font-medium">{selectedProject.myContribution}</p>
-                </div>
-                <div>
-                  <span className="font-mono text-[11px] text-emerald-400 font-bold block uppercase">
-                    Result & Impact
-                  </span>
-                  <p className="text-slate-300">{selectedProject.result}</p>
-                </div>
-              </div>
-
-              {/* Tech Stack Pills */}
-              <div>
-                <span className="font-mono text-xs text-slate-400 block mb-2">Technologies Used:</span>
-                <div className="flex flex-wrap gap-2">
-                  {selectedProject.tech.map((t) => (
-                    <span
-                      key={t}
-                      className="font-mono text-xs px-3 py-1 rounded-md bg-white/5 text-accent-cyan border border-accent-cyan/30"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Modal Action Buttons */}
-              <div className="flex flex-wrap items-center justify-end gap-3 pt-4 border-t border-white/10">
-                {selectedProject.githubUrl && (
-                  <a
-                    href={selectedProject.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-mono text-xs font-semibold border border-white/15 transition-colors"
-                  >
-                    <Github className="w-4 h-4" />
-                    <span>View Repository</span>
-                  </a>
-                )}
-                {selectedProject.liveUrl && (
-                  <a
-                    href={selectedProject.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-accent-cyan to-accent-violet text-white font-mono text-xs font-bold shadow-lg transition-transform hover:scale-105"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                    <span>Launch Live App</span>
-                  </a>
-                )}
-                <button
-                  onClick={() => setSelectedProject(null)}
-                  className="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white font-mono text-xs transition-colors cursor-pointer"
-                >
-                  Close
-                </button>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+        <div className="mt-14 grid gap-5 md:grid-cols-2 md:gap-6">
+          {projectsList.map((p, i) => (
+            <ProjectCard key={p.id} p={p} featured={i === 0} />
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

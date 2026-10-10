@@ -1,52 +1,36 @@
-"use client";
-
-import React from "react";
-import BootLoader from "@/components/boot-loader";
-import ScrollProgress from "@/components/scroll-progress";
 import Navbar from "@/components/navbar";
-import Hero from "@/components/hero";
-import Terminal from "@/components/terminal";
 import About from "@/components/about";
-import Education from "@/components/education";
 import Skills from "@/components/skills";
-import Projects from "@/components/projects";
 import Experience from "@/components/experience";
-import Milestones from "@/components/milestones";
-import Certificates from "@/components/certificates";
-import CareerGoal from "@/components/career-goal";
-import Interests from "@/components/interests";
+import Projects from "@/components/projects";
 import Contact from "@/components/contact";
 import Footer from "@/components/footer";
+import Curve from "@/components/curve";
+import SiteMotion from "@/components/site-motion";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col justify-between relative bg-[#050816]">
-      {/* Cinematic HUD Boot Loader */}
-      <BootLoader />
-
-      {/* Real-time Scroll Progress Bar */}
-      <ScrollProgress />
-
-      {/* Main Navigation Header */}
+    <>
+      <a
+        href="#main"
+        className="sr-only z-[80] rounded-full bg-fg px-4 py-2 text-ink focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+      >
+        Skip to content
+      </a>
       <Navbar />
-
-      <main className="relative z-10">
-        <Hero />
-        <Terminal />
+      <main id="main">
         <About />
-        <Education />
         <Skills />
-        <Projects />
+        {/* dark -> light */}
+        <Curve topClass="text-ink" bottomClass="bg-paper" />
         <Experience />
-        <Milestones />
-        <Certificates />
-        <CareerGoal />
-        <Interests />
+        {/* light -> dark */}
+        <Curve topClass="text-paper" bottomClass="bg-ink" />
+        <Projects />
         <Contact />
       </main>
-
-      {/* Global Footer */}
       <Footer />
-    </div>
+      <SiteMotion />
+    </>
   );
 }

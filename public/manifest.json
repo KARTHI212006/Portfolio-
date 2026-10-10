@@ -1,15 +1,15 @@
 {
-  "name": "Karthikeyan | AI Developer & Full Stack Web Developer",
-  "short_name": "Karthikeyan",
-  "description": "Portfolio of Karthikeyan (Karthi) - AI Developer, Full Stack Web Developer, and Prompt Engineer.",
+  "name": "Karthikeyan S | Java & Full Stack Developer",
+  "short_name": "Karthikeyan S",
+  "description": "Portfolio of Karthikeyan S, a Java and Full Stack Developer and AI enthusiast from Salem, Tamil Nadu.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#050816",
-  "theme_color": "#050816",
+  "background_color": "#0B0B0E",
+  "theme_color": "#0B0B0E",
   "icons": [
     {
       "src": "/favicon.svg",
-      "sizes": "192x192 512x512",
+      "sizes": "any",
       "type": "image/svg+xml"
     }
   ]

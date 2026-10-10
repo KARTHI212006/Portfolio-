@@ -1,134 +1,120 @@
-"use client";
+import Image from "next/image";
+import { Download, MapPin } from "lucide-react";
+import { CGPA, personalInfo, statsList } from "@/lib/data";
 
-import React from "react";
-import { motion } from "framer-motion";
-import { User, MapPin, GraduationCap, Target, Terminal, Code2 } from "lucide-react";
-import { personalInfo } from "@/lib/data";
+const techChips = ["Java", "Python", "C", "C++", "HTML", "CSS", "JavaScript", "MySQL", "AI tools"];
+
+function Sparkle({ className }: { className: string }) {
+  return (
+    <svg
+      data-float
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className={`absolute ${className}`}
+      fill="currentColor"
+    >
+      <path d="M12 0c.6 6.2 5.8 11.4 12 12-6.2.6-11.4 5.8-12 12-.6-6.2-5.8-11.4-12-12C6.2 11.4 11.4 6.2 12 0Z" />
+    </svg>
+  );
+}
 
 export default function About() {
   return (
-    <section id="about" className="py-20 bg-background-secondary/60 relative">
-      <div className="container-custom">
-        {/* Monospace Section Eyebrow */}
-        <div className="flex flex-col items-start space-y-2 mb-12">
-          <div className="inline-flex items-center gap-2 font-mono text-xs text-accent-cyan bg-accent-cyan/10 px-3 py-1 rounded-md border border-accent-cyan/20">
-            <Terminal className="w-3.5 h-3.5" />
-            <span>// About Me</span>
+    <section id="about" className="grain relative scroll-mt-24 overflow-x-clip bg-ink pb-24 pt-32 sm:pt-40">
+      <div className="container-x relative z-10">
+        <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20">
+          {/* Framed portrait */}
+          <div data-hero className="mx-auto w-full max-w-[380px] lg:mx-0">
+            <div data-parallax className="relative">
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 translate-x-4 translate-y-4 rotate-[5deg] rounded-[2rem] border border-red/60"
+              />
+              <div className="relative rotate-[-3deg] overflow-hidden rounded-[2rem] border border-line bg-panel p-2 shadow-card">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[1.5rem]">
+                  <Image
+                    src="/images/profile.jpg"
+                    alt="Portrait of Karthikeyan S in a dark suit outside a glass office building"
+                    fill
+                    priority
+                    sizes="(min-width: 1024px) 380px, 80vw"
+                    className="object-cover object-[50%_18%]"
+                  />
+                </div>
+              </div>
+              <Sparkle className="-left-5 -top-5 h-8 w-8 text-red" />
+              <Sparkle className="-right-4 top-1/3 h-5 w-5 text-fg" />
+              <Sparkle className="-bottom-4 left-10 h-6 w-6 text-red" />
+            </div>
           </div>
-          <h2 className="font-heading text-3xl sm:text-4xl font-bold text-white">
-            Engineering & Problem Solving
-          </h2>
-          <p className="text-muted-foreground text-sm max-w-xl">
-            Passionate computer science student combining analytical logic with modern software craftsmanship.
-          </p>
+
+          {/* Introduction */}
+          <div>
+            <p data-hero className="pill label border-line text-muted">
+              <span className="h-2 w-2 rounded-full bg-red" aria-hidden="true" />
+              About me
+            </p>
+            <h1
+              data-hero
+              className="mt-5 text-[clamp(4.25rem,13vw,9.5rem)] font-bold leading-[0.88] tracking-[-0.045em]"
+            >
+              Hello<span className="text-red">!</span>
+            </h1>
+            <p data-hero className="mt-5 font-heading text-2xl font-semibold tracking-tight sm:text-3xl">
+              I&apos;m Karthikeyan S.
+              <span className="mt-1 block text-lg font-medium text-muted sm:text-xl">
+                Java Developer | Full Stack Developer | AI Enthusiast
+              </span>
+            </p>
+            <p data-hero className="mt-6 max-w-[58ch] text-base leading-relaxed text-muted sm:text-lg">
+              {personalInfo.bio}
+            </p>
+            <p data-hero className="mt-4 max-w-[58ch] text-base leading-relaxed text-fg/90">
+              B.E. Computer Science and Engineering at M.P. Nachimuthu M. Jaganathan Engineering College, expected
+              graduation 2027, CGPA {CGPA}/10.
+            </p>
+            <p data-hero className="mt-3 flex items-center gap-2 text-sm text-muted">
+              <MapPin className="h-4 w-4 text-red" aria-hidden="true" />
+              {personalInfo.location}
+            </p>
+
+            <ul data-hero className="mt-7 flex flex-wrap gap-2" aria-label="Technologies I work with">
+              {techChips.map((t) => (
+                <li key={t} className="chip">
+                  {t}
+                </li>
+              ))}
+            </ul>
+
+            <div data-hero className="mt-9 flex flex-wrap gap-3">
+              <a href="#projects" className="btn-red">
+                View projects
+              </a>
+              <a href={personalInfo.resumeUrl} download className="btn-outline">
+                <Download className="h-4 w-4" aria-hidden="true" />
+                Download résumé
+              </a>
+            </div>
+          </div>
         </div>
 
-        {/* About Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          {/* Main Bio Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="lg:col-span-7 glass-card p-6 sm:p-8 flex flex-col justify-between space-y-6"
-          >
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="p-2.5 rounded-xl bg-accent-cyan/10 border border-accent-cyan/30 text-accent-cyan">
-                  <User className="w-5 h-5" />
-                </div>
-                <div>
-                  <h3 className="font-heading font-bold text-lg text-white">
-                    Who I Am
-                  </h3>
-                  <p className="font-mono text-xs text-muted-foreground">
-                    Final-Year CSE Student @ Salem, India
-                  </p>
-                </div>
-              </div>
-
-              <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
-                I am a final-year Computer Science Engineering student graduating in 2027 from <strong className="text-white">M.P. Nachimuthu M. Jaganathan Engineering College</strong>. My engineering journey is driven by a curiosity to solve real-world problems through clean code, structured software architecture, and intelligent AI models.
-              </p>
-
-              <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
-                From developing pure HTML/CSS/JS platforms like <strong className="text-accent-cyan">GameVault</strong> to building embedded IoT systems and Java database architectures, I focus on software efficiency, fast user experiences, and maintainable project structures.
-              </p>
+        {/* Stats */}
+        <dl className="mt-20 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+          {statsList.map((s) => (
+            <div
+              key={s.id}
+              data-reveal
+              className="rounded-3xl border border-line bg-panel p-5 shadow-card sm:p-6"
+            >
+              <dt className="label text-muted">{s.label}</dt>
+              <dd className="mt-4 font-heading text-5xl font-bold tracking-tight tabular-nums sm:text-6xl">
+                {s.value}
+                {s.unit && <span className="ml-1 text-xl font-semibold text-red sm:text-2xl">{s.unit}</span>}
+                <span className="mt-2 block font-sans text-sm font-normal tracking-normal text-muted">{s.note}</span>
+              </dd>
             </div>
-
-            {/* Quick Info Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-white/10">
-              <div className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-accent-cyan mt-1 flex-shrink-0" />
-                <div>
-                  <span className="font-mono text-xs text-muted-foreground block">Location</span>
-                  <span className="text-xs font-semibold text-white">{personalInfo.location}</span>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <GraduationCap className="w-4 h-4 text-accent-cyan mt-1 flex-shrink-0" />
-                <div>
-                  <span className="font-mono text-xs text-muted-foreground block">Degree</span>
-                  <span className="text-xs font-semibold text-white">B.E. Computer Science (2023-2027)</span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Focus Areas & Career Goal Callout Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="lg:col-span-5 flex flex-col gap-6"
-          >
-            {/* Core Competencies Box */}
-            <div className="glass-card p-6 flex flex-col space-y-4">
-              <div className="flex items-center gap-2 text-accent-violet">
-                <Code2 className="w-5 h-5" />
-                <h3 className="font-heading font-bold text-base text-white">
-                  Core Engineering Focus
-                </h3>
-              </div>
-              <ul className="space-y-2.5 font-sans text-xs sm:text-sm text-slate-300">
-                <li className="flex items-start gap-2">
-                  <span className="text-accent-cyan font-mono font-bold">✓</span>
-                  <span><strong>Full Stack Web Dev:</strong> Building responsive, optimized web apps.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-accent-cyan font-mono font-bold">✓</span>
-                  <span><strong>Java & SQL Architecture:</strong> OOP principles, JDBC, and relational schemas.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-accent-cyan font-mono font-bold">✓</span>
-                  <span><strong>AI & Prompt Engineering:</strong> Leveraging ChatGPT, Claude, and Gemini APIs.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-accent-cyan font-mono font-bold">✓</span>
-                  <span><strong>IoT & Embedded Logic:</strong> Microcontrollers, relay control & sensor integration.</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Target Career Banner */}
-            <div className="glass-card p-6 border-accent-cyan/30 bg-gradient-to-br from-accent-cyan/10 via-transparent to-accent-violet/10 flex flex-col space-y-3">
-              <div className="flex items-center gap-2 text-accent-cyan">
-                <Target className="w-5 h-5" />
-                <span className="font-mono text-xs font-bold uppercase tracking-wider">
-                  Primary Objective
-                </span>
-              </div>
-              <p className="font-heading font-bold text-lg text-white">
-                Become an AI Engineer at Google
-              </p>
-              <p className="text-muted-foreground text-xs leading-relaxed">
-                Dedicated to continuous technical growth, algorithmic problem solving, and building next-generation intelligent applications.
-              </p>
-            </div>
-          </motion.div>
-        </div>
+          ))}
+        </dl>
       </div>
     </section>
   );

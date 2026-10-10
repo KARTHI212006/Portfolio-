@@ -1,3 +1,5 @@
+export const CGPA = "7.94";
+
 export interface PersonalInfo {
   name: string;
   gradientWordmark: string;
@@ -5,7 +7,6 @@ export interface PersonalInfo {
   roles: string[];
   location: string;
   email: string;
-  phone: string; // Note to user: Confirm if +91 90422 66085 is current
   github: string;
   linkedin: string;
   instagram: string;
@@ -78,85 +79,45 @@ export interface CertificateItem {
 export const personalInfo: PersonalInfo = {
   name: "KARTHIKEYAN S",
   gradientWordmark: "KARTHIKEYAN S",
-  role: "Full Stack Web Developer & AI Engineer",
-  roles: [
-    "Java Full Stack Developer",
-    "AI & Intelligent Systems",
-    "Prompt Engineer & LLM Workflows",
-    "Software Systems Architect",
-  ],
+  role: "Java Developer | Full Stack Developer | AI Enthusiast",
+  roles: ["Java Developer", "Full Stack Developer", "AI Enthusiast"],
   location: "Salem, Tamil Nadu, India",
   email: "karthikeyankarthikeyan1710@gmail.com",
-  phone: "+91 90422 66085", // Note to user: Confirm if +91 90422 66085 is current
   github: "https://github.com/KARTHI212006",
   linkedin: "https://www.linkedin.com/in/karthikeyan-s-467313382",
   instagram: "https://instagram.com/itz_karthi_k_k",
   resumeUrl: "/resume/KARTHIKEYAN_S_RESUME.pdf",
-  bio: "Building practical, scalable software using Java, relational MySQL databases, modern web interfaces, and AI-powered workflows. Dedicated to solid architectural design and human-centered solutions.",
+  bio: "Final-year Computer Science student building practical software with Java, MySQL and modern web interfaces, and using AI tools to work faster. My long-term goal is to become an AI Engineer.",
   identityPills: [
     { label: "Degree", value: "B.E. CSE (2027)" },
-    { label: "CGPA", value: "7.94 / 10" },
+    { label: "CGPA", value: `${CGPA} / 10` },
     { label: "Internship", value: "IoT Intern @ ZEN 1" },
     { label: "Location", value: "Salem, TN, India" },
   ],
 };
 
-export interface MilestoneItem {
+export interface StatItem {
   id: string;
-  icon: string;
-  tag: string;
   value: string;
   unit?: string;
-  title: string;
-  description: string;
+  label: string;
+  note: string;
 }
 
-export const milestonesList: MilestoneItem[] = [
-  {
-    id: "projects-built",
-    icon: "Rocket",
-    tag: "PRODUCTION",
-    value: "3+",
-    unit: "SYSTEMS",
-    title: "PROJECTS BUILT",
-    description: "GameVault, Smart Irrigation, and Bus Booking Management System.",
-  },
-  {
-    id: "internship-days",
-    icon: "Zap",
-    tag: "INDUSTRIAL",
-    value: "34",
-    unit: "DAYS",
-    title: "INTERNSHIP IMMERSION",
-    description: "Hands-on IoT hardware engineering at ZEN 1 TECHPARK, Coimbatore.",
-  },
-  {
-    id: "cgpa",
-    icon: "GraduationCap",
-    tag: "ACADEMIC",
-    value: "7.94",
-    unit: "/ 10",
-    title: "CURRENT CGPA",
-    description: "B.E. Computer Science at M.P.N.M.J. Engineering College.",
-  },
-  {
-    id: "core-tech",
-    icon: "Wrench",
-    tag: "SKILLSET",
-    value: "12+",
-    unit: "TOOLS",
-    title: "CORE TECHNOLOGIES",
-    description: "Java, MySQL, JDBC, HTML5, CSS3, JS, Python, Git, and AI Workflows.",
-  },
+// Only verified values. Projects are intentionally not counted until the list is final.
+export const statsList: StatItem[] = [
+  { id: "cgpa", value: CGPA, unit: "/10", label: "CGPA", note: "B.E. Computer Science" },
+  { id: "graduation", value: "2027", label: "Graduation", note: "Expected" },
+  { id: "internship", value: "34", unit: "days", label: "IoT internship", note: "ZEN 1 Tech Park" },
+  { id: "certificates", value: "3", label: "Certificates", note: "Internship, Full Stack, IoT" },
 ];
-
 
 export const educationList: EducationItem[] = [
   {
     id: "college",
     institution: "M.P. Nachimuthu M. Jaganathan Engineering College",
     degree: "B.E. Computer Science Engineering",
-    period: "2023 – 2027 (Expected Graduation)",
+    period: "2023 - 2027 (Expected Graduation)",
     location: "Chennimalai, Erode, Tamil Nadu",
     highlights: [
       "Specializing in Software Development, Database Management, and AI Applications",
@@ -199,6 +160,11 @@ export const skillCategories: SkillCategory[] = [
         icon: "FileCode2",
       },
       {
+        name: "C & C++",
+        description: "Programming fundamentals, plus C++ for Arduino firmware in my IoT projects",
+        icon: "Terminal",
+      },
+      {
         name: "HTML5 & CSS3",
         description: "Semantic structures, modern visual flex/grid design & responsive layouts",
         icon: "Layout",
@@ -226,7 +192,7 @@ export const skillCategories: SkillCategory[] = [
       },
       {
         name: "Tailwind & Utility CSS",
-        description: "Utility-first design, dark-mode glassmorphic cards & layout tokens",
+        description: "Utility-first styling, design tokens and responsive layouts",
         icon: "Sparkles",
       },
     ],
@@ -262,23 +228,25 @@ export const skillCategories: SkillCategory[] = [
 export const projectsList: ProjectItem[] = [
   {
     id: "gamevault",
-    badge: "FEATURED PROJECT",
+    badge: "WEB DEVELOPMENT",
     title: "GameVault",
     category: "Web Development",
-    shortDesc: "A modern, responsive gaming platform for discovering gaming news, trailers, and price updates without framework overhead.",
-    problem: "Gaming enthusiasts require a lightweight, visual portal to discover game details without slow page load times.",
-    solution: "Engineered a web application featuring fluid component design, trailer preview modals, and zero external framework bloat.",
+    shortDesc: "A responsive gaming website for browsing the latest gaming news, official game trailers and current game prices.",
+    problem: "News, trailers and prices for popular games are spread across many different sites.",
+    solution: "Built a responsive site that organizes game news, official trailers and prices in one clean interface.",
     features: [
-      "Responsive multi-device game showcase layout",
-      "Dynamic game cards & trailer preview links",
-      "Glassmorphism dark UI with optimized asset delivery",
-      "Ultra-fast DOM rendering and clean code architecture",
+      "Latest gaming news section",
+      "Official game trailers",
+      "Current prices of popular games",
+      "Responsive layout for mobile, tablet and desktop",
     ],
     tech: ["HTML5", "CSS3", "JavaScript", "Vercel"],
-    result: "Achieved instant page loads and fluid responsiveness across mobile, tablet, and desktop viewports.",
-    myContribution: "Sole Developer — Designed UI/UX layout, built DOM interactions, and deployed live instance on Vercel.",
-    githubUrl: "https://github.com/KARTHI212006",
-    liveUrl: "https://s-karthikeyan-portfolio.vercel.app/",
+    result: "",
+    myContribution: "Designed the responsive pages, organized the game information and deployed the site on Vercel.",
+    githubUrl: null, // No GameVault repository link has been supplied
+    // Supplied by the owner. This is a per-deployment Vercel URL that could not be opened from the build sandbox,
+    // so confirm it loads in a private browser window (preview URLs can sit behind Vercel login protection).
+    liveUrl: "https://next-program-j8j140j9d-kk-5bd7.vercel.app/",
     image: "/images/gamevault.jpg",
   },
   {
@@ -286,64 +254,87 @@ export const projectsList: ProjectItem[] = [
     badge: "IOT & AUTOMATION",
     title: "Smart Irrigation System",
     category: "AI & IoT",
-    shortDesc: "An IoT-based automated agricultural system that continuously measures soil moisture and automates water pump relay operations.",
-    problem: "Traditional farming methods waste significant water resources and rely on manual daily moisture inspection.",
-    solution: "Designed an embedded IoT prototype connecting soil moisture sensors to a microcontroller that activates irrigation automatically when moisture drops below threshold.",
+    shortDesc: "An IoT-based irrigation system that uses soil moisture sensors to automate watering, save water and reduce manual effort.",
+    problem: "Watering crops by hand wastes water and needs daily attention.",
+    solution: "Designed the project workflow and implemented automation logic that reads soil moisture sensors and controls irrigation.",
     features: [
-      "Real-time soil moisture level detection",
-      "Automated water pump relay control logic",
-      "Power-efficient microcontroller firmware",
-      "Conserves agricultural water and prevents over-irrigation",
+      "Soil moisture sensing",
+      "Automated irrigation control",
+      "Arduino-based sensor integration",
+      "Designed to conserve water",
     ],
-    tech: ["Arduino", "IoT Sensors", "Embedded C++", "Relay Automation"],
-    result: "Demonstrated reliable automated irrigation, reducing water waste while maintaining optimal soil moisture.",
-    myContribution: "IoT Lead Developer — Integrated sensor hardware, programmed microcontroller thresholds, and validated circuit stability.",
-    githubUrl: "https://github.com/KARTHI212006",
-    liveUrl: null, // Hidden as no live URL exists
+    tech: ["Arduino", "IoT Sensors", "Embedded C++"],
+    result: "",
+    myContribution: "Designed the end-to-end workflow, implemented the automation logic and integrated the sensors.",
+    githubUrl: null, // No public repository for this project
+    liveUrl: null,
     image: "/images/irrigation.jpg",
   },
   {
     id: "bus-booking",
-    badge: "JAVA & DATABASE",
+    badge: "JAVA & MYSQL",
     title: "Bus Booking Management System",
     category: "Java & Backend",
-    shortDesc: "A robust Java application integrated with a relational MySQL database for managing bus schedules and ticket reservations.",
-    problem: "Manual bus ticket reservation causes booking conflicts, disorganized passenger logs, and inefficient route management.",
-    solution: "Built an object-oriented Java application connected via JDBC to a MySQL database to manage seat availability and passenger bookings in real-time.",
+    shortDesc: "A Java console application backed by MySQL for managing buses, passengers, bookings and payments.",
+    problem: "Booking tickets by hand makes it hard to track seats, passengers and payments in one place.",
+    solution: "Built an object-oriented Java console app that stores buses, passengers, bookings and payments in MySQL through JDBC and updates seat availability on every booking and cancellation.",
     features: [
-      "Bus route search & schedule management",
-      "Passenger details logging & seat reservation",
-      "JDBC relational database persistence in MySQL",
-      "Automated ticket ID generation & record queries",
+      "Login that checks a users table and applies roles",
+      "Add, view, search by bus number, update fare and delete buses",
+      "Add, view, search, update and delete passengers",
+      "Book a seat (reduces available seats) and cancel a booking (restores the seat)",
+      "Record payments and view totals for buses, bookings and revenue",
     ],
-    tech: ["Java", "MySQL", "JDBC", "OOP Architecture"],
-    result: "Prevented booking conflicts and structured SQL data persistence for passenger ticket reservations.",
-    myContribution: "Backend & DB Developer — Designed relational tables, wrote JDBC queries, and implemented core Java business logic.",
+    tech: ["Java", "JDBC", "MySQL", "OOP"],
+    result: "",
+    myContribution: "Implemented the Java classes, menus, booking and cancellation logic and the JDBC queries.",
     githubUrl: "https://github.com/KARTHI212006/BusbookingSystemManagement",
-    liveUrl: null, // Hidden as no live URL exists
-    image: "/images/bus_booking.svg",
+    liveUrl: null,
+    image: "/images/bus_booking_console.png",
   },
   {
     id: "employee-attendance",
-    badge: "JAVA & SWING",
+    badge: "JAVA & MYSQL",
     title: "Employee Attendance Tracking System",
     category: "Java & Backend",
-    shortDesc: "A Java Swing and MySQL-driven enterprise application for employee profile management, daily attendance tracking, leave workflows, and reporting.",
-    problem: "Organizations struggle with inaccurate attendance logging, disorganized manual leave records, and time-consuming manual report compilation.",
-    solution: "Developed an authenticated Java desktop application utilizing Java Swing for administrative UI and MySQL via JDBC for reliable record persistence and reporting.",
+    shortDesc: "A Java console application with MySQL for managing employees, daily attendance, leave requests and reports.",
+    problem: "Paper registers make attendance and leave records hard to keep accurate and hard to summarize.",
+    solution: "Built a menu-driven Java app with role-based login that keeps employee, attendance and leave records in MySQL through JDBC and builds reports from SQL queries.",
     features: [
-      "Secure administrative and HR authentication system",
-      "Employee profile management with full CRUD capability",
-      "Daily attendance logging with status classification (Present, Absent, Leave)",
-      "Leave management module with request tracking and status updates",
-      "Automated attendance and leave summary report generation",
+      "Role-based login for admin and employee accounts",
+      "Admin tools to add, search, update and delete employees",
+      "Daily attendance marked as present or absent, with check-in and check-out times",
+      "Leave management: apply, view, search and update leave status",
+      "Reports for attendance by employee, leaves and overall attendance",
+      "In progress: employee self-service screens (my attendance, apply leave, my leave)",
     ],
-    tech: ["Java", "Java Swing", "MySQL", "JDBC", "Desktop UI"],
-    result: "Streamlined attendance logging and administrative leave tracking with structured SQL persistence and automated reporting.",
-    myContribution: "Software & Database Developer — Designed graphical user interfaces using Java Swing, created normalized MySQL relational tables, and implemented JDBC data operations.",
+    tech: ["Java", "JDBC", "MySQL", "Console UI"],
+    result: "",
+    myContribution: "Implemented the Java modules for employees, attendance, leave and reports, plus the MySQL data layer.",
     githubUrl: "https://github.com/KARTHI212006/Employee-Attendance-Tracking-System",
     liveUrl: null,
-    image: "/images/employee_attendance.svg",
+    image: "/images/employee_attendance_console.png",
+  },
+  {
+    id: "portfolio",
+    badge: "WEB & MOTION",
+    title: "Developer Portfolio",
+    category: "Web Development",
+    shortDesc: "This website: a responsive Next.js portfolio exported as static files and deployed on Vercel.",
+    problem: "Recruiters need to find projects, skills, certificates and the resume quickly on any device.",
+    solution: "Built a static Next.js site with dark and light sections, GSAP scroll animations that respect reduced-motion settings, and links to the real repositories.",
+    features: [
+      "Floating navigation with active-section highlighting and an accessible mobile menu",
+      "Dark and light sections joined by SVG curve transitions",
+      "GSAP and ScrollTrigger reveals with reduced-motion support",
+      "Project case-study dialogs and a contact form that opens your email app",
+    ],
+    tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "GSAP", "Vercel"],
+    result: "",
+    myContribution: "Design, front-end implementation, animation and deployment.",
+    githubUrl: "https://github.com/KARTHI212006/Portfolio-",
+    liveUrl: "https://s-karthikeyan-portfolio.vercel.app/",
+    image: "/images/portfolio.jpg",
   },
 ];
 
@@ -353,7 +344,7 @@ export const experienceList: ExperienceItem[] = [
     company: "ZEN 1 Tech Park",
     role: "IoT Intern",
     domain: "Internet of Things & Embedded Systems",
-    period: "22 June 2026 – 25 July 2026",
+    period: "22 June 2026 - 25 July 2026",
     duration: "34 Days",
     location: "Coimbatore, Tamil Nadu",
     description: "Completed an intensive 34-day IoT internship program developing practical hardware-software automation systems.",
@@ -362,7 +353,7 @@ export const experienceList: ExperienceItem[] = [
       "Programmed embedded firmware logic for real-time sensor monitoring and data processing",
       "Gained hands-on practical experience in IoT system design, debugging, and hardware safety protocols",
     ],
-    certificateImage: "/certificates/zen1_internship_certificate.png",
+    certificateImage: "/certificates/zen1_internship_certificate.webp",
   },
 ];
 
@@ -371,20 +362,20 @@ export const certificatesList: CertificateItem[] = [
     id: "novitech-fullstack-cert",
     title: "30 Days MasterClass in Full Stack Development",
     issuer: "NoviTech R&D Private Limited, Coimbatore",
-    date: "19 Jun 2025 – 23 Jul 2025 (30 Days)",
+    date: "19 Jun 2025 - 23 Jul 2025 (30 Days)",
     credentialId: "NT_B41FSD290",
     badge: "ISO 9001:2015 CERTIFIED",
-    image: "/certificates/novitech_fullstack_certificate.png",
+    image: "/certificates/novitech_fullstack_certificate.webp",
     description: "Successfully completed an intensive 30-day MasterClass covering full-stack web engineering, frontend UI architectures, backend API services, and modern database integration. Certified under ISO 9001:2015 quality standards (Cert ID: NT_B41FSD290).",
   },
   {
     id: "zen1-cert",
     title: "IoT Industrial Internship Certificate",
     issuer: "ZEN 1 TECHPARK, Coimbatore (HPE Partner)",
-    date: "22 Jun 2026 – 25 Jul 2026 (34 Days)",
+    date: "22 Jun 2026 - 25 Jul 2026 (34 Days)",
     credentialId: "23CSE15 (MSME & AICTE)",
     badge: "HPE PARTNER / ISO 9001",
-    image: "/certificates/zen1_internship_certificate.png",
+    image: "/certificates/zen1_internship_certificate.webp",
     description: "Official internship certification for 34 days of intensive hardware-software engineering, sensor telemetry, and embedded microcontroller automation. Recognised by HPE, MSME (Govt. of India), and AICTE.",
   },
   {
@@ -394,7 +385,7 @@ export const certificatesList: CertificateItem[] = [
     date: "10 April 2026",
     credentialId: "KEC-CSE-IIPC-2026",
     badge: "AUTONOMOUS / IIPC CELL",
-    image: "/certificates/kongu_iot_bootcamp_certificate.jpg",
+    image: "/certificates/kongu_iot_bootcamp_certificate.webp",
     description: "Hands-on technical workshop certificate presented by the Department of Computer Science & Engineering and Industry Institute Partnership Cell (IIPC) at Kongu Engineering College for successfully translating IoT concepts into working physical prototypes.",
   },
 ];
