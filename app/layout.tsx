@@ -1,67 +1,63 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import "@fontsource-variable/space-grotesk";
+import "@fontsource-variable/inter";
 import "./globals.css";
 
+const SITE_URL = "https://s-karthikeyan-portfolio.vercel.app";
+const TITLE = "Karthikeyan S | Java & Full Stack Developer";
+const DESCRIPTION =
+  "Portfolio of Karthikeyan S, a final-year Computer Science student from Salem building Java, MySQL and web projects, with a goal of becoming an AI Engineer.";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://s-karthikeyan-portfolio.vercel.app"),
-  title: "Karthikeyan S | Full Stack Web Developer & AI Engineer",
-  description:
-    "Portfolio of Karthikeyan S — Final-year Computer Science Engineering student specializing in Full Stack Web Development, Java Database Systems, AI Prompt Engineering, and IoT Automation.",
+  metadataBase: new URL(SITE_URL),
+  title: TITLE,
+  description: DESCRIPTION,
   keywords: [
     "Karthikeyan S",
-    "AI Engineer",
-    "Full Stack Web Developer",
     "Java Developer",
-    "Prompt Engineer",
+    "Full Stack Developer",
+    "AI Enthusiast",
     "Portfolio",
     "Computer Science Student",
     "Salem",
   ],
-  authors: [{ name: "KARTHIKEYAN S" }],
-  creator: "KARTHIKEYAN S",
+  authors: [{ name: "Karthikeyan S" }],
+  creator: "Karthikeyan S",
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Karthikeyan S | Full Stack Web Developer & AI Engineer",
-    description:
-      "Portfolio of Karthikeyan S — Final-year Computer Science Engineering student specializing in Web Development, Java Systems, and AI Applications.",
-    url: "https://s-karthikeyan-portfolio.vercel.app/",
-    siteName: "KARTHIKEYAN S Portfolio",
-    images: [
-      {
-        url: "/images/profile.jpg",
-        width: 800,
-        height: 800,
-        alt: "KARTHIKEYAN S Profile",
-      },
-    ],
-    locale: "en_US",
+    title: TITLE,
+    description: DESCRIPTION,
+    url: SITE_URL,
+    siteName: "Karthikeyan S Portfolio",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Karthikeyan S, Java and Full Stack Developer" }],
+    locale: "en_IN",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Karthikeyan S | Full Stack Web Developer & AI Engineer",
-    description:
-      "Portfolio of Karthikeyan S — AI & Web Developer from Salem, Tamil Nadu.",
-    images: ["/images/profile.jpg"],
+    title: TITLE,
+    description: DESCRIPTION,
+    images: ["/og.png"],
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
+  icons: { icon: "/favicon.svg" },
+  manifest: "/manifest.json",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export const viewport: Viewport = {
+  themeColor: "#0B0B0E",
+  width: "device-width",
+  initialScale: 1,
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="dark scroll-smooth">
-      <body className="bg-[#050816] text-white font-sans antialiased selection:bg-accent-cyan selection:text-black">
-        {/* Background Grid Pattern */}
-        <div className="fixed inset-0 bg-grid-pattern opacity-40 pointer-events-none z-0" />
-        
-        {/* Main Content Wrapper */}
-        <div className="relative z-10">{children}</div>
-      </body>
+    <html lang="en" className="dark">
+      <head>
+        {/* Marks that JS is running so reveal animations may hide content briefly. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
+      <body>{children}</body>
     </html>
   );
 }

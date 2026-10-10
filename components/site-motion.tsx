@@ -1,0 +1,90 @@
+"use client";
+
+import { useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+/**
+ * The single animation system for the site (GSAP + ScrollTrigger).
+ * - Hero intro: [data-hero] elements stagger in on load.
+ * - Scroll reveals: [data-reveal] elements are batched and revealed once.
+ * - Photo frame: gentle float + limited pointer parallax (fine pointers only).
+ * Everything lives inside gsap.matchMedia(), so reduced-motion users get static
+ * content and every tween, trigger and listener is reverted on unmount.
+ */
+export default function SiteMotion() {
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const mm = gsap.matchMedia();
+
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      const done = (els: gsap.TweenTarget) => gsap.set(els, { clearProps: "transform" });
+
+      gsap.to("[data-hero]", {
+        opacity: 1,
+        y: 0,
+        duration: 0.9,
+        ease: "power3.out",
+        stagger: 0.09,
+        delay: 0.1,
+        onComplete: () => done("[data-hero]"),
+      });
+
+      ScrollTrigger.batch("[data-reveal]", {
+        start: "top 90%",
+        once: true,
+        onEnter: (els) =>
+          gsap.to(els, {
+            opacity: 1,
+            y: 0,
+            duration: 0.75,
+            ease: "power3.out",
+            stagger: 0.08,
+            overwrite: true,
+            onComplete: () => done(els),
+          }),
+      });
+
+      // Decorative sparkles: slow, low-amplitude drift (transform only).
+      gsap.utils.toArray<HTMLElement>("[data-float]").forEach((el, i) => {
+        gsap.to(el, {
+          y: i % 2 ? 8 : -8,
+          rotation: i % 2 ? 12 : -12,
+          duration: 3 + i * 0.6,
+          ease: "sine.inOut",
+          yoyo: true,
+          repeat: -1,
+        });
+      });
+
+      // Frame parallax follows the pointer only on devices that have one.
+      const frame = document.querySelector<HTMLElement>("[data-parallax]");
+      const stage = document.querySelector<HTMLElement>("#about");
+      if (frame && stage && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+        const moveX = gsap.quickTo(frame, "x", { duration: 0.8, ease: "power3.out" });
+        const moveY = gsap.quickTo(frame, "y", { duration: 0.8, ease: "power3.out" });
+        const onMove = (e: PointerEvent) => {
+          moveX((e.clientX / window.innerWidth - 0.5) * 16);
+          moveY((e.clientY / window.innerHeight - 0.5) * 12);
+        };
+        stage.addEventListener("pointermove", onMove);
+        return () => stage.removeEventListener("pointermove", onMove);
+      }
+    });
+
+    mm.add("(prefers-reduced-motion: reduce)", () => {
+      gsap.set("[data-hero], [data-reveal]", { opacity: 1, y: 0, clearProps: "transform" });
+    });
+
+    // Fonts and images shift layout slightly; recompute trigger positions once loaded.
+    const refresh = () => ScrollTrigger.refresh();
+    window.addEventListener("load", refresh);
+
+    return () => {
+      window.removeEventListener("load", refresh);
+      mm.revert();
+    };
+  }, []);
+
+  return null;
+}

@@ -1,138 +1,122 @@
 "use client";
 
-import React, { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { Terminal, Briefcase, Calendar, MapPin, Award, CheckCircle2 } from "lucide-react";
-import { experienceList } from "@/lib/data";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import * as Dialog from "@radix-ui/react-dialog";
+import { Briefcase, GraduationCap, X } from "lucide-react";
+import { certificatesList, educationList, experienceList } from "@/lib/data";
+
+// Short pill label shown over each image (kept factual: taken from the certificates).
+const pillById: Record<string, string> = {
+  "zen1-cert": "IoT Intern · 34 days",
+  "novitech-fullstack-cert": "Full Stack · 30 days",
+  "kongu-iot-bootcamp-cert": "IoT Bootcamp",
+};
 
 export default function Experience() {
-  const [selectedCert, setSelectedCert] = useState<string | null>(null);
+  const internship = experienceList[0];
 
   return (
-    <section id="experience" className="py-20 bg-background-secondary/60 relative">
-      <div className="container-custom">
-        {/* Monospace Section Eyebrow */}
-        <div className="flex flex-col items-start space-y-2 mb-12">
-          <div className="inline-flex items-center gap-2 font-mono text-xs text-accent-cyan bg-accent-cyan/10 px-3 py-1 rounded-md border border-accent-cyan/20">
-            <Terminal className="w-3.5 h-3.5" />
-            <span>// Work Experience</span>
-          </div>
-          <h2 className="font-heading text-3xl sm:text-4xl font-bold text-white">
-            Internship & Practical Training
+    <section id="experience" className="on-light relative scroll-mt-24 bg-paper pb-24 pt-8 text-ink-text">
+      <div className="container-x">
+        <div data-reveal className="max-w-3xl">
+          <p className="pill label border-paper-line bg-white text-ink-soft">
+            <Briefcase className="h-3.5 w-3.5 text-red-ink" aria-hidden="true" />
+            Experience
+            <span className="h-2 w-2 rounded-full bg-red-ink" aria-hidden="true" />
+          </p>
+          <h2 className="mt-5 text-[clamp(2.75rem,8vw,5.75rem)] font-bold leading-[0.92] tracking-[-0.04em]">
+            Learning by doing<span className="text-red-ink">.</span>
           </h2>
-          <p className="text-muted-foreground text-sm max-w-xl">
-            Real industry exposure, hardware integration, and embedded systems development.
+          <p className="mt-5 max-w-[56ch] text-lg leading-relaxed text-ink-soft">
+            {internship.description} Alongside it, I completed a full stack masterclass and an IoT prototyping
+            bootcamp. Select a card to view the certificate.
           </p>
         </div>
 
-        {/* Experience List */}
-        <div className="space-y-8">
-          {experienceList.map((exp, idx) => (
-            <motion.div
-              key={exp.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.15 }}
-              className="glass-card glass-card-hover p-6 sm:p-8 space-y-6"
+        <ul
+          className="-mx-5 mt-14 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 sm:-mx-8 sm:px-8 md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0"
+          aria-label="Experience and certificates"
+          tabIndex={0}
+        >
+          {certificatesList.map((c, i) => (
+            <li
+              key={c.id}
+              data-reveal
+              className={`w-[82%] shrink-0 snap-center sm:w-[60%] md:w-auto ${i === 1 ? "md:mt-10" : ""}`}
             >
-              {/* Header Info */}
-              <div className="flex flex-wrap items-start justify-between gap-4 border-b border-white/10 pb-6">
-                <div className="space-y-1.5">
-                  <div className="flex items-center gap-2">
-                    <Briefcase className="w-5 h-5 text-accent-cyan" />
-                    <h3 className="font-heading font-bold text-xl text-white">
-                      {exp.role}
-                    </h3>
-                    <span className="font-mono text-[10px] px-2.5 py-0.5 rounded bg-accent-green/10 text-accent-green border border-accent-green/30">
-                      {exp.duration}
+              <Dialog.Root>
+                <Dialog.Trigger className="group block w-full text-left">
+                  <div className="relative aspect-[3/2] overflow-hidden rounded-3xl bg-white shadow-soft ring-1 ring-paper-line">
+                    <Image
+                      src={c.image}
+                      alt={`Certificate: ${c.title}`}
+                      fill
+                      sizes="(min-width: 768px) 380px, 82vw"
+                      className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04] group-focus-visible:scale-[1.04]"
+                    />
+                    <span className="label absolute left-3 top-3 rounded-full bg-ink px-3 py-1.5 text-[11px] text-fg">
+                      {pillById[c.id] ?? "Certificate"}
                     </span>
                   </div>
+                  <h3 className="mt-5 text-xl font-semibold leading-snug tracking-tight">{c.title}</h3>
+                  <p className="mt-1.5 text-sm text-ink-soft">{c.issuer}</p>
+                  <p className="mt-1 text-sm font-medium text-red-ink">{c.date}</p>
+                </Dialog.Trigger>
 
-                  <p className="text-base font-bold text-accent-cyan">
-                    {exp.company}
-                  </p>
-                  <p className="font-mono text-xs text-muted-foreground">
-                    Domain: {exp.domain}
-                  </p>
-                </div>
-
-                <div className="flex flex-col sm:items-end font-mono text-xs text-muted-foreground space-y-1.5">
-                  <div className="flex items-center gap-1.5 bg-white/5 px-3 py-1 rounded-md border border-white/10 text-white">
-                    <Calendar className="w-3.5 h-3.5 text-accent-cyan" />
-                    <span>{exp.period}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <MapPin className="w-3 h-3 text-muted-foreground" />
-                    <span>{exp.location}</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Description */}
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                {exp.description}
-              </p>
-
-              {/* Achievements */}
-              <div className="space-y-2">
-                <span className="font-mono text-xs text-accent-cyan block">
-                  Key Achievements & Exposure:
-                </span>
-                <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 font-sans text-xs sm:text-sm text-slate-300">
-                  {exp.achievements.map((ach, aIdx) => (
-                    <li key={aIdx} className="flex items-start gap-2 bg-white/5 p-3 rounded-lg border border-white/5">
-                      <CheckCircle2 className="w-4 h-4 text-accent-cyan flex-shrink-0 mt-0.5" />
-                      <span>{ach}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Certificate Preview Trigger if available */}
-              {exp.certificateImage && (
-                <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-                  <button
-                    onClick={() => setSelectedCert(exp.certificateImage || null)}
-                    className="inline-flex items-center gap-2 px-4 py-2 text-xs font-mono font-semibold text-accent-cyan bg-accent-cyan/10 border border-accent-cyan/30 hover:bg-accent-cyan/20 rounded-lg transition-all"
-                  >
-                    <Award className="w-4 h-4" />
-                    <span>View ZEN 1 Internship Certificate</span>
-                  </button>
-
-                  <span className="font-mono text-[10px] text-muted-foreground hidden sm:inline">
-                    Verified Industry Certificate
-                  </span>
-                </div>
-              )}
-            </motion.div>
+                <Dialog.Portal>
+                  <Dialog.Overlay className="fixed inset-0 z-[60] bg-black/80" />
+                  <Dialog.Content className="fixed left-1/2 top-1/2 z-[70] max-h-[92dvh] w-[min(94vw,880px)] -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-3xl border border-line bg-ink p-4 text-fg shadow-card sm:p-6">
+                    <div className="flex items-start justify-between gap-4">
+                      <Dialog.Title className="font-heading text-xl font-semibold leading-snug sm:text-2xl">
+                        {c.title}
+                      </Dialog.Title>
+                      <Dialog.Close
+                        aria-label="Close certificate"
+                        className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-line"
+                      >
+                        <X className="h-5 w-5" aria-hidden="true" />
+                      </Dialog.Close>
+                    </div>
+                    <Dialog.Description className="mt-2 text-sm text-muted">
+                      {c.issuer} · {c.date}
+                      {c.credentialId ? ` · ID ${c.credentialId}` : ""}
+                    </Dialog.Description>
+                    <div className="relative mt-4 aspect-[3/2] overflow-hidden rounded-2xl bg-panel">
+                      <Image src={c.image} alt={`Full certificate: ${c.title}`} fill sizes="880px" className="object-contain" />
+                    </div>
+                    <p className="mt-4 text-sm leading-relaxed text-muted">{c.description}</p>
+                  </Dialog.Content>
+                </Dialog.Portal>
+              </Dialog.Root>
+            </li>
           ))}
+        </ul>
+
+        {/* Education */}
+        <div className="mt-24 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] lg:gap-20">
+          <div data-reveal>
+            <p className="pill label border-paper-line bg-white text-ink-soft">
+              <GraduationCap className="h-3.5 w-3.5 text-red-ink" aria-hidden="true" />
+              Education
+            </p>
+            <h2 className="mt-5 text-4xl font-bold leading-[0.95] tracking-[-0.035em] sm:text-5xl">
+              Where I study<span className="text-red-ink">.</span>
+            </h2>
+          </div>
+          <ol className="divide-y divide-paper-line border-y border-paper-line">
+            {educationList.map((e) => (
+              <li key={e.id} data-reveal className="grid gap-2 py-7 sm:grid-cols-[minmax(0,1fr)_auto] sm:gap-8">
+                <div>
+                  <h3 className="text-xl font-semibold tracking-tight">{e.institution}</h3>
+                  <p className="mt-1 text-ink-soft">{e.degree}</p>
+                  <p className="mt-1 text-sm text-ink-soft">{e.location}</p>
+                </div>
+                <p className="label self-start text-red-ink sm:text-right">{e.period}</p>
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
-
-      {/* Certificate Modal Dialog */}
-      <Dialog open={!!selectedCert} onOpenChange={() => setSelectedCert(null)}>
-        <DialogContent className="max-w-2xl bg-[#0B1020] border-white/15">
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-2 text-accent-cyan">
-              <Award className="w-5 h-5" />
-              <span>ZEN 1 Tech Park — IoT Internship Certificate</span>
-            </DialogTitle>
-          </DialogHeader>
-          {selectedCert && (
-            <div className="relative w-full h-[350px] sm:h-[450px] rounded-xl overflow-hidden bg-black/50 border border-white/10 mt-2">
-              <Image
-                src={selectedCert}
-                alt="ZEN 1 Tech Park Certificate"
-                fill
-                className="object-contain"
-              />
-            </div>
-          )}
-        </DialogContent>
-      </Dialog>
     </section>
   );
 }

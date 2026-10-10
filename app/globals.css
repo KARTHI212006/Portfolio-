@@ -1,119 +1,119 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --font-inter: 'Inter', sans-serif;
-    --font-space-grotesk: 'Space Grotesk', sans-serif;
-    --font-jetbrains-mono: 'JetBrains Mono', monospace;
-  }
-
-  * {
-    border-color: rgba(255, 255, 255, 0.1);
-  }
-
   html {
     scroll-behavior: smooth;
     color-scheme: dark;
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
-    background-color: #050816;
+    @apply bg-ink font-sans text-fg antialiased;
+    overflow-x: clip;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-heading;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: #ff321f;
     color: #ffffff;
-    font-family: var(--font-inter);
-    overflow-x: hidden;
   }
 
-  /* Custom Focus outline for accessibility */
   :focus-visible {
-    outline: 2px solid #00E5FF;
+    outline: 2px solid #ff321f;
     outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Focus ring that stays visible on light sections */
+  .on-light :focus-visible {
+    outline-color: #111111;
   }
 }
 
-/* Container Primitive Reused Across All Sections */
-.container-custom {
-  max-width: 1200px;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 4%;
-  padding-right: 4%;
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-[1200px] px-5 sm:px-8;
+  }
+
+  /* Compact uppercase label */
+  .label {
+    @apply font-sans text-[12px] font-semibold uppercase tracking-label;
+  }
+
+  .pill {
+    @apply inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5;
+  }
+
+  .btn {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full px-6 text-sm font-semibold transition-colors duration-200;
+  }
+
+  .btn-red {
+    @apply btn bg-red-deep text-white hover:bg-red;
+  }
+
+  .btn-outline {
+    @apply btn border border-line text-fg hover:border-fg/60;
+  }
+
+  .chip {
+    @apply inline-flex items-center rounded-full border border-line bg-panel px-3.5 py-1.5 text-sm text-fg/90;
+  }
+
+  .grain {
+    position: relative;
+  }
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.07;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    mix-blend-mode: screen;
+  }
 }
 
-/* Glassmorphism Card Style */
-.glass-card {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-radius: 1rem;
+/* ---------- Motion ---------- */
+/* Elements start hidden only when JS is running AND motion is allowed.
+   GSAP reveals them; the failsafe keeps content visible if scripts fail. */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal],
+  .js [data-hero] {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: reveal-failsafe 0.01s 3.5s forwards;
+  }
 }
 
-.glass-card-hover {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+@keyframes reveal-failsafe {
+  to {
+    opacity: 1;
+  }
 }
 
-.glass-card-hover:hover {
-  background: rgba(255, 255, 255, 0.07);
-  border-color: rgba(0, 229, 255, 0.3);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px -10px rgba(0, 229, 255, 0.15);
-}
-
-/* Gradient Text Utilities */
-.text-gradient-cyan {
-  background: linear-gradient(135deg, #00E5FF 0%, #7C3AED 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.text-gradient-green {
-  background: linear-gradient(135deg, #00FF88 0%, #00E5FF 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Decorative Glow Utilities (Absolute positioning ONLY for background elements) */
-.bg-glow-cyan {
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 229, 255, 0.12) 0%, rgba(5, 8, 22, 0) 70%);
-  pointer-events: none;
-}
-
-.bg-glow-violet {
-  position: absolute;
-  width: 450px;
-  height: 450px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(124, 58, 237, 0.12) 0%, rgba(5, 8, 22, 0) 70%);
-  pointer-events: none;
-}
-
-.bg-grid-pattern {
-  background-size: 40px 40px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #050816;
-}
-::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #00E5FF;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
