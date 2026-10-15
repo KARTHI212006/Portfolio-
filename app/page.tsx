@@ -8,10 +8,12 @@ import Contact from "@/components/contact";
 import Footer from "@/components/footer";
 import Curve from "@/components/curve";
 import SiteMotion from "@/components/site-motion";
+import CinematicIntro from "@/components/cinematic-intro";
 
 export default function Home() {
   return (
     <>
+      <CinematicIntro />
       <a
         href="#main"
         className="sr-only z-[80] rounded-full bg-fg px-4 py-2 text-ink focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
