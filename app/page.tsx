@@ -1,4 +1,5 @@
 import Navbar from "@/components/navbar";
+import Hero from "@/components/hero";
 import About from "@/components/about";
 import Skills from "@/components/skills";
 import Experience from "@/components/experience";
@@ -19,6 +20,9 @@ export default function Home() {
       </a>
       <Navbar />
       <main id="main">
+        <Hero />
+        {/* red -> dark */}
+        <Curve topClass="text-red-deep" bottomClass="bg-ink" />
         <About />
         <Skills />
         {/* dark -> light */}

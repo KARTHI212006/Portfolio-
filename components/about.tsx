@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Download, MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { CGPA, personalInfo, statsList } from "@/lib/data";
 
 const techChips = ["Java", "Python", "C", "C++", "HTML", "CSS", "JavaScript", "MySQL", "AI tools"];
@@ -20,12 +20,12 @@ function Sparkle({ className }: { className: string }) {
 
 export default function About() {
   return (
-    <section id="about" className="grain relative scroll-mt-24 overflow-x-clip bg-ink pb-24 pt-32 sm:pt-40">
+    <section id="about" className="grain relative scroll-mt-24 overflow-x-clip bg-ink pb-24 pt-14 sm:pt-20">
       <div className="container-x relative z-10">
         <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20">
           {/* Framed portrait */}
-          <div data-hero className="mx-auto w-full max-w-[380px] lg:mx-0">
-            <div data-parallax className="relative">
+          <div data-reveal className="mx-auto w-full max-w-[380px] lg:mx-0">
+            <div data-parallax data-depth="1" className="relative">
               <div
                 aria-hidden="true"
                 className="absolute inset-0 translate-x-4 translate-y-4 rotate-[5deg] rounded-[2rem] border border-red/60"
@@ -36,7 +36,6 @@ export default function About() {
                     src="/images/profile.jpg"
                     alt="Portrait of Karthikeyan S in a dark suit outside a glass office building"
                     fill
-                    priority
                     sizes="(min-width: 1024px) 380px, 80vw"
                     className="object-cover object-[50%_18%]"
                   />
@@ -50,51 +49,39 @@ export default function About() {
 
           {/* Introduction */}
           <div>
-            <p data-hero className="pill label border-line text-muted">
+            <p data-reveal className="pill label border-line text-muted">
               <span className="h-2 w-2 rounded-full bg-red" aria-hidden="true" />
               About me
             </p>
-            <h1
-              data-hero
+            <h2
+              data-reveal
               className="mt-5 text-[clamp(4.25rem,13vw,9.5rem)] font-bold leading-[0.88] tracking-[-0.045em]"
             >
               Hello<span className="text-red">!</span>
-            </h1>
-            <p data-hero className="mt-5 font-heading text-2xl font-semibold tracking-tight sm:text-3xl">
+            </h2>
+            <p data-reveal className="mt-5 font-heading text-2xl font-semibold tracking-tight sm:text-3xl">
               I&apos;m Karthikeyan S.
-              <span className="mt-1 block text-lg font-medium text-muted sm:text-xl">
-                Java Developer | Full Stack Developer | AI Enthusiast
-              </span>
+              <span className="mt-1 block text-lg font-medium text-muted sm:text-xl">{personalInfo.role}</span>
             </p>
-            <p data-hero className="mt-6 max-w-[58ch] text-base leading-relaxed text-muted sm:text-lg">
+            <p data-reveal className="mt-6 max-w-[58ch] text-base leading-relaxed text-muted sm:text-lg">
               {personalInfo.bio}
             </p>
-            <p data-hero className="mt-4 max-w-[58ch] text-base leading-relaxed text-fg/90">
+            <p data-reveal className="mt-4 max-w-[58ch] text-base leading-relaxed text-fg/90">
               B.E. Computer Science and Engineering at M.P. Nachimuthu M. Jaganathan Engineering College, expected
               graduation 2027, CGPA {CGPA}/10.
             </p>
-            <p data-hero className="mt-3 flex items-center gap-2 text-sm text-muted">
+            <p data-reveal className="mt-3 flex items-center gap-2 text-sm text-muted">
               <MapPin className="h-4 w-4 text-red" aria-hidden="true" />
               {personalInfo.location}
             </p>
 
-            <ul data-hero className="mt-7 flex flex-wrap gap-2" aria-label="Technologies I work with">
+            <ul data-reveal className="mt-7 flex flex-wrap gap-2" aria-label="Technologies I work with">
               {techChips.map((t) => (
                 <li key={t} className="chip">
                   {t}
                 </li>
               ))}
             </ul>
-
-            <div data-hero className="mt-9 flex flex-wrap gap-3">
-              <a href="#projects" className="btn-red">
-                View projects
-              </a>
-              <a href={personalInfo.resumeUrl} download className="btn-outline">
-                <Download className="h-4 w-4" aria-hidden="true" />
-                Download résumé
-              </a>
-            </div>
           </div>
         </div>
 

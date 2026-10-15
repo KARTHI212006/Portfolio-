@@ -4,9 +4,9 @@ import "@fontsource-variable/inter";
 import "./globals.css";
 
 const SITE_URL = "https://s-karthikeyan-portfolio.vercel.app";
-const TITLE = "Karthikeyan S | Java & Full Stack Developer";
+const TITLE = "Karthikeyan S | Java Full Stack Developer";
 const DESCRIPTION =
-  "Portfolio of Karthikeyan S, a final-year Computer Science student from Salem building Java, MySQL and web projects, with a goal of becoming an AI Engineer.";
+  "Portfolio of Karthikeyan S, a final-year Computer Science student from Salem building Java Full Stack projects with MySQL and modern web interfaces. Open to internships and entry-level roles.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   description: DESCRIPTION,
   keywords: [
     "Karthikeyan S",
+    "Java Full Stack Developer",
     "Java Developer",
     "Full Stack Developer",
     "AI Enthusiast",
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     url: SITE_URL,
     siteName: "Karthikeyan S Portfolio",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Karthikeyan S, Java and Full Stack Developer" }],
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Karthikeyan S, Java Full Stack Developer" }],
     locale: "en_IN",
     type: "website",
   },

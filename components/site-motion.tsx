@@ -57,18 +57,24 @@ export default function SiteMotion() {
         });
       });
 
-      // Frame parallax follows the pointer only on devices that have one.
-      const frame = document.querySelector<HTMLElement>("[data-parallax]");
-      const stage = document.querySelector<HTMLElement>("#about");
-      if (frame && stage && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
-        const moveX = gsap.quickTo(frame, "x", { duration: 0.8, ease: "power3.out" });
-        const moveY = gsap.quickTo(frame, "y", { duration: 0.8, ease: "power3.out" });
-        const onMove = (e: PointerEvent) => {
-          moveX((e.clientX / window.innerWidth - 0.5) * 16);
-          moveY((e.clientY / window.innerHeight - 0.5) * 12);
-        };
-        stage.addEventListener("pointermove", onMove);
-        return () => stage.removeEventListener("pointermove", onMove);
+      // Pointer parallax for [data-parallax] groups (hero cards, portrait frame). Small, bounded
+      // movement, only on devices that have a fine pointer; each group listens on its own section.
+      if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+        const cleanups = gsap.utils.toArray<HTMLElement>("[data-parallax]").map((frame) => {
+          const stage = frame.closest("section");
+          if (!stage) return () => {};
+          const depth = Number(frame.dataset.depth ?? 1);
+          const moveX = gsap.quickTo(frame, "x", { duration: 0.8, ease: "power3.out" });
+          const moveY = gsap.quickTo(frame, "y", { duration: 0.8, ease: "power3.out" });
+          const onMove = (e: PointerEvent) => {
+            const r = stage.getBoundingClientRect();
+            moveX(((e.clientX - r.left) / r.width - 0.5) * 16 * depth);
+            moveY(((e.clientY - r.top) / r.height - 0.5) * 12 * depth);
+          };
+          stage.addEventListener("pointermove", onMove);
+          return () => stage.removeEventListener("pointermove", onMove);
+        });
+        return () => cleanups.forEach((c) => c());
       }
     });
 

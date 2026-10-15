@@ -14,13 +14,13 @@ const links = [
 ];
 
 export default function Navbar() {
-  const [active, setActive] = useState("about");
+  const [active, setActive] = useState("home");
   const [open, setOpen] = useState(false);
 
   // Highlight the section that crosses the middle of the viewport.
   useEffect(() => {
-    const sections = links
-      .map((l) => document.getElementById(l.id))
+    const sections = ["home", ...links.map((l) => l.id)]
+      .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => Boolean(el));
     const io = new IntersectionObserver(
       (entries) => {
@@ -38,7 +38,7 @@ export default function Navbar() {
         aria-label="Primary"
         className="flex w-full max-w-[880px] items-center justify-between gap-2 rounded-full border border-line bg-black/90 py-2 pl-3 pr-2 shadow-card backdrop-blur-md"
       >
-        <a href="#about" className="flex items-center gap-2.5 rounded-full pr-2" aria-label="Karthikeyan S, back to top">
+        <a href="#home" className="flex items-center gap-2.5 rounded-full pr-2" aria-label="Karthikeyan S, back to top">
           <span className="grid h-9 w-9 place-items-center rounded-full bg-red-deep font-heading text-sm font-bold text-white">
             KS
           </span>
