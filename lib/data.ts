@@ -1,4 +1,4 @@
-export const CGPA = "7.94";
+export const CGPA = "8.94";
 
 export interface PersonalInfo {
   name: string;
@@ -79,8 +79,8 @@ export interface CertificateItem {
 export const personalInfo: PersonalInfo = {
   name: "KARTHIKEYAN S",
   gradientWordmark: "KARTHIKEYAN S",
-  role: "Java Developer | Full Stack Developer | AI Enthusiast",
-  roles: ["Java Developer", "Full Stack Developer", "AI Enthusiast"],
+  role: "Java Full Stack Developer",
+  roles: ["Java Full Stack Developer"],
   location: "Salem, Tamil Nadu, India",
   email: "karthikeyankarthikeyan1710@gmail.com",
   github: "https://github.com/KARTHI212006",
