@@ -41,7 +41,7 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="relative scroll-mt-24 overflow-hidden border-t border-line bg-ink pb-20 pt-24">
+    <section id="contact" className="relative scroll-mt-24 overflow-hidden border-t border-line bg-transparent pb-20 pt-24">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute left-1/2 top-0 h-[520px] w-[900px] max-w-[160vw] -translate-x-1/2 -translate-y-1/3 bg-[radial-gradient(closest-side,rgba(190,12,42,0.55),transparent)]"

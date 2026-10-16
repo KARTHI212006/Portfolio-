@@ -150,7 +150,7 @@ export default function Projects() {
   const shown = active === "All" ? projectsList : projectsList.filter((p) => p.category === active);
 
   return (
-    <section id="projects" className="grain relative scroll-mt-24 bg-ink pb-24 pt-8">
+    <section id="projects" className="grain relative scroll-mt-24 bg-transparent pb-24 pt-8">
       <div className="container-x relative z-10">
         <div data-reveal className="max-w-3xl">
           <p className="pill label border-line text-muted">

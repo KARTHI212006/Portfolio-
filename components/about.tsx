@@ -20,7 +20,7 @@ function Sparkle({ className }: { className: string }) {
 
 export default function About() {
   return (
-    <section id="about" className="grain relative scroll-mt-24 overflow-x-clip bg-ink pb-24 pt-14 sm:pt-20">
+    <section id="about" className="grain relative scroll-mt-24 overflow-x-clip bg-transparent pb-24 pt-14 sm:pt-20">
       <div className="container-x relative z-10">
         <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20">
           {/* Framed portrait */}

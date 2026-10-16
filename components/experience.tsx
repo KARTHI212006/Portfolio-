@@ -16,7 +16,7 @@ export default function Experience() {
   const internship = experienceList[0];
 
   return (
-    <section id="experience" className="relative scroll-mt-24 bg-ink pb-24 pt-8">
+    <section id="experience" className="relative scroll-mt-24 bg-transparent pb-24 pt-8">
       <div className="container-x">
         <div data-reveal className="max-w-3xl">
           <p className="pill label border-line text-muted">

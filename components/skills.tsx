@@ -2,7 +2,7 @@ import { skillCategories } from "@/lib/data";
 
 export default function Skills() {
   return (
-    <section id="skills" className="relative scroll-mt-24 bg-ink pb-24 pt-8">
+    <section id="skills" className="relative scroll-mt-24 bg-transparent pb-24 pt-8">
       <div className="container-x">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] lg:gap-20">
           <div data-reveal className="lg:sticky lg:top-32 lg:self-start">

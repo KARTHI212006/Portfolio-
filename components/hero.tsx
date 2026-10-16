@@ -29,11 +29,11 @@ export default function Hero() {
     <section
       id="home"
       aria-labelledby="hero-title"
-      className="grain relative flex min-h-[100dvh] items-center overflow-x-clip bg-red-deep pb-24 pt-28 text-white"
+      className="grain relative flex min-h-[100dvh] items-center overflow-x-clip bg-transparent pb-24 pt-28 text-white"
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(55%_45%_at_78%_30%,rgba(255,255,255,0.14),transparent_70%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_45%,rgba(9,5,6,0.45),transparent_70%)]"
       />
 
       <div className="container-x relative z-10">
