@@ -6,7 +6,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 /**
  * The single animation system for the site (GSAP + ScrollTrigger).
- * - Hero intro: [data-hero] elements stagger in on load.
  * - Scroll reveals: [data-reveal] elements are batched and revealed once.
  * - Photo frame: gentle float + limited pointer parallax (fine pointers only).
  * Everything lives inside gsap.matchMedia(), so reduced-motion users get static
@@ -15,20 +14,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 export default function SiteMotion() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
+    (window as Window & { __motionReady?: boolean }).__motionReady = true;
     const mm = gsap.matchMedia();
 
     mm.add("(prefers-reduced-motion: no-preference)", () => {
       const done = (els: gsap.TweenTarget) => gsap.set(els, { clearProps: "transform" });
-
-      gsap.to("[data-hero]", {
-        opacity: 1,
-        y: 0,
-        duration: 0.9,
-        ease: "power3.out",
-        stagger: 0.09,
-        delay: 0.1,
-        onComplete: () => done("[data-hero]"),
-      });
 
       ScrollTrigger.batch("[data-reveal]", {
         start: "top 90%",
@@ -79,7 +69,7 @@ export default function SiteMotion() {
     });
 
     mm.add("(prefers-reduced-motion: reduce)", () => {
-      gsap.set("[data-hero], [data-reveal]", { opacity: 1, y: 0, clearProps: "transform" });
+      gsap.set("[data-reveal]", { opacity: 1, y: 0, clearProps: "transform" });
     });
 
     // Fonts and images shift layout slightly; recompute trigger positions once loaded.

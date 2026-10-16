@@ -16,18 +16,22 @@ export default function Experience() {
   const internship = experienceList[0];
 
   return (
-    <section id="experience" className="on-light relative scroll-mt-24 bg-paper pb-24 pt-8 text-ink-text">
+    <section id="experience" className="relative scroll-mt-24 bg-ink pb-24 pt-8">
       <div className="container-x">
         <div data-reveal className="max-w-3xl">
-          <p className="pill label border-paper-line bg-white text-ink-soft">
-            <Briefcase className="h-3.5 w-3.5 text-red-ink" aria-hidden="true" />
+          <p className="pill label border-line text-muted">
+            <Briefcase className="h-3.5 w-3.5 text-red" aria-hidden="true" />
             Experience
-            <span className="h-2 w-2 rounded-full bg-red-ink" aria-hidden="true" />
+            <span className="h-2 w-2 rounded-full bg-red" aria-hidden="true" />
           </p>
-          <h2 className="mt-5 text-[clamp(2.75rem,8vw,5.75rem)] font-bold leading-[0.92] tracking-[-0.04em]">
-            Learning by doing<span className="text-red-ink">.</span>
-          </h2>
-          <p className="mt-5 max-w-[56ch] text-lg leading-relaxed text-ink-soft">
+          <div className="relative mt-5 block w-fit">
+            <h2 className="display text-[clamp(2.75rem,8vw,6.5rem)]">
+              Learning
+              <span className="display-soft block text-[0.62em]">by doing</span>
+            </h2>
+            <span className="glass-tag label absolute -right-4 -top-4 translate-x-full max-md:hidden">Internship</span>
+          </div>
+          <p className="mt-5 max-w-[56ch] text-lg leading-relaxed text-muted">
             {internship.description} Alongside it, I completed a full stack masterclass and an IoT prototyping
             bootcamp. Select a card to view the certificate.
           </p>
@@ -46,7 +50,7 @@ export default function Experience() {
             >
               <Dialog.Root>
                 <Dialog.Trigger className="group block w-full text-left">
-                  <div className="relative aspect-[3/2] overflow-hidden rounded-3xl bg-white shadow-soft ring-1 ring-paper-line">
+                  <div className="relative aspect-[3/2] overflow-hidden rounded-3xl bg-panel shadow-card ring-1 ring-line">
                     <Image
                       src={c.image}
                       alt={`Certificate: ${c.title}`}
@@ -59,8 +63,8 @@ export default function Experience() {
                     </span>
                   </div>
                   <h3 className="mt-5 text-xl font-semibold leading-snug tracking-tight">{c.title}</h3>
-                  <p className="mt-1.5 text-sm text-ink-soft">{c.issuer}</p>
-                  <p className="mt-1 text-sm font-medium text-red-ink">{c.date}</p>
+                  <p className="mt-1.5 text-sm text-muted">{c.issuer}</p>
+                  <p className="mt-1 text-sm font-medium text-red">{c.date}</p>
                 </Dialog.Trigger>
 
                 <Dialog.Portal>
@@ -95,23 +99,23 @@ export default function Experience() {
         {/* Education */}
         <div className="mt-24 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] lg:gap-20">
           <div data-reveal>
-            <p className="pill label border-paper-line bg-white text-ink-soft">
-              <GraduationCap className="h-3.5 w-3.5 text-red-ink" aria-hidden="true" />
+            <p className="pill label border-line text-muted">
+              <GraduationCap className="h-3.5 w-3.5 text-red" aria-hidden="true" />
               Education
             </p>
-            <h2 className="mt-5 text-4xl font-bold leading-[0.95] tracking-[-0.035em] sm:text-5xl">
-              Where I study<span className="text-red-ink">.</span>
+            <h2 className="display mt-5 text-4xl sm:text-5xl">
+              Where <span className="display-soft">I study</span>
             </h2>
           </div>
-          <ol className="divide-y divide-paper-line border-y border-paper-line">
+          <ol className="divide-y divide-line border-y border-line">
             {educationList.map((e) => (
               <li key={e.id} data-reveal className="grid gap-2 py-7 sm:grid-cols-[minmax(0,1fr)_auto] sm:gap-8">
                 <div>
                   <h3 className="text-xl font-semibold tracking-tight">{e.institution}</h3>
-                  <p className="mt-1 text-ink-soft">{e.degree}</p>
-                  <p className="mt-1 text-sm text-ink-soft">{e.location}</p>
+                  <p className="mt-1 text-muted">{e.degree}</p>
+                  <p className="mt-1 text-sm text-muted">{e.location}</p>
                 </div>
-                <p className="label self-start text-red-ink sm:text-right">{e.period}</p>
+                <p className="label self-start text-red sm:text-right">{e.period}</p>
               </li>
             ))}
           </ol>

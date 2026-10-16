@@ -6,7 +6,7 @@ import Experience from "@/components/experience";
 import Projects from "@/components/projects";
 import Contact from "@/components/contact";
 import Footer from "@/components/footer";
-import Curve from "@/components/curve";
+import IntroVideo from "@/components/intro-video";
 import SiteMotion from "@/components/site-motion";
 
 export default function Home() {
@@ -20,16 +20,11 @@ export default function Home() {
       </a>
       <Navbar />
       <main id="main">
+        <IntroVideo />
         <Hero />
-        {/* red -> dark */}
-        <Curve topClass="text-red-deep" bottomClass="bg-ink" />
         <About />
         <Skills />
-        {/* dark -> light */}
-        <Curve topClass="text-ink" bottomClass="bg-paper" />
         <Experience />
-        {/* light -> dark */}
-        <Curve topClass="text-paper" bottomClass="bg-ink" />
         <Projects />
         <Contact />
       </main>

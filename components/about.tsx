@@ -53,13 +53,13 @@ export default function About() {
               <span className="h-2 w-2 rounded-full bg-red" aria-hidden="true" />
               About me
             </p>
-            <h2
-              data-reveal
-              className="mt-5 text-[clamp(4.25rem,13vw,9.5rem)] font-bold leading-[0.88] tracking-[-0.045em]"
-            >
-              Hello<span className="text-red">!</span>
-            </h2>
-            <p data-reveal className="mt-5 font-heading text-2xl font-semibold tracking-tight sm:text-3xl">
+            <div data-reveal className="relative mt-5 block w-fit">
+              <h2 className="display text-[clamp(4.25rem,13vw,9.5rem)]">
+                Hello<span className="text-red">!</span>
+              </h2>
+              <span className="glass-tag label absolute -right-2 top-0 translate-x-full max-sm:hidden">About me</span>
+            </div>
+            <p data-reveal className="mt-5 text-2xl font-semibold tracking-tight sm:text-3xl">
               I&apos;m Karthikeyan S.
               <span className="mt-1 block text-lg font-medium text-muted sm:text-xl">{personalInfo.role}</span>
             </p>
@@ -94,7 +94,7 @@ export default function About() {
               className="rounded-3xl border border-line bg-panel p-5 shadow-card sm:p-6"
             >
               <dt className="label text-muted">{s.label}</dt>
-              <dd className="mt-4 font-heading text-5xl font-bold tracking-tight tabular-nums sm:text-6xl">
+              <dd className="display mt-4 text-5xl tabular-nums sm:text-6xl">
                 {s.value}
                 {s.unit && <span className="ml-1 text-xl font-semibold text-red sm:text-2xl">{s.unit}</span>}
                 <span className="mt-2 block font-sans text-sm font-normal tracking-normal text-muted">{s.note}</span>

@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import "@fontsource-variable/space-grotesk";
 import "@fontsource-variable/inter";
 import "./globals.css";
 
@@ -46,7 +45,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0B0B0E",
+  themeColor: "#090506",
   width: "device-width",
   initialScale: 1,
 };
@@ -55,8 +54,14 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className="dark">
       <head>
-        {/* Marks that JS is running so reveal animations may hide content briefly. */}
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+        {/* Marks that JS is running so reveals and the intro video may hide content briefly.
+            If the animation scripts have not started after 4s, .no-motion makes everything visible. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "document.documentElement.classList.add('js');setTimeout(function(){if(!window.__motionReady)document.documentElement.classList.add('no-motion')},4000)",
+          }}
+        />
       </head>
       <body>{children}</body>
     </html>

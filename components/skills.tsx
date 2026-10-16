@@ -10,8 +10,8 @@ export default function Skills() {
               <span className="h-2 w-2 rounded-full bg-red" aria-hidden="true" />
               Skills
             </p>
-            <h2 className="mt-5 text-4xl font-bold leading-[0.95] tracking-[-0.035em] sm:text-6xl">
-              What I work with<span className="text-red">.</span>
+            <h2 className="display mt-5 text-5xl sm:text-6xl">
+              What I<span className="display-soft block">work with</span>
             </h2>
             <p className="mt-5 max-w-[40ch] text-muted">
               Languages, tools and workflows I have used in coursework, projects and my IoT internship.

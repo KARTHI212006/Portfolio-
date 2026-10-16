@@ -7,8 +7,7 @@ import { personalInfo } from "@/lib/data";
 type Fields = { name: string; email: string; message: string };
 type Errors = Partial<Record<keyof Fields, string>>;
 
-const inputClass =
-  "mt-2 w-full rounded-2xl border border-line bg-panel px-4 py-3 text-base text-fg placeholder:text-muted/70 transition-colors focus:border-red focus:outline-none focus-visible:outline-offset-0 aria-[invalid=true]:border-red";
+const inputClass = "field";
 
 export default function Contact() {
   const [fields, setFields] = useState<Fields>({ name: "", email: "", message: "" });
@@ -42,17 +41,24 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="relative scroll-mt-24 border-t border-line bg-ink pb-20 pt-24">
-      <div className="container-x">
+    <section id="contact" className="relative scroll-mt-24 overflow-hidden border-t border-line bg-ink pb-20 pt-24">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-0 h-[520px] w-[900px] max-w-[160vw] -translate-x-1/2 -translate-y-1/3 bg-[radial-gradient(closest-side,rgba(190,12,42,0.55),transparent)]"
+      />
+      <div className="container-x relative z-10">
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-20">
           <div data-reveal>
             <p className="pill label border-line text-muted">
               <span className="h-2 w-2 rounded-full bg-red" aria-hidden="true" />
               Contact
             </p>
-            <h2 className="mt-5 text-[clamp(2.75rem,8vw,5.5rem)] font-bold leading-[0.92] tracking-[-0.04em]">
-              Let&apos;s talk<span className="text-red">.</span>
-            </h2>
+            <div className="relative mt-5 block w-fit">
+              <h2 className="display text-[clamp(2.75rem,8vw,6.5rem)]">
+                Ready to
+                <span className="display-soft block text-[0.62em]">work together</span>
+              </h2>
+            </div>
             <p className="mt-5 max-w-[44ch] text-lg leading-relaxed text-muted">
               I&apos;m looking for internships and entry-level software development roles. Send a message and I&apos;ll
               reply by email.
@@ -84,7 +90,7 @@ export default function Contact() {
             data-reveal
             onSubmit={submit}
             noValidate
-            className="rounded-3xl border border-line bg-panel p-6 shadow-card sm:p-8"
+            className="lg:pt-6"
             aria-label="Contact form"
           >
             <div>
@@ -108,7 +114,7 @@ export default function Contact() {
                 </p>
               )}
             </div>
-            <div className="mt-5">
+            <div className="mt-7">
               <label htmlFor="c-email" className="label text-muted">
                 Email
               </label>
@@ -131,7 +137,7 @@ export default function Contact() {
                 </p>
               )}
             </div>
-            <div className="mt-5">
+            <div className="mt-7">
               <label htmlFor="c-message" className="label text-muted">
                 Message
               </label>
@@ -152,7 +158,7 @@ export default function Contact() {
                 </p>
               )}
             </div>
-            <button type="submit" className="btn-red mt-7 w-full sm:w-auto">
+            <button type="submit" className="btn-red mt-8 w-full sm:w-auto">
               Open in email app
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </button>

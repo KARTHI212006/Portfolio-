@@ -50,6 +50,8 @@ export interface ProjectItem {
   githubUrl: string | null;
   liveUrl: string | null;
   image: string;
+  /** Three short facts shown in the project's highlight card. Each is taken from the project's own details. */
+  highlights: { value: string; label: string }[];
 }
 
 export interface ExperienceItem {
@@ -248,6 +250,7 @@ export const projectsList: ProjectItem[] = [
     // so confirm it loads in a private browser window (preview URLs can sit behind Vercel login protection).
     liveUrl: "https://next-program-j8j140j9d-kk-5bd7.vercel.app/",
     image: "/images/gamevault.jpg",
+    highlights: [{ value: "3", label: "Content areas: news, trailers, prices" },{ value: "3", label: "Screen sizes: mobile, tablet, desktop" },{ value: "Vercel", label: "Deployed and live" }],
   },
   {
     id: "smart-irrigation",
@@ -269,6 +272,7 @@ export const projectsList: ProjectItem[] = [
     githubUrl: null, // No public repository for this project
     liveUrl: null,
     image: "/images/irrigation.jpg",
+    highlights: [{ value: "Soil", label: "Moisture sensors drive the watering" },{ value: "Arduino", label: "Controller platform" },{ value: "Auto", label: "Irrigation without manual effort" }],
   },
   {
     id: "bus-booking",
@@ -291,6 +295,7 @@ export const projectsList: ProjectItem[] = [
     githubUrl: "https://github.com/KARTHI212006/BusbookingSystemManagement",
     liveUrl: null,
     image: "/images/bus_booking_console.png",
+    highlights: [{ value: "5", label: "Modules: login, buses, passengers, booking, payments" },{ value: "JDBC", label: "MySQL data layer" },{ value: "OOP", label: "Object-oriented Java design" }],
   },
   {
     id: "employee-attendance",
@@ -314,6 +319,7 @@ export const projectsList: ProjectItem[] = [
     githubUrl: "https://github.com/KARTHI212006/Employee-Attendance-Tracking-System",
     liveUrl: null,
     image: "/images/employee_attendance_console.png",
+    highlights: [{ value: "2", label: "Login roles: admin and employee" },{ value: "3", label: "Reports: by employee, leaves, overall" },{ value: "JDBC", label: "MySQL data layer" }],
   },
   {
     id: "portfolio",
@@ -322,10 +328,10 @@ export const projectsList: ProjectItem[] = [
     category: "Web Development",
     shortDesc: "This website: a responsive Next.js portfolio exported as static files and deployed on Vercel.",
     problem: "Recruiters need to find projects, skills, certificates and the resume quickly on any device.",
-    solution: "Built a static Next.js site with dark and light sections, GSAP scroll animations that respect reduced-motion settings, and links to the real repositories.",
+    solution: "Built a static Next.js site with a scroll-scrubbed video intro, GSAP scroll animations that respect reduced-motion settings, and links to the real repositories.",
     features: [
       "Floating navigation with active-section highlighting and an accessible mobile menu",
-      "Dark and light sections joined by SVG curve transitions",
+      "A scroll-scrubbed intro video driven by GSAP ScrollTrigger, with reduced-motion and data-saver fallbacks",
       "GSAP and ScrollTrigger reveals with reduced-motion support",
       "Project case-study dialogs and a contact form that opens your email app",
     ],
@@ -335,6 +341,7 @@ export const projectsList: ProjectItem[] = [
     githubUrl: "https://github.com/KARTHI212006/Portfolio-",
     liveUrl: "https://s-karthikeyan-portfolio.vercel.app/",
     image: "/images/portfolio.jpg",
+    highlights: [{ value: "Static", label: "Next.js export hosted on Vercel" },{ value: "GSAP", label: "ScrollTrigger scroll motion" },{ value: "3", label: "Layouts checked: desktop, tablet, mobile" }],
   },
 ];
 

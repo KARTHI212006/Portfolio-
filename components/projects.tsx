@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import * as Dialog from "@radix-ui/react-dialog";
 import { ArrowUpRight, Github, X } from "lucide-react";
@@ -89,27 +90,37 @@ function CaseStudy({ p }: { p: ProjectItem }) {
   );
 }
 
-function ProjectCard({ p, featured }: { p: ProjectItem; featured: boolean }) {
+function ProjectRow({ p, flip }: { p: ProjectItem; flip: boolean }) {
   return (
-    <article
-      data-reveal
-      className={`flex flex-col overflow-hidden rounded-3xl border border-line bg-panel shadow-card ${
-        featured ? "md:col-span-2 md:grid md:grid-cols-2" : ""
-      }`}
-    >
-      <div className={`relative overflow-hidden bg-ink ${featured ? "aspect-[16/10] md:aspect-auto md:min-h-[360px]" : "aspect-[16/10]"}`}>
+    <article className="animate-rise grid gap-4 lg:grid-cols-2 lg:gap-5">
+      {/* Photo card */}
+      <div
+        className={`relative min-h-[260px] overflow-hidden rounded-[2rem] border border-line bg-panel shadow-card sm:min-h-[340px] ${
+          flip ? "lg:order-2" : ""
+        }`}
+      >
         <Image
           src={p.image}
           alt={`${p.title} project preview`}
           fill
-          sizes={featured ? "(min-width: 768px) 560px, 94vw" : "(min-width: 768px) 560px, 94vw"}
+          sizes="(min-width: 1024px) 590px, 94vw"
           className="object-cover"
         />
+        <span className="glass-tag label absolute left-4 top-4 !py-1.5 text-[11px]">{p.badge}</span>
       </div>
-      <div className="flex flex-1 flex-col p-6 sm:p-8">
-        <p className="label text-red">{p.badge}</p>
-        <h3 className="mt-3 text-2xl font-bold leading-tight tracking-tight sm:text-3xl">{p.title}</h3>
-        <p className="mt-3 leading-relaxed text-muted">{p.shortDesc}</p>
+
+      {/* Glow card: three real facts about the project */}
+      <div className="relative flex flex-col overflow-hidden rounded-[2rem] border border-line bg-[radial-gradient(120%_90%_at_100%_0%,rgba(240,55,79,0.5),transparent_62%),linear-gradient(165deg,#2b0d13,#130A0C)] p-6 shadow-card sm:p-8">
+        <h3 className="display text-3xl sm:text-4xl">{p.title}</h3>
+        <p className="mt-3 max-w-[48ch] leading-relaxed text-fg/80">{p.shortDesc}</p>
+        <dl className="mt-6 grid grid-cols-3 gap-3 border-y border-white/15 py-5">
+          {p.highlights.map((h) => (
+            <div key={h.label}>
+              <dd className="display text-2xl sm:text-3xl">{h.value}</dd>
+              <dt className="mt-2 text-xs leading-snug text-fg/70">{h.label}</dt>
+            </div>
+          ))}
+        </dl>
         <ul className="mt-5 flex flex-wrap gap-2" aria-label="Tech stack">
           {p.tech.map((t) => (
             <li key={t} className="chip !px-3 !py-1 !text-[13px]">
@@ -119,7 +130,7 @@ function ProjectCard({ p, featured }: { p: ProjectItem; featured: boolean }) {
         </ul>
         <div className="mt-auto flex flex-wrap items-center gap-3 pt-7">
           <Dialog.Root>
-            <Dialog.Trigger className="btn-red !min-h-[40px] !px-4">
+            <Dialog.Trigger className="btn-light !min-h-[40px] !px-4">
               Case study
               <span className="sr-only"> for {p.title}</span>
             </Dialog.Trigger>
@@ -132,7 +143,12 @@ function ProjectCard({ p, featured }: { p: ProjectItem; featured: boolean }) {
   );
 }
 
+const filters = ["All", ...Array.from(new Set(projectsList.map((p) => p.category)))];
+
 export default function Projects() {
+  const [active, setActive] = useState("All");
+  const shown = active === "All" ? projectsList : projectsList.filter((p) => p.category === active);
+
   return (
     <section id="projects" className="grain relative scroll-mt-24 bg-ink pb-24 pt-8">
       <div className="container-x relative z-10">
@@ -141,17 +157,44 @@ export default function Projects() {
             <span className="h-2 w-2 rounded-full bg-red" aria-hidden="true" />
             Projects
           </p>
-          <h2 className="mt-5 text-[clamp(2.75rem,8vw,5.75rem)] font-bold leading-[0.92] tracking-[-0.04em]">
-            Things I&apos;ve built<span className="text-red">.</span>
-          </h2>
+          <div className="relative mt-5 block w-fit">
+            <h2 className="display text-[clamp(2.75rem,8vw,6.5rem)]">
+              Things
+              <span className="display-soft block text-[0.62em]">I&apos;ve built</span>
+            </h2>
+            <span className="glass-tag label absolute -right-4 -top-4 translate-x-full max-md:hidden">
+              {projectsList.length} projects
+            </span>
+          </div>
           <p className="mt-5 max-w-[56ch] text-lg leading-relaxed text-muted">
-            Java and MySQL applications, an IoT prototype and web projects. Each card opens a short case study.
+            Java and MySQL applications, an IoT prototype and web projects. Each one opens a short case study.
           </p>
         </div>
 
-        <div className="mt-14 grid gap-5 md:grid-cols-2 md:gap-6">
-          {projectsList.map((p, i) => (
-            <ProjectCard key={p.id} p={p} featured={i === 0} />
+        <div data-reveal role="group" aria-label="Filter projects by category" className="mt-10 flex flex-wrap gap-2">
+          {filters.map((f) => (
+            <button
+              key={f}
+              type="button"
+              aria-pressed={active === f}
+              onClick={() => setActive(f)}
+              className={`min-h-[44px] rounded-full border px-5 text-sm font-medium transition-colors ${
+                active === f
+                  ? "border-red-deep bg-red-deep text-white"
+                  : "border-white/20 text-fg hover:border-white/55"
+              }`}
+            >
+              {f}
+            </button>
+          ))}
+        </div>
+        <p className="sr-only" aria-live="polite">
+          Showing {shown.length} {shown.length === 1 ? "project" : "projects"}
+        </p>
+
+        <div className="mt-10 space-y-5">
+          {shown.map((p, i) => (
+            <ProjectRow key={p.id} p={p} flip={i % 2 === 1} />
           ))}
         </div>
       </div>
