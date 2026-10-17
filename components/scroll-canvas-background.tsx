@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 const TOTAL_FRAMES = 240;
 const MAX_CACHE_SIZE = 36; // Bounded cache: at most 36 full-HD decoded images in memory
@@ -18,7 +18,6 @@ interface QueueItem {
 
 export default function ScrollCanvasBackground() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const [hasFirstFrame, setHasFirstFrame] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -27,11 +26,12 @@ export default function ScrollCanvasBackground() {
     if (!ctx) return;
 
     let animationFrameId: number | null = null;
+    let milestoneTimer: ReturnType<typeof setTimeout> | null = null;
     let isUnmounted = false;
 
     // Cache & in-flight tracking
     const imageCache = new Map<number, HTMLImageElement>();
-    const inFlightSet = new Set<number>();
+    const inFlightMap = new Map<number, HTMLImageElement>();
     let loadQueue: QueueItem[] = [];
     let activeLoads = 0;
 
@@ -95,10 +95,38 @@ export default function ScrollCanvasBackground() {
       ctx.drawImage(img, offsetX, offsetY, drawW, drawH);
       lastRenderedFrame = index;
 
-      // Refresh LRU position in Map
-      imageCache.delete(index);
-      imageCache.set(index, img);
       return true;
+    };
+
+    // Check if candidate frame strictly improves the currently displayed frame
+    const shouldRenderFrame = (candidate: number): boolean => {
+      if (candidate === currentDesiredFrame) {
+        return lastRenderedFrame !== currentDesiredFrame;
+      }
+      if (lastRenderedFrame === -1) {
+        return true;
+      }
+      const currentDiff = Math.abs(lastRenderedFrame - currentDesiredFrame);
+      const candidateDiff = Math.abs(candidate - currentDesiredFrame);
+      return candidateDiff < currentDiff && candidateDiff <= 6;
+    };
+
+    // Find the closest cached frame that improves upon the currently rendered frame
+    const findBestCachedFrame = (desired: number): number => {
+      if (imageCache.has(desired)) return desired;
+
+      let bestFrame = -1;
+      let minDiff = lastRenderedFrame >= 0 ? Math.abs(lastRenderedFrame - desired) : Infinity;
+
+      for (const key of imageCache.keys()) {
+        const diff = Math.abs(key - desired);
+        if (diff < minDiff && diff <= 6) {
+          minDiff = diff;
+          bestFrame = key;
+        }
+      }
+
+      return bestFrame;
     };
 
     // Evict the cached frame furthest from the current desired frame
@@ -117,7 +145,11 @@ export default function ScrollCanvasBackground() {
 
       if (furthestKey >= 0) {
         const img = imageCache.get(furthestKey);
-        if (img) img.src = ""; // Release decoded pixel buffer
+        if (img) {
+          img.onload = null;
+          img.onerror = null;
+          img.src = ""; // Release decoded pixel buffer
+        }
         imageCache.delete(furthestKey);
       }
     };
@@ -126,13 +158,20 @@ export default function ScrollCanvasBackground() {
     const storeInCache = (index: number, img: HTMLImageElement) => {
       if (imageCache.has(index)) {
         imageCache.delete(index);
-      } else if (imageCache.size >= MAX_CACHE_SIZE) {
-        evictFurthestFrame();
+      } else {
+        while (imageCache.size >= MAX_CACHE_SIZE) {
+          const prevSize = imageCache.size;
+          evictFurthestFrame();
+          if (imageCache.size >= prevSize) {
+            // Safety break if only lastRenderedFrame is in cache
+            break;
+          }
+        }
       }
       imageCache.set(index, img);
     };
 
-    // Pump the prioritized queue with concurrency limit
+    // Pump the prioritized queue with concurrency limit and robust settlement
     const pumpQueue = () => {
       if (isUnmounted || activeLoads >= MAX_CONCURRENT_LOADS || loadQueue.length === 0) {
         return;
@@ -146,48 +185,86 @@ export default function ScrollCanvasBackground() {
       const { index } = item;
 
       // Skip if already in cache or already in flight
-      if (imageCache.has(index)) {
+      if (imageCache.has(index) || inFlightMap.has(index)) {
         pumpQueue();
         return;
       }
 
       activeLoads++;
-      inFlightSet.add(index);
-
       const img = new Image();
-      img.src = getFrameUrl(index);
+      inFlightMap.set(index, img);
 
-      const onDone = () => {
-        activeLoads--;
-        inFlightSet.delete(index);
+      // Single-settlement guard: guarantees activeLoads decrements exactly once
+      let settled = false;
+
+      const detachHandlers = () => {
+        img.onload = null;
+        img.onerror = null;
+      };
+
+      const handleDone = () => {
+        if (settled) return;
+        settled = true;
+        detachHandlers();
+        inFlightMap.delete(index);
+        activeLoads = Math.max(0, activeLoads - 1);
+
         if (isUnmounted) return;
 
         storeInCache(index, img);
 
-        // RACE CONDITION FIX:
-        // Only draw this frame if it matches the current desired frame!
-        // A late-loading old frame will NEVER overwrite a newer frame on screen.
-        if (index === currentDesiredFrame && lastRenderedFrame !== currentDesiredFrame) {
+        // Only render if it matches target or strictly improves current displayed frame
+        if (shouldRenderFrame(index)) {
           drawFrameToCanvas(index);
         }
 
         pumpQueue();
       };
 
-      const onError = () => {
-        activeLoads--;
-        inFlightSet.delete(index);
-        if (!isUnmounted) pumpQueue();
+      const handleError = () => {
+        if (settled) return;
+        settled = true;
+        detachHandlers();
+        inFlightMap.delete(index);
+        activeLoads = Math.max(0, activeLoads - 1);
+
+        if (!isUnmounted) {
+          pumpQueue();
+        }
       };
 
-      if (img.decode) {
-        img.decode().then(onDone).catch(() => {
-          img.onload = onDone;
-          img.onerror = onError;
-        });
+      // Set src after handlers are prepared
+      img.src = getFrameUrl(index);
+
+      // Robust decode rejection and fallback handling
+      if (typeof img.decode === "function") {
+        img
+          .decode()
+          .then(() => {
+            handleDone();
+          })
+          .catch(() => {
+            if (settled || isUnmounted) return;
+
+            // 1. If the image is already valid despite decode rejection, accept it
+            if (img.complete && img.naturalWidth > 0) {
+              handleDone();
+            } else if (!img.complete) {
+              // 2. If it is still loading, attach safe handlers
+              img.onload = handleDone;
+              img.onerror = handleError;
+            } else {
+              // 3. If it has definitively failed, release the queue slot
+              handleError();
+            }
+          });
       } else {
-        img.onload = onDone;
-        img.onerror = onError;
+        if (img.complete && img.naturalWidth > 0) {
+          handleDone();
+        } else {
+          img.onload = handleDone;
+          img.onerror = handleError;
+        }
       }
 
       // Try pumping next if slots remain
@@ -199,7 +276,7 @@ export default function ScrollCanvasBackground() {
     // Enqueue a frame with a given priority (and prune stale requests)
     const enqueueFrame = (index: number, priority: number) => {
       if (index < 0 || index >= TOTAL_FRAMES) return;
-      if (imageCache.has(index) || inFlightSet.has(index)) return;
+      if (imageCache.has(index) || inFlightMap.has(index)) return;
 
       const existing = loadQueue.find((q) => q.index === index);
       if (existing) {
@@ -211,8 +288,16 @@ export default function ScrollCanvasBackground() {
 
     // Prioritize neighborhood based on current scroll position and velocity-aware lookahead
     const updateLoadingPriorities = (centerIndex: number, dir: number, isFast: boolean) => {
-      // 1. Deprioritize stale queued items far away (> 26 frames away)
-      loadQueue = loadQueue.filter((q) => Math.abs(q.index - centerIndex) <= 26);
+      // 1. Prune stale queued items: prioritize current direction and prune opposite direction
+      loadQueue = loadQueue.filter((q) => {
+        const dist = q.index - centerIndex;
+        if (dist === 0) return true;
+        if (dir >= 0) {
+          return dist >= -6 && dist <= 26;
+        } else {
+          return dist <= 6 && dist >= -26;
+        }
+      });
 
       // 2. High priority for current target
       enqueueFrame(centerIndex, 1000);
@@ -268,25 +353,48 @@ export default function ScrollCanvasBackground() {
     }
     pumpQueue();
 
+    // Unified cleanup definition for both normal and reduced-motion modes
+    const cleanup = () => {
+      isUnmounted = true;
+      if (milestoneTimer !== null) clearTimeout(milestoneTimer);
+      window.removeEventListener("scroll", updateTargetProgress);
+      window.removeEventListener("resize", onResize);
+      window.removeEventListener("load", onResize);
+      if (animationFrameId !== null) cancelAnimationFrame(animationFrameId);
+      loadQueue = [];
+      inFlightMap.forEach((img) => {
+        img.onload = null;
+        img.onerror = null;
+        img.src = "";
+      });
+      inFlightMap.clear();
+      imageCache.forEach((img) => {
+        img.onload = null;
+        img.onerror = null;
+        img.src = "";
+      });
+      imageCache.clear();
+    };
+
+    // Always attach resize and load listeners so canvas remains sharp on resize/rotation
+    window.addEventListener("resize", onResize, { passive: true });
+    window.addEventListener("load", onResize, { passive: true });
+
     // 2. Accessibility: Reduced motion check
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reducedMotion) {
-      return () => {
-        isUnmounted = true;
-        window.removeEventListener("resize", onResize);
-      };
+      return cleanup;
     }
 
     // 3. Authoritative passive scroll listener (zero-latency input sync)
     window.addEventListener("scroll", updateTargetProgress, { passive: true });
-    window.addEventListener("resize", onResize, { passive: true });
 
     // 4. Delta-time-aware requestAnimationFrame loop
     const tick = (timestamp: number) => {
       if (isUnmounted) return;
 
       if (!lastTimestamp) lastTimestamp = timestamp;
-      // Clamp unusually large frame deltas after background tab inactivity (max 100ms)
+      // Clamp frame deltas after background tab inactivity (max 100ms)
       const rawDt = (timestamp - lastTimestamp) / 1000;
       const dt = Math.min(Math.max(rawDt, 0), 0.1);
       lastTimestamp = timestamp;
@@ -305,22 +413,13 @@ export default function ScrollCanvasBackground() {
           Math.max(0, Math.round(currentProgress * (TOTAL_FRAMES - 1)))
         );
 
-        // Render target frame only if changed
+        // Render target frame or best fallback if it improves current frame
         if (currentDesiredFrame !== lastRenderedFrame) {
           const rendered = drawFrameToCanvas(currentDesiredFrame);
           if (!rendered) {
-            // Target frame not ready: attempt nearest available cached frame to minimize visual lag
-            let closest = -1;
-            let minDiff = Infinity;
-            for (const key of imageCache.keys()) {
-              const diff = Math.abs(key - currentDesiredFrame);
-              if (diff < minDiff) {
-                minDiff = diff;
-                closest = key;
-              }
-            }
-            if (closest >= 0 && minDiff <= 6 && closest !== lastRenderedFrame) {
-              drawFrameToCanvas(closest);
+            const best = findBestCachedFrame(currentDesiredFrame);
+            if (best >= 0 && best !== lastRenderedFrame) {
+              drawFrameToCanvas(best);
             }
           }
         }
@@ -331,15 +430,21 @@ export default function ScrollCanvasBackground() {
 
         // Keep priority queue updated to fetch upcoming frames
         updateLoadingPriorities(currentDesiredFrame, scrollDirection, isFast);
-      } else if (currentProgress !== targetProgress) {
-        // Snap when at rest
+      } else if (currentProgress !== targetProgress || currentDesiredFrame !== lastRenderedFrame) {
+        // Snap when at rest and render target frame or best available frame
         currentProgress = targetProgress;
         currentDesiredFrame = Math.min(
           TOTAL_FRAMES - 1,
           Math.max(0, Math.round(currentProgress * (TOTAL_FRAMES - 1)))
         );
         if (currentDesiredFrame !== lastRenderedFrame) {
-          drawFrameToCanvas(currentDesiredFrame);
+          const rendered = drawFrameToCanvas(currentDesiredFrame);
+          if (!rendered) {
+            const best = findBestCachedFrame(currentDesiredFrame);
+            if (best >= 0 && best !== lastRenderedFrame) {
+              drawFrameToCanvas(best);
+            }
+          }
         }
       }
 
@@ -349,24 +454,12 @@ export default function ScrollCanvasBackground() {
     animationFrameId = requestAnimationFrame(tick);
 
     // Schedule background milestones after initial frame paint
-    const milestoneTimer = setTimeout(() => {
+    milestoneTimer = setTimeout(() => {
       if (!isUnmounted) scheduleMilestones();
     }, 400);
 
     // 5. Cleanup on unmount
-    return () => {
-      isUnmounted = true;
-      clearTimeout(milestoneTimer);
-      window.removeEventListener("scroll", updateTargetProgress);
-      window.removeEventListener("resize", onResize);
-      if (animationFrameId !== null) cancelAnimationFrame(animationFrameId);
-      loadQueue = [];
-      inFlightSet.clear();
-      imageCache.forEach((img) => {
-        img.src = "";
-      });
-      imageCache.clear();
-    };
+    return cleanup;
   }, []);
 
   return (
