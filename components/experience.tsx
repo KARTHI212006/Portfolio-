@@ -2,10 +2,9 @@
 
 import Image from "next/image";
 import * as Dialog from "@radix-ui/react-dialog";
-import { Briefcase, GraduationCap, X } from "lucide-react";
+import { X, ExternalLink } from "lucide-react";
 import { certificatesList, educationList, experienceList } from "@/lib/data";
 
-// Short pill label shown over each image (kept factual: taken from the certificates).
 const pillById: Record<string, string> = {
   "zen1-cert": "IoT Intern · 34 days",
   "novitech-fullstack-cert": "Full Stack · 30 days",
@@ -16,109 +15,142 @@ export default function Experience() {
   const internship = experienceList[0];
 
   return (
-    <section id="experience" className="relative scroll-mt-24 bg-transparent pb-24 pt-8">
+    <section id="experience" className="relative scroll-mt-24 bg-transparent pb-28 pt-16 border-t border-white/10">
       <div className="container-x">
         <div data-reveal className="max-w-3xl">
-          <p className="pill label border-line text-muted">
-            <Briefcase className="h-3.5 w-3.5 text-red" aria-hidden="true" />
-            Experience
-            <span className="h-2 w-2 rounded-full bg-red" aria-hidden="true" />
+          <p className="label text-[#C5A880] tracking-editorial text-[11px] sm:text-xs">
+            04 / Experience &amp; Education · Credentials
           </p>
-          <div className="relative mt-5 block w-fit">
-            <h2 className="display text-[clamp(2.75rem,8vw,6.5rem)]">
-              Learning
-              <span className="display-soft block text-[0.62em]">by doing</span>
+          <div className="mt-3 block">
+            <h2 className="display text-[clamp(2.5rem,7vw,5.5rem)] text-fg leading-[0.95] tracking-[-0.035em]">
+              Experience &amp;
+              <span className="display-soft block text-[0.62em]">Education</span>
             </h2>
-            <span className="glass-tag label absolute -right-4 -top-4 translate-x-full max-md:hidden">Internship</span>
           </div>
-          <p className="mt-5 max-w-[56ch] text-lg leading-relaxed text-muted">
-            {internship.description} Alongside it, I completed a full stack masterclass and an IoT prototyping
-            bootcamp. Select a card to view the certificate.
+          <p className="mt-5 max-w-[56ch] text-base sm:text-lg leading-relaxed text-[#E6DDD5]/80 font-sans">
+            {internship.description} Completed a certified 30-day Full Stack MasterClass and an Autonomous IoT
+            prototyping bootcamp. Select any credential to view verified details.
           </p>
         </div>
 
-        <ul
-          className="-mx-5 mt-14 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 sm:-mx-8 sm:px-8 md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0"
+        {/* Certificate Cards */}
+        <div
+          className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3"
           aria-label="Experience and certificates"
-          tabIndex={0}
         >
-          {certificatesList.map((c, i) => (
-            <li
-              key={c.id}
-              data-reveal
-              className={`w-[82%] shrink-0 snap-center sm:w-[60%] md:w-auto ${i === 1 ? "md:mt-10" : ""}`}
-            >
+          {certificatesList.map((c) => (
+            <div key={c.id} data-reveal className="group block w-full text-left">
               <Dialog.Root>
-                <Dialog.Trigger className="group block w-full text-left">
-                  <div className="relative aspect-[3/2] overflow-hidden rounded-3xl bg-panel shadow-card ring-1 ring-line">
-                    <Image
-                      src={c.image}
-                      alt={`Certificate: ${c.title}`}
-                      fill
-                      sizes="(min-width: 768px) 380px, 82vw"
-                      className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04] group-focus-visible:scale-[1.04]"
-                    />
-                    <span className="label absolute left-3 top-3 rounded-full bg-ink px-3 py-1.5 text-[11px] text-fg">
-                      {pillById[c.id] ?? "Certificate"}
-                    </span>
+                <Dialog.Trigger className="block w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C5A880]/80 rounded-2xl">
+                  <div className="rounded-2xl border border-[#C5A880]/15 bg-black/40 p-3.5 shadow-card backdrop-blur-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:border-[#C5A880]/40 group-hover:shadow-gold">
+                    <div className="relative aspect-[3/2] overflow-hidden rounded-xl bg-black/40">
+                      <Image
+                        src={c.image}
+                        alt={`Certificate: ${c.title}`}
+                        fill
+                        sizes="(min-width: 768px) 380px, 90vw"
+                        className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                      />
+                      <span className="label absolute left-2.5 top-2.5 rounded-full border border-[#C5A880]/30 bg-black/80 px-2.5 py-1 text-[10px] font-mono text-[#F4EFEA]">
+                        {pillById[c.id] ?? "Certificate"}
+                      </span>
+                    </div>
+                    <div className="pt-4 pb-1">
+                      <h3 className="font-heading text-lg font-semibold leading-snug tracking-tight text-[#F4EFEA] group-hover:text-[#C5A880] transition-colors">
+                        {c.title}
+                      </h3>
+                      <p className="mt-1.5 text-xs sm:text-sm text-muted font-sans">{c.issuer}</p>
+                      <div className="mt-3 flex items-center justify-between text-xs text-[#E6DDD5]/80 font-mono">
+                        <span className="text-[#C5A880]">{c.date}</span>
+                        <ExternalLink className="h-3.5 w-3.5 text-muted transition-colors group-hover:text-white" />
+                      </div>
+                    </div>
                   </div>
-                  <h3 className="mt-5 text-xl font-semibold leading-snug tracking-tight">{c.title}</h3>
-                  <p className="mt-1.5 text-sm text-muted">{c.issuer}</p>
-                  <p className="mt-1 text-sm font-medium text-red">{c.date}</p>
                 </Dialog.Trigger>
 
                 <Dialog.Portal>
-                  <Dialog.Overlay className="fixed inset-0 z-[60] bg-black/80" />
-                  <Dialog.Content className="fixed left-1/2 top-1/2 z-[70] max-h-[92dvh] w-[min(94vw,880px)] -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-3xl border border-line bg-ink p-4 text-fg shadow-card sm:p-6">
+                  <Dialog.Overlay className="fixed inset-0 z-[60] bg-black/85 backdrop-blur-md" />
+                  <Dialog.Content className="fixed left-1/2 top-1/2 z-[70] max-h-[92dvh] w-[min(94vw,880px)] -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-3xl border border-[#C5A880]/20 bg-[#0d0b0c] p-6 text-[#F4EFEA] shadow-2xl sm:p-8">
                     <div className="flex items-start justify-between gap-4">
-                      <Dialog.Title className="font-heading text-xl font-semibold leading-snug sm:text-2xl">
-                        {c.title}
-                      </Dialog.Title>
+                      <div>
+                        <Dialog.Title className="font-heading text-xl sm:text-2xl font-semibold leading-snug text-[#F4EFEA]">
+                          {c.title}
+                        </Dialog.Title>
+                        <Dialog.Description className="mt-1.5 text-xs sm:text-sm text-muted font-mono">
+                          {c.issuer} · {c.date}
+                          {c.credentialId ? ` · Credential ID: ${c.credentialId}` : ""}
+                        </Dialog.Description>
+                      </div>
                       <Dialog.Close
-                        aria-label="Close certificate"
-                        className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-line"
+                        aria-label="Close certificate modal"
+                        className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-white/15 text-muted transition-colors hover:border-[#C5A880] hover:text-white"
                       >
-                        <X className="h-5 w-5" aria-hidden="true" />
+                        <X className="h-4 w-4" aria-hidden="true" />
                       </Dialog.Close>
                     </div>
-                    <Dialog.Description className="mt-2 text-sm text-muted">
-                      {c.issuer} · {c.date}
-                      {c.credentialId ? ` · ID ${c.credentialId}` : ""}
-                    </Dialog.Description>
-                    <div className="relative mt-4 aspect-[3/2] overflow-hidden rounded-2xl bg-panel">
-                      <Image src={c.image} alt={`Full certificate: ${c.title}`} fill sizes="880px" className="object-contain" />
+
+                    <div className="relative mt-5 aspect-[3/2] overflow-hidden rounded-xl border border-white/10 bg-black/50">
+                      <Image
+                        src={c.image}
+                        alt={`Full certificate: ${c.title}`}
+                        fill
+                        sizes="880px"
+                        className="object-contain"
+                      />
                     </div>
-                    <p className="mt-4 text-sm leading-relaxed text-muted">{c.description}</p>
+                    <p className="mt-4 text-xs sm:text-sm leading-relaxed text-[#E6DDD5]/80 font-sans">{c.description}</p>
                   </Dialog.Content>
                 </Dialog.Portal>
               </Dialog.Root>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
 
-        {/* Education */}
-        <div className="mt-24 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] lg:gap-20">
+        {/* Education Timeline */}
+        <div className="mt-24 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] lg:gap-16">
           <div data-reveal>
-            <p className="pill label border-line text-muted">
-              <GraduationCap className="h-3.5 w-3.5 text-red" aria-hidden="true" />
-              Education
+            <p className="label text-[#C5A880] tracking-editorial text-[11px] sm:text-xs">
+              Education · Academic Journey
             </p>
-            <h2 className="display mt-5 text-4xl sm:text-5xl">
+            <h2 className="display mt-3 text-3xl sm:text-4xl lg:text-5xl text-[#F4EFEA] leading-[0.95]">
               Where <span className="display-soft">I study</span>
             </h2>
           </div>
-          <ol className="divide-y divide-line border-y border-line">
-            {educationList.map((e) => (
-              <li key={e.id} data-reveal className="grid gap-2 py-7 sm:grid-cols-[minmax(0,1fr)_auto] sm:gap-8">
-                <div>
-                  <h3 className="text-xl font-semibold tracking-tight">{e.institution}</h3>
-                  <p className="mt-1 text-muted">{e.degree}</p>
-                  <p className="mt-1 text-sm text-muted">{e.location}</p>
+
+          <div className="space-y-4">
+            {educationList.map((e, idx) => (
+              <div
+                key={e.id}
+                data-reveal
+                className="rounded-2xl border border-[#C5A880]/15 bg-black/40 p-6 sm:p-7 shadow-card backdrop-blur-sm transition-all duration-300 hover:border-[#C5A880]/35 hover:shadow-gold"
+              >
+                <div className="flex flex-wrap items-start justify-between gap-2">
+                  <div>
+                    <div className="flex items-center gap-2 text-xs font-mono text-[#C5A880]">
+                      <span>[{String(idx + 1).padStart(2, "0")}]</span>
+                      <span>{e.location}</span>
+                    </div>
+                    <h3 className="font-heading mt-1 text-lg sm:text-xl font-semibold tracking-tight text-[#F4EFEA]">
+                      {e.institution}
+                    </h3>
+                    <p className="mt-1 text-sm font-medium text-[#E6DDD5]/90 font-sans">{e.degree}</p>
+                  </div>
+                  <span className="inline-flex items-center rounded-full border border-[#C5A880]/20 bg-black/50 px-3 py-1 text-xs font-mono tracking-wider text-[#C5A880]">
+                    {e.period}
+                  </span>
                 </div>
-                <p className="label self-start text-red sm:text-right">{e.period}</p>
-              </li>
+                {e.highlights && e.highlights.length > 0 && (
+                  <ul className="mt-4 space-y-1.5 border-t border-white/10 pt-4 font-sans">
+                    {e.highlights.map((h) => (
+                      <li key={h} className="text-xs sm:text-sm leading-relaxed text-[#E6DDD5]/75">
+                        {h}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
             ))}
-          </ol>
+          </div>
         </div>
       </div>
     </section>

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "@fontsource-variable/inter";
+import "@fontsource-variable/space-grotesk";
 import "./globals.css";
 
 const SITE_URL = "https://s-karthikeyan-portfolio.vercel.app";
@@ -52,7 +53,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark" suppressHydrationWarning>
       <head>
         {/* Marks that JS is running so reveals and the intro video may hide content briefly.
             If the animation scripts have not started after 4s, .no-motion makes everything visible. */}
