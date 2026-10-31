@@ -1,5 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import "@fontsource-variable/inter";
+import "@fontsource-variable/archivo/wdth.css";
+import "@fontsource/instrument-serif/400-italic.css";
+import "@fontsource/ibm-plex-mono/400.css";
+import "@fontsource/ibm-plex-mono/500.css";
 import "./globals.css";
 
 const SITE_URL = "https://s-karthikeyan-portfolio.vercel.app";
@@ -45,7 +48,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#090506",
+  themeColor: "#17131C",
   width: "device-width",
   initialScale: 1,
 };

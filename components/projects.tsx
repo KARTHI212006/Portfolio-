@@ -7,21 +7,27 @@ import { ArrowUpRight, Github, X } from "lucide-react";
 import { projectsList, type ProjectItem } from "@/lib/data";
 
 function ProjectLinks({ p }: { p: ProjectItem }) {
-  if (!p.githubUrl && !p.liveUrl) return null;
   return (
-    <div className="flex flex-wrap gap-3">
+    <div className="flex flex-wrap items-center gap-x-6 gap-y-1">
+      <Dialog.Root>
+        <Dialog.Trigger className="btn-lav">
+          Case study
+          <span className="sr-only"> for {p.title}</span>
+        </Dialog.Trigger>
+        <CaseStudy p={p} />
+      </Dialog.Root>
+      {p.liveUrl && (
+        <a href={p.liveUrl} target="_blank" rel="noopener noreferrer" className="link-u">
+          Live site
+          <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+          <span className="sr-only"> of {p.title} (opens in a new tab)</span>
+        </a>
+      )}
       {p.githubUrl && (
-        <a href={p.githubUrl} target="_blank" rel="noopener noreferrer" className="btn-outline !min-h-[40px] !px-4">
+        <a href={p.githubUrl} target="_blank" rel="noopener noreferrer" className="link-u">
           <Github className="h-4 w-4" aria-hidden="true" />
           GitHub
           <span className="sr-only"> repository for {p.title} (opens in a new tab)</span>
-        </a>
-      )}
-      {p.liveUrl && (
-        <a href={p.liveUrl} target="_blank" rel="noopener noreferrer" className="btn-red !min-h-[40px] !px-4">
-          Live demo
-          <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-          <span className="sr-only"> of {p.title} (opens in a new tab)</span>
         </a>
       )}
     </div>
@@ -31,49 +37,44 @@ function ProjectLinks({ p }: { p: ProjectItem }) {
 function CaseStudy({ p }: { p: ProjectItem }) {
   return (
     <Dialog.Portal>
-      <Dialog.Overlay className="fixed inset-0 z-[60] bg-black/80" />
-      <Dialog.Content className="fixed left-1/2 top-1/2 z-[70] max-h-[92dvh] w-[min(94vw,820px)] -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-3xl border border-line bg-ink p-5 shadow-card sm:p-8">
+      <Dialog.Overlay className="fixed inset-0 z-[60] bg-ink/85" />
+      <Dialog.Content className="fixed left-1/2 top-1/2 z-[70] max-h-[92dvh] w-[min(94vw,820px)] -translate-x-1/2 -translate-y-1/2 overflow-y-auto border border-lav/30 bg-ink p-5 text-lav sm:p-8">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="label text-red">{p.badge}</p>
-            <Dialog.Title className="mt-2 font-heading text-2xl font-bold tracking-tight sm:text-3xl">
-              {p.title}
-            </Dialog.Title>
+            <p className="mono text-orchid">{p.badge}</p>
+            <Dialog.Title className="display mt-3 text-5xl sm:text-6xl">{p.title}</Dialog.Title>
           </div>
-          <Dialog.Close
-            aria-label="Close case study"
-            className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-line"
-          >
+          <Dialog.Close aria-label="Close case study" className="grid h-11 w-11 shrink-0 place-items-center border border-lav/30">
             <X className="h-5 w-5" aria-hidden="true" />
           </Dialog.Close>
         </div>
-        <Dialog.Description className="mt-3 text-muted">{p.shortDesc}</Dialog.Description>
+        <Dialog.Description className="mt-4">{p.shortDesc}</Dialog.Description>
 
-        <div className="mt-6 grid gap-6 sm:grid-cols-2">
+        <div className="mt-8 grid gap-6 sm:grid-cols-2">
           <div>
-            <h3 className="label text-muted">Problem</h3>
-            <p className="mt-2 leading-relaxed">{p.problem}</p>
+            <h3 className="mono text-orchid">Problem</h3>
+            <p className="mt-2">{p.problem}</p>
           </div>
           <div>
-            <h3 className="label text-muted">Approach</h3>
-            <p className="mt-2 leading-relaxed">{p.solution}</p>
+            <h3 className="mono text-orchid">Approach</h3>
+            <p className="mt-2">{p.solution}</p>
           </div>
         </div>
 
-        <h3 className="label mt-7 text-muted">Features</h3>
+        <h3 className="mono mt-8 text-orchid">Features</h3>
         <ul className="mt-3 space-y-2">
           {p.features.map((f) => (
-            <li key={f} className="flex gap-3 leading-relaxed">
-              <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-red" aria-hidden="true" />
+            <li key={f} className="grid grid-cols-[1rem_minmax(0,1fr)] gap-2">
+              <span className="mt-2.5 h-1.5 w-1.5 bg-signal" aria-hidden="true" />
               {f}
             </li>
           ))}
         </ul>
 
-        <h3 className="label mt-7 text-muted">My role</h3>
-        <p className="mt-2 leading-relaxed">{p.myContribution}</p>
+        <h3 className="mono mt-8 text-orchid">My role</h3>
+        <p className="mt-2">{p.myContribution}</p>
 
-        <h3 className="label mt-7 text-muted">Tech stack</h3>
+        <h3 className="mono mt-8 text-orchid">Tech stack</h3>
         <ul className="mt-3 flex flex-wrap gap-2">
           {p.tech.map((t) => (
             <li key={t} className="chip">
@@ -82,65 +83,135 @@ function CaseStudy({ p }: { p: ProjectItem }) {
           ))}
         </ul>
 
-        <div className="mt-8">
-          <ProjectLinks p={p} />
+        <div className="mt-8 flex flex-wrap gap-x-6">
+          {p.liveUrl && (
+            <a href={p.liveUrl} target="_blank" rel="noopener noreferrer" className="link-u">
+              Live site <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+              <span className="sr-only"> (opens in a new tab)</span>
+            </a>
+          )}
+          {p.githubUrl && (
+            <a href={p.githubUrl} target="_blank" rel="noopener noreferrer" className="link-u">
+              <Github className="h-4 w-4" aria-hidden="true" /> GitHub
+              <span className="sr-only"> (opens in a new tab)</span>
+            </a>
+          )}
         </div>
       </Dialog.Content>
     </Dialog.Portal>
   );
 }
 
-function ProjectRow({ p, flip }: { p: ProjectItem; flip: boolean }) {
+/** Three ruled facts, each taken from the project's own details. */
+function Facts({ p }: { p: ProjectItem }) {
   return (
-    <article className="animate-rise grid gap-4 lg:grid-cols-2 lg:gap-5">
-      {/* Photo card */}
-      <div
-        className={`relative min-h-[260px] overflow-hidden rounded-[2rem] border border-line bg-panel shadow-card sm:min-h-[340px] ${
-          flip ? "lg:order-2" : ""
-        }`}
-      >
-        <Image
-          src={p.image}
-          alt={`${p.title} project preview`}
-          fill
-          sizes="(min-width: 1024px) 590px, 94vw"
-          className="object-cover"
-        />
-        <span className="glass-tag label absolute left-4 top-4 !py-1.5 text-[11px]">{p.badge}</span>
-      </div>
-
-      {/* Glow card: three real facts about the project */}
-      <div className="relative flex flex-col overflow-hidden rounded-[2rem] border border-line bg-[radial-gradient(120%_90%_at_100%_0%,rgba(240,55,79,0.5),transparent_62%),linear-gradient(165deg,#2b0d13,#130A0C)] p-6 shadow-card sm:p-8">
-        <h3 className="display text-3xl sm:text-4xl">{p.title}</h3>
-        <p className="mt-3 max-w-[48ch] leading-relaxed text-fg/80">{p.shortDesc}</p>
-        <dl className="mt-6 grid grid-cols-3 gap-3 border-y border-white/15 py-5">
-          {p.highlights.map((h) => (
-            <div key={h.label}>
-              <dd className="display text-2xl sm:text-3xl">{h.value}</dd>
-              <dt className="mt-2 text-xs leading-snug text-fg/70">{h.label}</dt>
-            </div>
-          ))}
-        </dl>
-        <ul className="mt-5 flex flex-wrap gap-2" aria-label="Tech stack">
-          {p.tech.map((t) => (
-            <li key={t} className="chip !px-3 !py-1 !text-[13px]">
-              {t}
-            </li>
-          ))}
-        </ul>
-        <div className="mt-auto flex flex-wrap items-center gap-3 pt-7">
-          <Dialog.Root>
-            <Dialog.Trigger className="btn-light !min-h-[40px] !px-4">
-              Case study
-              <span className="sr-only"> for {p.title}</span>
-            </Dialog.Trigger>
-            <CaseStudy p={p} />
-          </Dialog.Root>
-          <ProjectLinks p={p} />
+    <dl className="grid grid-cols-3 gap-4 border-y border-lav/30 py-5">
+      {p.highlights.map((h) => (
+        <div key={h.label}>
+          <dd className="display text-4xl sm:text-5xl">{h.value}</dd>
+          <dt className="mono mt-2 text-orchid">{h.label}</dt>
         </div>
-      </div>
-    </article>
+      ))}
+    </dl>
   );
+}
+
+function Plate({ p, fig, className, sizes, position = "object-top" }: { p: ProjectItem; fig: string; className: string; sizes: string; position?: string }) {
+  return (
+    <figure>
+      <div data-plate className={`plate ${className}`}>
+        <Image src={p.image} alt={`${p.title} project preview`} fill sizes={sizes} className={`object-cover ${position}`} />
+      </div>
+      <figcaption className="mono mt-3 flex justify-between text-orchid">
+        <span>
+          {fig} — {p.title}
+        </span>
+        <span>{p.tech.slice(0, 3).join(" · ")}</span>
+      </figcaption>
+    </figure>
+  );
+}
+
+function Title({ p, n, className = "text-[clamp(3rem,7vw,6rem)]" }: { p: ProjectItem; n: string; className?: string }) {
+  return (
+    <>
+      <p className="mono text-orchid">
+        {n} — {p.badge}
+      </p>
+      <h3 className={`display mt-3 ${className}`}>
+        <span data-mask>
+          <span>{p.title}</span>
+        </span>
+      </h3>
+    </>
+  );
+}
+
+/** Each project gets its own composition; the plate, ruled facts and caption system stays the same. */
+function ProjectRow({ p, n }: { p: ProjectItem; n: string }) {
+  switch (p.id) {
+    case "gamevault":
+      return (
+        <article className="animate-rise">
+          <Plate p={p} fig="Fig. 01" className="aspect-[16/8]" sizes="(min-width: 1344px) 1248px, 94vw" />
+          <div className="mt-10 grid gap-x-6 gap-y-8 lg:grid-cols-12">
+            <div className="lg:col-span-6">
+              <Title p={p} n={n} />
+            </div>
+            <div className="space-y-6 lg:col-span-6">
+              <p className="max-w-[52ch] text-lg">{p.shortDesc}</p>
+              <Facts p={p} />
+              <ProjectLinks p={p} />
+            </div>
+          </div>
+        </article>
+      );
+    case "smart-irrigation":
+      return (
+        <article className="animate-rise grid gap-x-6 gap-y-8 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <Plate p={p} fig="Fig. 02" className="aspect-[4/5]" sizes="(min-width: 1024px) 520px, 94vw" position="object-center" />
+          </div>
+          <div className="flex flex-col justify-end space-y-6 lg:col-span-7">
+            <Title p={p} n={n} className="text-[clamp(2.75rem,6vw,5rem)]" />
+            <p className="max-w-[52ch] text-lg">{p.shortDesc}</p>
+            <Facts p={p} />
+            <ProjectLinks p={p} />
+          </div>
+        </article>
+      );
+    case "bus-booking":
+    case "employee-attendance": {
+      const flip = p.id === "employee-attendance";
+      return (
+        <article className="animate-rise grid gap-x-6 gap-y-8 lg:grid-cols-12">
+          <div className={`lg:col-span-7 ${flip ? "lg:order-2" : ""}`}>
+            <Plate p={p} fig={flip ? "Fig. 04" : "Fig. 03"} className="aspect-[16/10]" sizes="(min-width: 1024px) 730px, 94vw" />
+          </div>
+          <div className={`space-y-6 lg:col-span-5 ${flip ? "lg:order-1" : ""}`}>
+            <Title p={p} n={n} className="text-[clamp(2.5rem,5vw,4.25rem)]" />
+            <p className="max-w-[48ch] text-lg">{p.shortDesc}</p>
+            <Facts p={p} />
+            <ProjectLinks p={p} />
+          </div>
+        </article>
+      );
+    }
+    default:
+      return (
+        <article className="animate-rise grid gap-x-6 gap-y-8 border-t border-lav/30 pt-8 lg:grid-cols-12">
+          <div className="lg:col-span-3">
+            <Plate p={p} fig="Colophon" className="aspect-[16/10]" sizes="(min-width: 1024px) 300px, 94vw" />
+          </div>
+          <div className="space-y-5 lg:col-span-9">
+            <Title p={p} n={n} className="text-[clamp(2rem,4vw,3.25rem)]" />
+            <p className="max-w-[60ch]">{p.shortDesc}</p>
+            <Facts p={p} />
+            <ProjectLinks p={p} />
+          </div>
+        </article>
+      );
+  }
 }
 
 const filters = ["All", ...Array.from(new Set(projectsList.map((p) => p.category)))];
@@ -150,38 +221,31 @@ export default function Projects() {
   const shown = active === "All" ? projectsList : projectsList.filter((p) => p.category === active);
 
   return (
-    <section id="projects" className="grain relative scroll-mt-24 bg-ink pb-24 pt-8">
-      <div className="container-x relative z-10">
-        <div data-reveal className="max-w-3xl">
-          <p className="pill label border-line text-muted">
-            <span className="h-2 w-2 rounded-full bg-red" aria-hidden="true" />
-            Projects
-          </p>
-          <div className="relative mt-5 block w-fit">
-            <h2 className="display text-[clamp(2.75rem,8vw,6.5rem)]">
-              Things
-              <span className="display-soft block text-[0.62em]">I&apos;ve built</span>
+    <section id="projects" className="scroll-mt-14 bg-ink py-20 sm:py-28">
+      <div className="container-x">
+        <div className="grid grid-cols-1 gap-x-6 gap-y-10 lg:grid-cols-12">
+          <p className="mono text-orchid lg:col-span-3">05 — Work</p>
+          <div className="lg:col-span-9">
+            <h2 className="serif-i text-[clamp(3rem,7.5vw,6.25rem)]">
+              <span data-mask>
+                <span>Things I&apos;ve built.</span>
+              </span>
             </h2>
-            <span className="glass-tag label absolute -right-4 -top-4 translate-x-full max-md:hidden">
-              {projectsList.length} projects
-            </span>
+            <p data-reveal className="mt-6 max-w-[56ch] text-xl leading-snug">
+              Java and MySQL applications, an IoT prototype and web projects. Each one opens a short case study.
+            </p>
           </div>
-          <p className="mt-5 max-w-[56ch] text-lg leading-relaxed text-muted">
-            Java and MySQL applications, an IoT prototype and web projects. Each one opens a short case study.
-          </p>
         </div>
 
-        <div data-reveal role="group" aria-label="Filter projects by category" className="mt-10 flex flex-wrap gap-2">
+        <div data-reveal role="group" aria-label="Filter projects by category" className="mt-12 flex flex-wrap gap-x-7 gap-y-1 border-b border-lav/30">
           {filters.map((f) => (
             <button
               key={f}
               type="button"
               aria-pressed={active === f}
               onClick={() => setActive(f)}
-              className={`min-h-[44px] rounded-full border px-5 text-sm font-medium transition-colors ${
-                active === f
-                  ? "border-red-deep bg-red-deep text-white"
-                  : "border-white/20 text-fg hover:border-white/55"
+              className={`mono -mb-px min-h-[44px] border-b-2 transition-colors ${
+                active === f ? "border-signal text-lav" : "border-transparent text-lav/70 hover:text-lav"
               }`}
             >
               {f}
@@ -192,9 +256,9 @@ export default function Projects() {
           Showing {shown.length} {shown.length === 1 ? "project" : "projects"}
         </p>
 
-        <div className="mt-10 space-y-5">
-          {shown.map((p, i) => (
-            <ProjectRow key={p.id} p={p} flip={i % 2 === 1} />
+        <div className="mt-16 space-y-24">
+          {shown.map((p) => (
+            <ProjectRow key={p.id} p={p} n={String(projectsList.indexOf(p) + 1).padStart(2, "0")} />
           ))}
         </div>
       </div>

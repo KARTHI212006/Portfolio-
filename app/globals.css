@@ -10,123 +10,124 @@
   }
 
   body {
-    @apply bg-ink font-sans text-fg antialiased;
+    @apply bg-ink font-sans text-lav antialiased;
     overflow-x: clip;
     text-rendering: optimizeLegibility;
+    font-size: 17px;
+    line-height: 1.55;
   }
 
   h1,
   h2,
   h3 {
-    @apply font-heading;
     text-wrap: balance;
   }
-
   p {
     text-wrap: pretty;
   }
 
   ::selection {
-    background: #be0c2a;
-    color: #ffffff;
+    background: #a77a9d;
+    color: #17131c;
   }
 
   :focus-visible {
-    outline: 2px solid #f0374f;
+    outline: 2px solid #ff4d5e;
     outline-offset: 3px;
-    border-radius: 4px;
+  }
+  .tone-paper :focus-visible {
+    outline-color: #be0c2a;
   }
 }
 
 @layer components {
   .container-x {
-    @apply mx-auto w-full max-w-[1200px] px-5 sm:px-8;
+    @apply mx-auto w-full max-w-[1344px] px-5 sm:px-8 lg:px-12;
   }
 
-  /* Template headline: very large, light, uppercase, tightly tracked */
+  /* Information layer: labels, figure numbers, data rows */
+  .mono {
+    @apply font-mono text-[12px] font-normal uppercase tracking-[0.08em];
+    line-height: 1.5;
+  }
+
+  /* Masthead type: Archivo on its width axis */
   .display {
-    font-family: "Inter Variable", Inter, system-ui, sans-serif;
-    font-weight: 300;
+    font-family: "Archivo Variable", Archivo, system-ui, sans-serif;
+    font-weight: 800;
+    font-stretch: 62%;
     text-transform: uppercase;
-    letter-spacing: -0.045em;
-    line-height: 0.9;
+    letter-spacing: -0.02em;
+    line-height: 0.82;
+  }
+  .display-wide {
+    font-family: "Archivo Variable", Archivo, system-ui, sans-serif;
+    font-weight: 900;
+    font-stretch: 80%;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    line-height: 0.82;
+  }
+  .serif-i {
+    @apply font-serif italic;
+    font-weight: 400;
+    line-height: 1;
   }
 
-  /* Second tier of a headline: smaller, softly faded */
-  .display-soft {
-    background-image: linear-gradient(180deg, #f6f1ef 20%, #9a8a8c 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+  .rule-t {
+    border-top: 1px solid color-mix(in srgb, currentColor 28%, transparent);
+  }
+  .rule-b {
+    border-bottom: 1px solid color-mix(in srgb, currentColor 28%, transparent);
   }
 
-  /* Compact uppercase label */
-  .label {
-    @apply font-sans text-[12px] font-semibold uppercase tracking-label;
+  /* Buttons: square, no glow */
+  .btn-lav {
+    @apply inline-flex min-h-[48px] items-center gap-2 bg-lav px-6 text-[15px] font-semibold text-ink transition-colors duration-200 hover:bg-orchid;
+  }
+  .btn-ink {
+    @apply inline-flex min-h-[48px] items-center gap-2 bg-ink px-6 text-[15px] font-semibold text-paper transition-colors duration-200 hover:bg-aub;
+  }
+  .link-u {
+    @apply inline-flex min-h-[44px] items-center gap-2 text-[15px] font-semibold underline decoration-1 underline-offset-[6px] transition-[text-underline-offset] duration-200 hover:underline-offset-[10px];
   }
 
-  /* Small frosted tag that overlaps a headline corner (template detail) */
-  .glass-tag {
-    @apply rounded-2xl border border-white/15 bg-white/[0.06] px-3.5 py-2.5 text-fg;
-    -webkit-backdrop-filter: blur(14px);
-    backdrop-filter: blur(14px);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  }
-  @media (prefers-reduced-transparency: reduce) {
-    .glass-tag {
-      background: #1d1114;
-      -webkit-backdrop-filter: none;
-      backdrop-filter: none;
-    }
+  /* Plate: framed image with a caption row (use .plate-cap beneath) */
+  .plate {
+    @apply relative overflow-hidden bg-aub;
   }
 
-  .btn {
-    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full px-6 text-sm font-semibold transition-colors duration-200;
+  /* Portrait duotone (orchid); hover/focus restores more of the photograph */
+  .duotone img {
+    filter: grayscale(1) contrast(1.08);
   }
-
-  .btn-red {
-    @apply btn bg-red-deep text-white hover:bg-[#d3102f];
-  }
-
-  .btn-light {
-    @apply btn bg-white text-[#150608] hover:bg-ink hover:text-white;
-  }
-
-  .btn-outline {
-    @apply btn border border-white/25 text-fg hover:border-white/60;
-  }
-
-  .pill {
-    @apply inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5;
-  }
-
-  .chip {
-    @apply inline-flex items-center rounded-full border border-line bg-panel px-3.5 py-1.5 text-sm text-fg/90;
-  }
-
-  /* Underline form fields (label above, error below) */
-  .field {
-    @apply w-full border-0 border-b border-white/25 bg-transparent px-0 pb-3 pt-2 text-base text-fg transition-colors placeholder:text-muted/70 focus:border-red focus:outline-none focus-visible:outline-offset-0 aria-[invalid=true]:border-red;
-    border-radius: 0;
-  }
-
-  .grain {
-    position: relative;
-  }
-  .grain::before {
+  .duotone::after {
     content: "";
     position: absolute;
     inset: 0;
+    background: #a77a9d;
+    mix-blend-mode: multiply;
+    opacity: 0.78;
+    transition: opacity 0.5s ease;
     pointer-events: none;
-    opacity: 0.07;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    mix-blend-mode: screen;
+  }
+  .duotone:hover::after {
+    opacity: 0.35;
+  }
+
+  /* Underline form fields */
+  .field {
+    @apply w-full border-0 border-b border-lav/40 bg-transparent px-0 pb-3 pt-2 text-base text-lav transition-colors placeholder:text-lav/50 focus:border-signal focus:outline-none aria-[invalid=true]:border-signal;
+    border-radius: 0;
+  }
+
+  .chip {
+    @apply mono inline-flex items-center px-3 py-1.5 text-[11px];
+    border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
   }
 }
 
-/* ---------- Intro video (scroll-scrubbed) ----------
-   The scroll length is reserved in CSS so there is no layout shift, and the video is pinned with
-   CSS sticky (no JS pin). It only renders when JS is on, motion is allowed and the scripts started. */
+/* ---------- Intro video (scroll-scrubbed) ---------- */
 .intro-wrap {
   display: none;
 }
@@ -134,7 +135,7 @@
   display: block;
   position: relative;
   height: calc(100dvh + 320vh);
-  background: #090506;
+  background: #17131c;
 }
 @media (max-width: 767px) {
   .js .intro-wrap {
@@ -155,14 +156,14 @@
   object-fit: cover;
   object-position: 48% 50%;
 }
-/* Fades the bottom edge into the hero crimson during the last part of the sequence */
+/* Fades the bottom edge into the hero ground (Ink Plum) over the last part of the scroll */
 .intro-blend {
   position: absolute;
   inset-inline: 0;
   bottom: 0;
   height: 35%;
   opacity: 0;
-  background: linear-gradient(to bottom, rgba(190, 12, 42, 0), #be0c2a);
+  background: linear-gradient(to bottom, rgba(23, 19, 28, 0), #17131c);
   pointer-events: none;
 }
 .intro-wrap[data-state="static"] {
@@ -184,17 +185,36 @@
   animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* Elements start hidden only when JS is running AND motion is allowed. GSAP reveals them.
-   If the animation scripts never start, an inline script adds .no-motion after 4s and everything shows. */
+/* Hidden only while JS runs and motion is allowed; GSAP reveals. If the scripts never start,
+   an inline script adds .no-motion after 4s and everything shows. */
 @media (prefers-reduced-motion: no-preference) {
   .js [data-reveal] {
     opacity: 0;
     transform: translateY(24px);
   }
+  .js [data-mask] {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.08em;
+    margin-bottom: -0.08em;
+  }
+  .js [data-mask] > span {
+    display: block;
+    transform: translateY(108%);
+  }
+  .js [data-plate] {
+    clip-path: inset(0 0 100% 0);
+  }
 }
 .no-motion [data-reveal] {
   opacity: 1 !important;
   transform: none !important;
+}
+.no-motion [data-mask] > span {
+  transform: none !important;
+}
+.no-motion [data-plate] {
+  clip-path: none !important;
 }
 .no-motion .intro-wrap {
   display: none !important;

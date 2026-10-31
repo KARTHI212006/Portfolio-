@@ -1,12 +1,11 @@
 import type { Config } from "tailwindcss";
 
 /**
- * Design tokens (warm-black cinematic theme).
- * ink / panel / line / fg / muted : surfaces and text
- * red-deep : crimson sampled from the final frame of the intro video (#BE0C2A), so hero and video meet seamlessly.
- *            Also the filled-button color (white text on it is 6:1).
- * red      : lighter crimson for small text and icons on dark surfaces (AA on ink).
- * To try the template's orange instead, change red-deep, red and the two rgba() glows in globals.css.
+ * Editorial palette (art direction proposal 01, contrast-tested).
+ * Dark grounds: ink, aub. Light ground: paper.
+ * Text on dark: lav (14:1), orchid (5.2:1 on ink; 24px+ only on aub).
+ * Text on paper: ink, violet (5.7:1). Violet is never text on dark (2.8:1); rules and fills only.
+ * signal = the 10% accent: #FF4D5E on dark (5.7:1), #BE0C2A on paper (5.6:1).
  */
 const config: Config = {
   content: [
@@ -17,23 +16,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: "#090506",
-        panel: "#130A0C",
-        line: "#2C1B1E",
-        fg: "#F6F1EF",
-        muted: "#B7A9AA",
-        red: "#F0374F",
-        "red-deep": "#BE0C2A",
+        ink: "#17131C",
+        aub: "#302635",
+        violet: "#72556F",
+        orchid: "#A77A9D",
+        lav: "#E8DFE5",
+        paper: "#F3EFE9",
+        signal: "#FF4D5E",
+        "signal-deep": "#BE0C2A",
       },
       fontFamily: {
-        sans: ['"Inter Variable"', "Inter", "system-ui", "sans-serif"],
-        heading: ['"Inter Variable"', "Inter", "system-ui", "sans-serif"],
-      },
-      letterSpacing: {
-        label: "0.14em",
-      },
-      boxShadow: {
-        card: "0 1px 0 rgba(255,255,255,0.04) inset, 0 24px 48px -24px rgba(0,0,0,0.7)",
+        sans: ['"Archivo Variable"', "Archivo", "system-ui", "sans-serif"],
+        serif: ['"Instrument Serif"', "Georgia", "serif"],
+        mono: ['"IBM Plex Mono"', "ui-monospace", "monospace"],
       },
     },
   },

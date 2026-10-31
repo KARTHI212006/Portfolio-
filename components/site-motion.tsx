@@ -18,7 +18,6 @@ export default function SiteMotion() {
     const mm = gsap.matchMedia();
 
     mm.add("(prefers-reduced-motion: no-preference)", () => {
-      const done = (els: gsap.TweenTarget) => gsap.set(els, { clearProps: "transform" });
 
       ScrollTrigger.batch("[data-reveal]", {
         start: "top 90%",
@@ -31,20 +30,36 @@ export default function SiteMotion() {
             ease: "power3.out",
             stagger: 0.08,
             overwrite: true,
-            onComplete: () => done(els),
           }),
       });
 
-      // Decorative sparkles: slow, low-amplitude drift (transform only).
-      gsap.utils.toArray<HTMLElement>("[data-float]").forEach((el, i) => {
-        gsap.to(el, {
-          y: i % 2 ? 8 : -8,
-          rotation: i % 2 ? 12 : -12,
-          duration: 3 + i * 0.6,
-          ease: "sine.inOut",
-          yoyo: true,
-          repeat: -1,
-        });
+      // Headlines: each line rises out of its own mask (no generic fade-up).
+      ScrollTrigger.batch("[data-mask] > span", {
+        start: "top 92%",
+        once: true,
+        onEnter: (els) =>
+          gsap.fromTo(els, { yPercent: 108, y: 0 }, {
+            yPercent: 0,
+            y: 0,
+            duration: 0.85,
+            ease: "power3.out",
+            stagger: 0.09,
+            overwrite: true,
+          }),
+      });
+
+      // Plates (images/screenshots) wipe open once.
+      ScrollTrigger.batch("[data-plate]", {
+        start: "top 90%",
+        once: true,
+        onEnter: (els) =>
+          gsap.fromTo(els, { clipPath: "inset(0 0 100% 0)" }, {
+            clipPath: "inset(0 0 0% 0)",
+            duration: 1,
+            ease: "power3.inOut",
+            stagger: 0.12,
+            onComplete: () => gsap.set(els, { clipPath: "none" }),
+          }),
       });
 
       // Pointer parallax for [data-parallax] groups (hero cards, portrait frame). Small, bounded
@@ -69,7 +84,9 @@ export default function SiteMotion() {
     });
 
     mm.add("(prefers-reduced-motion: reduce)", () => {
-      gsap.set("[data-reveal]", { opacity: 1, y: 0, clearProps: "transform" });
+      gsap.set("[data-reveal]", { opacity: 1, y: 0 });
+      gsap.set("[data-mask] > span", { yPercent: 0, y: 0 });
+      gsap.set("[data-plate]", { clipPath: "none" });
     });
 
     // Fonts and images shift layout slightly; recompute trigger positions once loaded.
